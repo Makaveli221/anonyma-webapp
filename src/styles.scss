@@ -178,6 +178,10 @@
     border-radius: 100px;
 }
 
+.pagination li.active {
+    background-color: #303f9f;
+}
+
 @media only screen and (min-width: 1024px) {
     .container {
         width: 90%;

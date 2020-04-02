@@ -1,4 +1,7 @@
 #login-page {
+    .section {
+        padding: 0;
+    }
     margin-top: 50px;
     .input-field input[type=date]:focus+label,
     .input-field input[type=text]:focus+label,
