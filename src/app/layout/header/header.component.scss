@@ -1,0 +1,32 @@
+nav ul a {
+    // color: #2196F3;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+nav ul a.btn-login {
+    color: #ffffff;
+    i.material-icons {
+        font-size: 1.1rem;
+    }
+}
+
+nav ul li.active {
+    background-color: #3F51B5;
+    a {
+        color: #ffffff;
+    }
+}
+
+i.icon-blue {
+    color: #303f9f;
+}
+
+.icon-menu {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.bleu {
+    background-color: #303f9f !important;
+}

@@ -1,0 +1,30 @@
+<header class="header">
+    <nav class="bleu">
+        <div class="nav-wrapper">
+            <a href="javascript:void(0)" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons icon-menu">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li routerLinkActive="active"><a [routerLink]="['/accueil']">Accueil</a></li>
+                <li routerLinkActive="active"><a [routerLink]="['/forums']">Forums</a></li>
+                <li routerLinkActive="active"><a [routerLink]="['/knowledges']">Religions et Astuces</a></li>
+                <li routerLinkActive="active"><a [routerLink]="['/coaching']">Coaching</a></li>
+                <li><a href="#modal1" class="waves-effect waves-light btn modal-trigger btn-login"><i class="material-icons left">lock</i> Connexion</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<ul class="sidenav" id="mobile-demo">
+    <li routerLinkActive="active"><a [routerLink]="['/accueil']">Accueil</a></li>
+    <li routerLinkActive="active"><a [routerLink]="['/forums']">Forums</a></li>
+    <li routerLinkActive="active"><a [routerLink]="['/knowledges']">Religions et Astuces</a></li>
+    <li routerLinkActive="active"><a [routerLink]="['/coaching']">Coaching</a></li>
+    <li><a href="#modal1" class="waves-effect waves-light btn modal-trigger btn-login"><i class="material-icons left">lock</i> Connexion</a></li>
+</ul>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <app-page-login></app-page-login>
+    </div>
+</div>
