@@ -1,0 +1,149 @@
+.topic-list.single-topic-page.blog-list {
+    .well {
+        margin: 0;
+        margin-bottom: 10px;
+        position: relative;
+        padding: 30px 30px 20px;
+        display: block;
+        border: 1px solid #eaecef !important;
+        box-shadow: none;
+        background-color: #fff;
+        z-index: 1;
+        -webkit-transition: all .4s ease-in-out;
+        -moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -ms-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+        .topic-desc {
+            padding: 15px 0;
+            border: 0;
+            border-bottom: 1px solid #eaecef;
+            img {
+                margin-top: 5px;
+            }
+            .single-topic-meta {
+                padding: 15px 0 15px;
+                h4,
+                h4 a {
+                    color: #727272;
+                    font-size: 2.1rem;
+                    text-decoration: none;
+                    font-weight: 500;
+                    line-height: 1.4;
+                    margin: 0;
+                    padding: 0;
+                }
+                .blog-meta small {
+                    color: #bdbdbd;
+                    display: inline-block;
+                    font-size: 0.95rem;
+                    line-height: 1;
+                    margin: 0;
+                    padding-bottom: 0;
+                    padding-right: 2px;
+                    &::after {
+                        content: "|";
+                        padding-left: 5px;
+                    }
+                    &:last-child:after {
+                        content: "";
+                    }
+                }
+            }
+            p {
+                font-weight: 400;
+                font-size: 1rem;
+                line-height: 1.8;
+                margin: 5px 0 7px;
+            }
+            h4 {
+                color: #212121;
+                font-size: 1.4rem;
+                font-weight: 500;
+                padding: 20px 0;
+                text-decoration: none;
+                line-height: 1.4;
+                margin: 0;
+            }
+        }
+        .topic-footer {
+            display: block;
+            margin-top: 20px;
+            .list-inline {
+                padding-left: 0;
+                margin-left: -5px;
+                list-style: none;
+                li {
+                    padding-left: 0 !important;
+                    display: inline-block;
+                    padding-right: 5px;
+                    color: #a9a9a9;
+                    cursor: pointer;
+                    i {
+                        position: relative;
+                        top: 10px;
+                        left: 0;
+                    }
+                    span.btn-like {
+                        font-size: 1.2rem;
+                        line-height: 1;
+                        margin: 0;
+                        margin-left: 8px;
+                        padding-bottom: 0;
+                        padding-right: 2px;
+                    }
+                    span.comment {
+                        color: #bdbdbd !important;
+                        font-weight: 400;
+                        cursor: pointer;
+                        text-transform: uppercase;
+                        background-color: transparent;
+                        font-size: 1rem;
+                        border: 1px solid #eaecef;
+                        text-decoration: none;
+                        padding: 5px 12px;
+                        border-radius: 100px;
+                        &:hover {
+                            color: #3F51B5 !important;
+                        }
+                    }
+                    &:hover {
+                        color: #3F51B5 !important;
+                    }
+                    &::after {
+                        content: "|";
+                        padding-left: 5px;
+                    }
+                    &:last-child:after {
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+}
+
+.widget {
+    background-color: #ffffff;
+    padding: 30px;
+    margin-bottom: 40px;
+    position: relative;
+    display: block;
+    .module-title {
+        text-transform: capitalize;
+        padding: 0 0 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eaecef;
+        font-weight: 500;
+        margin: 0;
+        color: #212121;
+        font-size: 1.4rem;
+    }
+    .panel-primary {
+        margin: 0;
+        box-shadow: none;
+    }
+    .panel-body {
+        padding: 30px 20px;
+    }
+}
