@@ -1,5 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "src/styles/scss/bubbly-button";
+
+/* START LINE CHAMP */
+
+.line-champ-1,
+.line-champ-2,
+.line-champ-3 {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+.line-champ-1 {
+    -webkit-line-clamp: 1;
+}
+
+.line-champ-2 {
+    -webkit-line-clamp: 2;
+}
+
+.line-champ-3 {
+    -webkit-line-clamp: 3;
+}
+
+.overflow-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* END LINE CHAMP */
+
 .section {
     padding: 7rem 0;
     display: block;
