@@ -1,11 +1,16 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { slideToTop } from 'app/layout/animations';
+
 import * as M from 'materialize-css';
 
 
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
-  styleUrls: ['./accueil.component.scss']
+  styleUrls: ['./accueil.component.scss'],
+  animations: [
+    slideToTop
+ ]
 })
 export class AccueilComponent implements OnInit, AfterViewInit {
 

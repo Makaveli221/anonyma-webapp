@@ -1,312 +1,315 @@
-<section class="section welcome bg1">
-    <div class="container">
-        <div class="row">
-            <div class="content col s8">
-                <div class="welcome-text">
-                    <h1>Helper is an unique <strong>help-desk support</strong> site template</h1>
-                    <p>Welcome to the Helper Support Portal! Search your answers with the search box above, or if you're stuck you can create a support ticket.</p>
-                    <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">chat</i>&nbsp;&nbsp; Visit Forums</a>
+<div class="content-page" @routeAnimations>
+
+    <section class="section welcome bg1">
+        <div class="container">
+            <div class="row">
+                <div class="content col s8">
+                    <div class="welcome-text">
+                        <h1>Helper is an unique <strong>help-desk support</strong> site template</h1>
+                        <p>Welcome to the Helper Support Portal! Search your answers with the search box above, or if you're stuck you can create a support ticket.</p>
+                        <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">chat</i>&nbsp;&nbsp; Visit Forums</a>
+                    </div>
                 </div>
+                <!-- end col -->
             </div>
-            <!-- end col -->
+            <!-- end container -->
         </div>
         <!-- end container -->
-    </div>
-    <!-- end container -->
-</section>
+    </section>
 
-<section class="section lb">
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m12 l9">
-                <div class="widget nopadding clearfix">
-                    <div class="panel panel-primary nopadding">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Recherchez ici</h3>
-                        </div>
-                        <div class="panel-body">
-                            <form class="site-search">
-                                <div class="input-field">
-                                    <input id="last_name" type="text" class="validate">
-                                    <label for="last_name">Comment puis-je vous aider aujourd'hui?</label>
-                                </div>
-                                <div class="form-group clearfix">
-                                    <!-- inline style is just to demo custom css to put checkbox below input above -->
-                                    <div class="checkbox left">
-                                        <label>
+    <section class="section lb">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12 l9">
+                    <div class="widget nopadding clearfix">
+                        <div class="panel panel-primary nopadding">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Recherchez ici</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="site-search">
+                                    <div class="input-field">
+                                        <input id="last_name" type="text" class="validate">
+                                        <label for="last_name">Comment puis-je vous aider aujourd'hui?</label>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <!-- inline style is just to demo custom css to put checkbox below input above -->
+                                        <div class="checkbox left">
+                                            <label>
                                             <input type="checkbox" />
                                             <span>Forums</span>
                                         </label>
-                                        <label>
+                                            <label>
                                             <input type="checkbox" />
                                             <span>Thématiques</span>
                                         </label>
-                                        <label>
+                                            <label>
                                             <input type="checkbox" />
                                             <span>Religions et Asctuces</span>
                                         </label>
+                                        </div>
+                                        <div class="submit-button right">
+                                            <a class="btn btn-raised btn-info gr" href="javascript:void(O)"><i class="material-icons left">search</i> Rechecher</a>
+                                        </div>
                                     </div>
-                                    <div class="submit-button right">
-                                        <a class="btn btn-raised btn-info gr" href="javascript:void(O)"><i class="material-icons left">search</i> Rechecher</a>
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- end well -->
+                                </form>
+                                <!-- end well -->
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="tabs tabs-fixed-width">
-                            <li class="tab col s3"><a href="#forumsTab" class="active">Forums</a></li>
-                            <li class="tab col s3"><a href="#topicsTab">Thématiques</a></li>
-                            <li class="tab col s3"><a href="#knowledgesTab">Religions et Astuces</a></li>
-                        </ul>
-                    </div>
-                    <div id="forumsTab" class="col s12">
-                        <ul class="list-topic">
-                            <li class="well topic">
-                                <div class="topic-title">
-                                    <h3>How to create a menu with Bootstrap</h3>
-                                    <div class="chip">Item name: Milano</div>
-                                    <div class="chip">Version: 1.2</div>
-                                </div>
-                                <div class="topic-desc">
-                                    <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
-                                    <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                                </div>
-                            </li>
-
-                            <li class="well topic">
-                                <div class="topic-title">
-                                    <h3>How to create a menu with Materialize</h3>
-                                    <div class="chip">Item name: Milano</div>
-                                    <div class="chip">Version: 1.2</div>
-                                </div>
-                                <div class="topic-desc">
-                                    <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
-                                    <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                                </div>
-                            </li>
-
-                            <li class="well topic">
-                                <div class="topic-title">
-                                    <h3>How to create a menu with Boosted</h3>
-                                    <div class="chip">Item name: Milano</div>
-                                    <div class="chip">Version: 1.2</div>
-                                </div>
-                                <div class="topic-desc">
-                                    <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
-                                    <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                                </div>
-                            </li>
-                        </ul>
-                        <a [routerLink]="['/forums']" class="readmore blue-grey-text" title="">Voir tout →</a>
-                    </div>
-                    <div id="topicsTab" class="col s12">
-                        <div class="topic-list">
-                            <article class="well">
-                                <div class="topic-desc row clearfix">
-                                    <div class="col s12 m4">
-                                        <img src="assets/images/uploads/blog_05.jpg" alt="" class="responsive-img img-thumbnail">
-                                    </div>
-                                    <div class="col s12 m8">
-                                        <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
-                                        <div class="blog-meta clearfix">
-                                            <small>September 18, 2016</small>
-                                            <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
-                                            <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
-                                            <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
-                                        </div>
-                                        <div class="blog-forums-chips">
-                                            <div class="chip">Item name: Milano</div>
-                                        </div>
-                                        <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
-                                        <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="well">
-                                <div class="topic-desc row clearfix">
-                                    <div class="col s12 m4">
-                                        <img src="assets/images/uploads/blog_02.jpg" alt="" class="responsive-img img-thumbnail">
-                                    </div>
-                                    <div class="col s12 m8">
-                                        <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
-                                        <div class="blog-meta clearfix">
-                                            <small>September 18, 2016</small>
-                                            <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
-                                            <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
-                                            <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
-                                        </div>
-                                        <div class="blog-forums-chips">
-                                            <div class="chip">Item name: Milano</div>
-                                        </div>
-                                        <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
-                                        <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="well">
-                                <div class="topic-desc row clearfix">
-                                    <div class="col s12 m4">
-                                        <img src="assets/images/uploads/blog_03.jpg" alt="" class="responsive-img img-thumbnail">
-                                    </div>
-                                    <div class="col s12 m8">
-                                        <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
-                                        <div class="blog-meta clearfix">
-                                            <small>September 18, 2016</small>
-                                            <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
-                                            <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
-                                            <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
-                                        </div>
-                                        <div class="blog-forums-chips">
-                                            <div class="chip">Item name: Milano</div>
-                                        </div>
-                                        <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
-                                        <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
-                                    </div>
-                                </div>
-                            </article>
-                            <ul class="pagination">
-                                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                                <li class="active"><a href="#!">1</a></li>
-                                <li class="waves-effect"><a href="#!">2</a></li>
-                                <li class="waves-effect"><a href="#!">3</a></li>
-                                <li class="waves-effect"><a href="#!">4</a></li>
-                                <li class="waves-effect"><a href="#!">5</a></li>
-                                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <div class="row">
+                        <div class="col s12">
+                            <ul class="tabs tabs-fixed-width">
+                                <li class="tab col s3"><a href="#forumsTab" class="active">Forums</a></li>
+                                <li class="tab col s3"><a href="#topicsTab">Thématiques</a></li>
+                                <li class="tab col s3"><a href="#knowledgesTab">Religions et Astuces</a></li>
                             </ul>
                         </div>
-                    </div>
-                    <div id="knowledgesTab" class="col s12">
-                        <div class="topic-list">
-                            <article class="well">
-                                <div class="topic-desc row clearfix">
-                                    <div class="col s12 m4">
-                                        <img src="assets/images/uploads/blog_05.jpg" alt="" class="responsive-img img-thumbnail">
+                        <div id="forumsTab" class="col s12">
+                            <ul class="list-topic">
+                                <li class="well topic">
+                                    <div class="topic-title">
+                                        <h3>How to create a menu with Bootstrap</h3>
+                                        <div class="chip">Item name: Milano</div>
+                                        <div class="chip">Version: 1.2</div>
                                     </div>
-                                    <div class="col s12 m8">
-                                        <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
-                                        <div class="blog-meta clearfix">
-                                            <small>September 18, 2016</small>
-                                            <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
-                                            <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
-                                            <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
-                                        </div>
-                                        <div class="blog-forums-chips">
-                                            <div class="chip">Item name: Milano</div>
-                                        </div>
-                                        <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
-                                        <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
+                                    <div class="topic-desc">
+                                        <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
+                                        <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
                                     </div>
-                                </div>
-                            </article>
+                                </li>
 
-                            <article class="well">
-                                <div class="topic-desc row clearfix">
-                                    <div class="col s12 m4">
-                                        <img src="assets/images/uploads/blog_02.jpg" alt="" class="responsive-img img-thumbnail">
+                                <li class="well topic">
+                                    <div class="topic-title">
+                                        <h3>How to create a menu with Materialize</h3>
+                                        <div class="chip">Item name: Milano</div>
+                                        <div class="chip">Version: 1.2</div>
                                     </div>
-                                    <div class="col s12 m8">
-                                        <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
-                                        <div class="blog-meta clearfix">
-                                            <small>September 18, 2016</small>
-                                            <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
-                                            <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
-                                            <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
-                                        </div>
-                                        <div class="blog-forums-chips">
-                                            <div class="chip">Item name: Milano</div>
-                                        </div>
-                                        <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
-                                        <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
+                                    <div class="topic-desc">
+                                        <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
+                                        <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
                                     </div>
-                                </div>
-                            </article>
+                                </li>
 
-                            <article class="well">
-                                <div class="topic-desc row clearfix">
-                                    <div class="col s12 m4">
-                                        <img src="assets/images/uploads/blog_03.jpg" alt="" class="responsive-img img-thumbnail">
+                                <li class="well topic">
+                                    <div class="topic-title">
+                                        <h3>How to create a menu with Boosted</h3>
+                                        <div class="chip">Item name: Milano</div>
+                                        <div class="chip">Version: 1.2</div>
                                     </div>
-                                    <div class="col s12 m8">
-                                        <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
-                                        <div class="blog-meta clearfix">
-                                            <small>September 18, 2016</small>
-                                            <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
-                                            <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
-                                            <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
-                                        </div>
-                                        <div class="blog-forums-chips">
-                                            <div class="chip">Item name: Milano</div>
-                                        </div>
-                                        <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
-                                        <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
+                                    <div class="topic-desc">
+                                        <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
+                                        <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
                                     </div>
-                                </div>
-                            </article>
+                                </li>
+                            </ul>
                             <a [routerLink]="['/forums']" class="readmore blue-grey-text" title="">Voir tout →</a>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end col -->
+                        <div id="topicsTab" class="col s12">
+                            <div class="topic-list">
+                                <article class="well">
+                                    <div class="topic-desc row clearfix">
+                                        <div class="col s12 m4">
+                                            <img src="assets/images/uploads/blog_05.jpg" alt="" class="responsive-img img-thumbnail">
+                                        </div>
+                                        <div class="col s12 m8">
+                                            <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
+                                            <div class="blog-meta clearfix">
+                                                <small>September 18, 2016</small>
+                                                <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
+                                                <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
+                                                <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
+                                            </div>
+                                            <div class="blog-forums-chips">
+                                                <div class="chip">Item name: Milano</div>
+                                            </div>
+                                            <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
+                                            <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
+                                        </div>
+                                    </div>
+                                </article>
 
-            <div class="col s12 m12 l3">
-                <div class="widget clearfix">
-                    <div class="banner-widget">
-                        <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner.jpg" alt="" class="responsive-img img-thumbnail"></a>
-                    </div>
-                </div>
+                                <article class="well">
+                                    <div class="topic-desc row clearfix">
+                                        <div class="col s12 m4">
+                                            <img src="assets/images/uploads/blog_02.jpg" alt="" class="responsive-img img-thumbnail">
+                                        </div>
+                                        <div class="col s12 m8">
+                                            <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
+                                            <div class="blog-meta clearfix">
+                                                <small>September 18, 2016</small>
+                                                <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
+                                                <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
+                                                <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
+                                            </div>
+                                            <div class="blog-forums-chips">
+                                                <div class="chip">Item name: Milano</div>
+                                            </div>
+                                            <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
+                                            <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
+                                        </div>
+                                    </div>
+                                </article>
 
-                <div class="widget clearfix">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Derniers posts</h3>
+                                <article class="well">
+                                    <div class="topic-desc row clearfix">
+                                        <div class="col s12 m4">
+                                            <img src="assets/images/uploads/blog_03.jpg" alt="" class="responsive-img img-thumbnail">
+                                        </div>
+                                        <div class="col s12 m8">
+                                            <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
+                                            <div class="blog-meta clearfix">
+                                                <small>September 18, 2016</small>
+                                                <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
+                                                <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
+                                                <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
+                                            </div>
+                                            <div class="blog-forums-chips">
+                                                <div class="chip">Item name: Milano</div>
+                                            </div>
+                                            <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
+                                            <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
+                                        </div>
+                                    </div>
+                                </article>
+                                <ul class="pagination">
+                                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                                    <li class="active"><a href="#!">1</a></li>
+                                    <li class="waves-effect"><a href="#!">2</a></li>
+                                    <li class="waves-effect"><a href="#!">3</a></li>
+                                    <li class="waves-effect"><a href="#!">4</a></li>
+                                    <li class="waves-effect"><a href="#!">5</a></li>
+                                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            <div class="list-group list-group-no-icon">
-                                <div class="list-group-item">
-                                    <div class="row-topic">
-                                        <header class="topic-title clearfix">
-                                            <h3><a [routerLink]="['/thematique', 'comment-devenir-riche']">Using font icons on this..</a></h3>
-                                            <small>Item name: Helper</small>
-                                            <small>Version: 1.0</small>
-                                        </header>
+                        <div id="knowledgesTab" class="col s12">
+                            <div class="topic-list">
+                                <article class="well">
+                                    <div class="topic-desc row clearfix">
+                                        <div class="col s12 m4">
+                                            <img src="assets/images/uploads/blog_05.jpg" alt="" class="responsive-img img-thumbnail">
+                                        </div>
+                                        <div class="col s12 m8">
+                                            <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
+                                            <div class="blog-meta clearfix">
+                                                <small>September 18, 2016</small>
+                                                <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
+                                                <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
+                                                <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
+                                            </div>
+                                            <div class="blog-forums-chips">
+                                                <div class="chip">Item name: Milano</div>
+                                            </div>
+                                            <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
+                                            <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="list-group-separator"></div>
-                                <div class="list-group-item">
-                                    <div class="row-topic">
-                                        <header class="topic-title clearfix">
-                                            <h3><a [routerLink]="['/thematique', 'comment-devenir-riche']">Getting starting edit any HTM..</a></h3>
-                                            <small>Item name: Milano</small>
-                                            <small>Version: 1.0</small>
-                                        </header>
+                                </article>
+
+                                <article class="well">
+                                    <div class="topic-desc row clearfix">
+                                        <div class="col s12 m4">
+                                            <img src="assets/images/uploads/blog_02.jpg" alt="" class="responsive-img img-thumbnail">
+                                        </div>
+                                        <div class="col s12 m8">
+                                            <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
+                                            <div class="blog-meta clearfix">
+                                                <small>September 18, 2016</small>
+                                                <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
+                                                <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
+                                                <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
+                                            </div>
+                                            <div class="blog-forums-chips">
+                                                <div class="chip">Item name: Milano</div>
+                                            </div>
+                                            <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
+                                            <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="list-group-separator"></div>
-                                <div class="list-group-item">
-                                    <div class="row-topic">
-                                        <header class="topic-title clearfix">
-                                            <h3><a [routerLink]="['/thematique', 'comment-devenir-riche']">How to change color schemes..</a></h3>
-                                            <small>Item name: Helper</small>
-                                            <small>Version: 1.0</small>
-                                        </header>
+                                </article>
+
+                                <article class="well">
+                                    <div class="topic-desc row clearfix">
+                                        <div class="col s12 m4">
+                                            <img src="assets/images/uploads/blog_03.jpg" alt="" class="responsive-img img-thumbnail">
+                                        </div>
+                                        <div class="col s12 m8">
+                                            <h4><a [routerLink]="['/thematique', 'comment-devenir-riche']" title="">We are In WorldCamp 2016 London! Join Us</a></h4>
+                                            <div class="blog-meta clearfix">
+                                                <small>September 18, 2016</small>
+                                                <small><a [routerLink]="['/thematique', 'comment-devenir-riche']">11 Comments</a></small>
+                                                <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']"> Updates</a></small>
+                                                <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']"> John Doe</a></small>
+                                            </div>
+                                            <div class="blog-forums-chips">
+                                                <div class="chip">Item name: Milano</div>
+                                            </div>
+                                            <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
+                                            <a [routerLink]="['/thematique', 'comment-devenir-riche']" class="readmore" title="">Continuez la lecture →</a>
+                                        </div>
+                                    </div>
+                                </article>
+                                <a [routerLink]="['/forums']" class="readmore blue-grey-text" title="">Voir tout →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col s12 m12 l3">
+                    <div class="widget clearfix">
+                        <div class="banner-widget">
+                            <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner.jpg" alt="" class="responsive-img img-thumbnail"></a>
+                        </div>
+                    </div>
+
+                    <div class="widget clearfix">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Derniers posts</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group list-group-no-icon">
+                                    <div class="list-group-item">
+                                        <div class="row-topic">
+                                            <header class="topic-title clearfix">
+                                                <h3><a [routerLink]="['/thematique', 'comment-devenir-riche']">Using font icons on this..</a></h3>
+                                                <small>Item name: Helper</small>
+                                                <small>Version: 1.0</small>
+                                            </header>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-separator"></div>
+                                    <div class="list-group-item">
+                                        <div class="row-topic">
+                                            <header class="topic-title clearfix">
+                                                <h3><a [routerLink]="['/thematique', 'comment-devenir-riche']">Getting starting edit any HTM..</a></h3>
+                                                <small>Item name: Milano</small>
+                                                <small>Version: 1.0</small>
+                                            </header>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-separator"></div>
+                                    <div class="list-group-item">
+                                        <div class="row-topic">
+                                            <header class="topic-title clearfix">
+                                                <h3><a [routerLink]="['/thematique', 'comment-devenir-riche']">How to change color schemes..</a></h3>
+                                                <small>Item name: Helper</small>
+                                                <small>Version: 1.0</small>
+                                            </header>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- end col -->
             </div>
-            <!-- end col -->
+            <!-- end row -->
         </div>
-        <!-- end row -->
-    </div>
-    <!-- end container -->
-</section>
+        <!-- end container -->
+    </section>
+</div>

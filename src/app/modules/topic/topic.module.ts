@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SharedModule } from '@shared/shared.module';
+
 import { TopicRoutingModule } from './topic-routing.module';
 import { IndexComponent } from './pages/index/index.component';
 
@@ -9,7 +11,8 @@ import { IndexComponent } from './pages/index/index.component';
   declarations: [IndexComponent],
   imports: [
     CommonModule,
-    TopicRoutingModule
+    TopicRoutingModule,
+    SharedModule
   ]
 })
 export class TopicModule { }

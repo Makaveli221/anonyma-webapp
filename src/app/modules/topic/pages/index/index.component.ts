@@ -1,11 +1,16 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { slideToTop } from 'app/layout/animations';
+
 import * as M from 'materialize-css';
 
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
+  animations: [
+    slideToTop
+ ]
 })
 export class IndexComponent implements OnInit, AfterViewInit {
 
