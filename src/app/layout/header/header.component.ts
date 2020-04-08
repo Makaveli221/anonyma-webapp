@@ -14,10 +14,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     draggable: true
   };
 
-  optionsModal = {
-
-  };
-
   constructor() { }
 
   ngOnInit(): void {
@@ -28,7 +24,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     var sideNav = M.Sidenav.init(sidenavElem, this.optionsSidenav);
 
     var modalElem = document.querySelectorAll('.modal');
-    var modal = M.Modal.init(modalElem, this.optionsModal);
+    var modal = M.Modal.init(modalElem, {});
   }
 
 }

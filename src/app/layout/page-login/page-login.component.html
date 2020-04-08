@@ -6,35 +6,70 @@
     <div class="section"></div>
 
     <div class="container">
-        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;max-width: 413px;">
 
-            <form class="col s12" method="post">
+            <form (ngSubmit)="login()" [formGroup]="loginForm" class="col s12">
                 <div class='row'>
                     <div class='col s12'>
                     </div>
                 </div>
 
-                <div class='row'>
-                    <div class='input-field col s12'>
-                        <input class='validate' type='email' name='email' id='email' />
-                        <label for='email'>Entrer votre login</label>
+                <div class="row" [hidden]="!error">
+                    <div class="col s12 m12">
+                        <div class="card red darken-1">
+                            <div class="row">
+                                <div class="col s12 m12">
+                                    <div class="card-content white-text" style="text-align: justify;">
+                                        {{ error }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class='row'>
                     <div class='input-field col s12'>
-                        <input class='validate' type='password' name='password' id='password' />
+                        <input class='validate' type='text' name='username' id='username' [ngClass]="{'is-valid': !f.username.errors}" [disabled]="submitted" formControlName="username" />
+                        <label for='username'>Entrer votre login</label>
+                        <p class="left m-0">
+                            <app-control-messages [control]="f['username']"></app-control-messages>
+                        </p>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='input-field col s12'>
+                        <input class='validate' type='password' name='password' id='password' [disabled]="submitted" [ngClass]="{'is-valid': !f.password.errors}" formControlName="password" />
                         <label for='password'>Entrer votre mot de passe</label>
+                        <p class="left m-0">
+                            <app-control-messages [control]="f['password']"></app-control-messages>
+                        </p>
                     </div>
                     <label style='float: right;'>
-                              <a class='pink-text' href='#!'><b>Mot de passe oublié?</b></a>
-                          </label>
+                        <a class='pink-text' href='#!'><b>Mot de passe oublié?</b></a>
+                    </label>
                 </div>
 
                 <br />
                 <div class="center-align">
                     <div class='row'>
-                        <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Se connecter</button>
+                        <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo' [disabled]="loginForm.invalid">
+                            <span [hidden]="isLoading">Se connecter</span>
+                            <span [hidden]="!isLoading" style="margin-top: 10px;">
+                                <div class="preloader-wrapper small active">
+                                    <div class="spinner-layer spinner-green-only">
+                                      <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                      </div><div class="gap-patch">
+                                        <div class="circle"></div>
+                                      </div><div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
                     </div>
                 </div>
             </form>
