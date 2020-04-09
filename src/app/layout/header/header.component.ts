@@ -1,3 +1,5 @@
+import { User } from '@schema/user';
+import { AuthenticationService } from '@service/authentication.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 
@@ -13,18 +15,34 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     edge: 'left', // Choose the horizontal origin
     draggable: true
   };
+  user: User = null;
+  authenticate = false;
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
+    if(this.authenticationService.currentUserValue) {
+      this.user = this.authenticationService.currentUserValue;
+      console.log(this.user);
+      this.authenticate = true;
+    }
   }
 
   ngAfterViewInit(): void {
-    var sidenavElem = document.querySelectorAll('.sidenav');
-    var sideNav = M.Sidenav.init(sidenavElem, this.optionsSidenav);
+    M.Sidenav.init(
+      document.querySelectorAll('.sidenav'),
+      this.optionsSidenav
+    );
 
-    var modalElem = document.querySelectorAll('.modal');
-    var modal = M.Modal.init(modalElem, {});
+    M.Modal.init(
+      document.querySelectorAll('.modal'),
+      {}
+    );
+
+    M.Dropdown.init(
+      document.querySelectorAll('.dropdown-trigger'),
+      {}
+    );
   }
 
 }
