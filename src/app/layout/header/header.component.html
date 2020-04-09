@@ -9,16 +9,18 @@
                 <li routerLinkActive="active"><a [routerLink]="['/knowledges']">Religions et Astuces</a></li>
                 <li routerLinkActive="active"><a [routerLink]="['/coaching']">Coaching</a></li>
                 <li>
-                    <a href="#modal1" *ngIf="!authenticate" class="waves-effect waves-light btn modal-trigger btn-login"><i class="material-icons left">lock</i> Connexion</a>
+                    <a [routerLink]="['/login']" *ngIf="!authenticate" class="waves-effect waves-light btn btn-login"><i class="material-icons left">lock</i> Connexion</a>
                     <a class='dropdown-trigger btn' *ngIf="authenticate" href='#' data-target='dropdown1'><i class="material-icons left">person</i> Mon Compte</a>
                     <!-- Dropdown Structure -->
-                    <ul id='dropdown1' class='dropdown-content'>
-                        <li><a href="#!">one</a></li>
-                        <li><a href="#!">two</a></li>
+                    <ul *ngIf="authenticate" id='dropdown1' class='dropdown-content'>
+                        <li>
+                            <a [routerLink]="">{{ user.firstName |titlecase }} {{ user.lastName |uppercase }}<br>
+                                <small class="grey-text">{{ getRolesName(user.roles) }}</small>
+                            </a>
+                        </li>
                         <li class="divider" tabindex="-1"></li>
-                        <li><a href="#!">three</a></li>
-                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                        <li class="ele-menu"><a [routerLink]="['/accueil']"><i class="material-icons blue-text">subject</i> Mes sujets</a></li>
+                        <li class="ele-menu"><a [routerLink]="" (click)="signOut()"><i class="material-icons red-text">power_settings_new</i>Déconnexion</a></li>
                     </ul>
                 </li>
             </ul>
@@ -32,26 +34,20 @@
             <div class="background">
                 <img src="assets/images/office.jpg">
             </div>
-            <a href="#user"><img class="circle" src="assets/images/yuna.jpg"></a>
-            <a href="#name"><span class="white-text name">John Doe</span></a>
-            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            <a *ngIf="authenticate" [routerLink]=""><img class="circle" src="assets/images/yuna.jpg"></a>
+            <a *ngIf="authenticate" [routerLink]=""><span class="white-text name">{{ user.firstName |titlecase }} {{ user.lastName |uppercase }}</span></a>
+            <a *ngIf="authenticate" [routerLink]=""><span class="white-text email">{{ getRolesName(user.roles) }}</span></a>
         </div>
     </li>
     <li routerLinkActive="active"><a [routerLink]="['/accueil']">Accueil</a></li>
     <li routerLinkActive="active"><a [routerLink]="['/forums']">Forums</a></li>
     <li routerLinkActive="active"><a [routerLink]="['/knowledges']">Religions et Astuces</a></li>
     <li routerLinkActive="active"><a [routerLink]="['/coaching']">Coaching</a></li>
-    <li><a href="#modal1" class="waves-effect waves-light btn modal-trigger btn-login"><i class="material-icons left">lock</i> Connexion</a></li>
+    <li *ngIf="!authenticate"><a href="#modal1" class="waves-effect waves-light btn modal-trigger btn-login"><i class="material-icons left">lock</i> Connexion</a></li>
     <li>
         <div class="divider"></div>
     </li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li *ngIf="authenticate"><a class="subheader">Sous menu</a></li>
+    <li *ngIf="authenticate" routerLinkActive="active"><a class="waves-effect" [routerLink]="['/accueil']"><i class="material-icons blue-text">subject</i> Mes sujets</a></li>
+    <li *ngIf="authenticate"><a class="waves-effect" [routerLink]="" (click)="signOut()"><i class="material-icons red-text">power_settings_new</i>Déconnexion</a></li>
 </ul>
-
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <app-page-login></app-page-login>
-    </div>
-</div>

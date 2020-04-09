@@ -2,6 +2,7 @@ import { User } from '@schema/user';
 import { AuthenticationService } from '@service/authentication.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   user: User = null;
   authenticate = false;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, public router: Router) { }
 
   ngOnInit(): void {
     if(this.authenticationService.currentUserValue) {
@@ -34,15 +35,27 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.optionsSidenav
     );
 
-    M.Modal.init(
-      document.querySelectorAll('.modal'),
-      {}
-    );
-
     M.Dropdown.init(
       document.querySelectorAll('.dropdown-trigger'),
       {}
     );
+  }
+
+  getRolesName(roles: string[]) {
+    let roleString = 'UTILISATEUR';
+    if (roles.indexOf('ROLE_ADMIN') > -1) {
+      roleString = 'ADMINISTRATEUR';
+    }
+    if (roles.indexOf('ROLE_MODERATOR') > -1) {
+      roleString = 'MODERATEUR';
+    }
+    return roleString;
+  }
+
+  signOut() {
+    if(this.authenticationService.signOut().valueOf()) {
+      this.router.navigate(['/login']);
+    }
   }
 
 }
