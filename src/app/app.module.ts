@@ -15,6 +15,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { PageLoginComponent } from './layout/page-login/page-login.component';
+import { ContentAuthComponent } from './layout/content-auth/content-auth.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PageLoginComponent } from './layout/page-login/page-login.component';
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent,
-    PageLoginComponent
+    PageLoginComponent,
+    ContentAuthComponent
   ],
   imports: [
     BrowserModule,

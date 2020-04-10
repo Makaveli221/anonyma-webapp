@@ -1,7 +1,7 @@
 <header class="header">
     <nav class="bleu">
         <div class="nav-wrapper">
-            <a href="javascript:void(0)" class="brand-logo">Logo</a>
+            <a href="javascript:void(0)" class="brand-logo"><img src="assets/images/logo2_lg.png" style="width: 195px;" class="responsive-img" alt="ANONYM@"></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons icon-menu">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li routerLinkActive="active"><a [routerLink]="['/accueil']">Accueil</a></li>
@@ -20,6 +20,7 @@
                         </li>
                         <li class="divider" tabindex="-1"></li>
                         <li class="ele-menu"><a [routerLink]="['/accueil']"><i class="material-icons blue-text">subject</i> Mes sujets</a></li>
+                        <li class="ele-menu"><a [routerLink]="['/accueil']"><i class="material-icons blue-text">account_box</i> Mon profil</a></li>
                         <li class="ele-menu"><a [routerLink]="" (click)="signOut()"><i class="material-icons red-text">power_settings_new</i>Déconnexion</a></li>
                     </ul>
                 </li>
@@ -49,5 +50,6 @@
     </li>
     <li *ngIf="authenticate"><a class="subheader">Sous menu</a></li>
     <li *ngIf="authenticate" routerLinkActive="active"><a class="waves-effect" [routerLink]="['/accueil']"><i class="material-icons blue-text">subject</i> Mes sujets</a></li>
+    <li *ngIf="authenticate" routerLinkActive="active"><a class="waves-effect" [routerLink]="['/accueil']"><i class="material-icons blue-text">account_box</i> Mon profil</a></li>
     <li *ngIf="authenticate"><a class="waves-effect" [routerLink]="" (click)="signOut()"><i class="material-icons red-text">power_settings_new</i>Déconnexion</a></li>
 </ul>

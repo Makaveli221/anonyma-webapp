@@ -4,6 +4,7 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 import { NoAuthGuard } from '@app/guard/no-auth.guard';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { PageLoginComponent } from './layout/page-login/page-login.component';
+import { ContentAuthComponent } from './layout/content-auth/content-auth.component';
 
 
 const routes: Routes = [
@@ -45,7 +46,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'login', component: PageLoginComponent
+    path: '',
+    component: ContentAuthComponent,
+    canActivate: [NoAuthGuard],
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule)
   },
   { path: '**', component: PageNotFoundComponent }
 ];

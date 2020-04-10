@@ -10,7 +10,8 @@ export class ValidationService {
       required: `Ce champ est obligatoire.`,
       invalidPassword: 'Invalid password. Password must be at least 6 characters long, and contain a number.',
       maxlength: `The field can't contain more than ${validatorValue.requiredLength} characters.`,
-      minlength: `The field must contain atleast ${validatorValue.requiredLength} characters.`
+      minlength: `The field must contain atleast ${validatorValue.requiredLength} characters.`,
+      mustMatch: `Passwords must match`
     };
 
     return config[validatorName];
