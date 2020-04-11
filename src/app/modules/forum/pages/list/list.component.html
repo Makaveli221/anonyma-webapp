@@ -97,63 +97,14 @@
 
                 <div class="col s12 m8">
                     <ul class="list-topic">
-                        <li class="well topic">
+                        <li class="well topic" *ngFor="let subject of subjects">
                             <div class="topic-title">
-                                <h3>How to create a menu with Bootstrap</h3>
-                                <div class="chip">Item name: Milano</div>
-                                <div class="chip">Version: 1.2</div>
+                                <h3 [routerLink]="['/forums', subject.key, 'thematiques']">{{ subject.title |titlecase }}</h3>
+                                <div class="chip" *ngFor="let keyword of subject.keywords">{{keyword}}</div>
                             </div>
                             <div class="topic-desc">
-                                <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
-                                <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                            </div>
-                        </li>
-
-                        <li class="well topic">
-                            <div class="topic-title">
-                                <h3>How to create a menu with Materialize</h3>
-                                <div class="chip">Item name: Milano</div>
-                                <div class="chip">Version: 1.2</div>
-                            </div>
-                            <div class="topic-desc">
-                                <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
-                                <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                            </div>
-                        </li>
-
-                        <li class="well topic">
-                            <div class="topic-title">
-                                <h3>How to create a menu with Boosted</h3>
-                                <div class="chip">Item name: Milano</div>
-                                <div class="chip">Version: 1.2</div>
-                            </div>
-                            <div class="topic-desc">
-                                <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
-                                <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                            </div>
-                        </li>
-
-                        <li class="well topic">
-                            <div class="topic-title">
-                                <h3>How to create a menu with Materialize</h3>
-                                <div class="chip">Item name: Milano</div>
-                                <div class="chip">Version: 1.2</div>
-                            </div>
-                            <div class="topic-desc">
-                                <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
-                                <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                            </div>
-                        </li>
-
-                        <li class="well topic">
-                            <div class="topic-title">
-                                <h3>How to create a menu with Boosted</h3>
-                                <div class="chip">Item name: Milano</div>
-                                <div class="chip">Version: 1.2</div>
-                            </div>
-                            <div class="topic-desc">
-                                <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide...</p>
-                                <a [routerLink]="['/forums', 'divorse', 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
+                                <p class="line-champ-3">{{ subject.description }}</p>
+                                <a [routerLink]="['/forums', subject.key, 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
                             </div>
                         </li>
                     </ul>

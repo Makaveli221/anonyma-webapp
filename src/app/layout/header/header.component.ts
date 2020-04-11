@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if(this.authenticationService.currentUserValue) {
       this.user = this.authenticationService.currentUserValue;
-      console.log(this.user);
       this.authenticate = true;
     }
   }

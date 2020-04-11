@@ -22,12 +22,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     req = this.addAuthenticationToken(req);
 
-    return next.handle(req).pipe(map(event => {
-      if (event instanceof HttpResponse) {
-        event = event.clone({ body: event.body.data || event.body })
-      }
-      return event;
-    }));
+    return next.handle(req);
   }
 
   private addAuthenticationToken(request: HttpRequest<any>): HttpRequest<any> {
