@@ -24,6 +24,11 @@ body {
     }
 }
 
+.disabled {
+    pointer-events: none;
+}
+
+
 /* MARGIN */
 
 .m-0 {

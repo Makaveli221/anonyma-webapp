@@ -13,31 +13,34 @@ import { Topic } from '@schema/topic';
  ]
 })
 export class SingleComponent implements OnInit {
-  subjectId: string;
+  subjectKey: string;
   topics: Topic[] = [];
-  page: any = {};
+  pager: any = {};
+  initialPage: number;
 
   constructor(private route: ActivatedRoute, private topicService: TopicService) { }
 
   ngOnInit(): void {
-    this.subjectId = this.route.snapshot.params.id;
-    this.page.currentPage = 1;
-    this.page.lastPage = 1;
-    this.route.queryParams.subscribe(x => this.loadPage(this.subjectId, x.page || 1));
+    this.subjectKey = this.route.snapshot.params.id;
+    this.initialPage = 1;
+    this.route.queryParams.subscribe(x => this.loadPage(x.page || this.initialPage));
   }
 
-  private loadPage(key: string, page: number) {
+  loadPage(page: number) {
     // get page of items from api
-    this.topicService.getAllBySubject(key, page - 1).subscribe(
+    this.topicService.getAllBySubject(this.subjectKey, page).subscribe(
       (response: any) => {
-        console.log(response);
-         if(response && response.content && response.content.length > 0) {
+        if(response && response.content && response.content.length > 0) {
+          const pages = [...Array(response.totalPages + 1).keys()];
+          pages.shift();
+
           this.topics = response.content as Topic[];
-          this.page.currentPage = response.current_page;
-          this.page.lastPage = response.last_page;
+          this.pager.current = response.number + 1;
+          this.pager.first = response.first;
+          this.pager.last = response.last;
+          this.pager.pages = pages;
         }
       }
     )
   }
-
 }

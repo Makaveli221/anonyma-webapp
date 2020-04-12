@@ -27,7 +27,7 @@ export class SubjectService {
 		return this.http.delete(`${environment.apiUrl}/subject/delete/${id}`);
   }
   
-	all() {
-		return this.http.get(`${environment.apiUrl}/subject/all`);
+	all(page: number = 1) {
+		return this.http.get(`${environment.apiUrl}/subject/all?page=${page - 1}`);
   }
 }

@@ -31,7 +31,7 @@ export class TopicService {
 		return this.http.get(`${environment.apiUrl}/topic/all`);
   }
   
-	getAllBySubject(key: string, page: number = 0) {
-		return this.http.get(`${environment.apiUrl}/topic/subject/${key}?page=${page}`);
+	getAllBySubject(key: string, page: number = 1) {
+		return this.http.get(`${environment.apiUrl}/topic/subject/${key}?page=${page - 1}`);
   }
 }
