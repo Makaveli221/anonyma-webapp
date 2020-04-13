@@ -3,6 +3,7 @@ import { AuthenticationService } from '@service/authentication.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as M from 'materialize-css';
 import { Router } from '@angular/router';
+import { Roles } from '@schema/roles';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   constructor(private authenticationService: AuthenticationService, public router: Router) { }
 
   ngOnInit(): void {
-    if(this.authenticationService.currentUserValue) {
+    if(this.authenticationService.isAuthenticated()) {
       this.user = this.authenticationService.currentUserValue;
       this.authenticate = true;
     }
@@ -42,13 +43,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   getRolesName(roles: string[]) {
     let roleString = 'UTILISATEUR';
-    if (roles.indexOf('ROLE_ADMIN') > -1) {
+    if (roles.indexOf(Roles.ROLE_ADMIN) > -1) {
       roleString = 'ADMINISTRATEUR';
     }
-    if (roles.indexOf('ROLE_MODERATOR') > -1) {
+    if (roles.indexOf(Roles.ROLE_MODERATOR) > -1) {
       roleString = 'MODERATEUR';
     }
     return roleString;
+  }
+
+  signIn() {
+    this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
   }
 
   signOut() {

@@ -7,7 +7,6 @@ export class Subject {
     description: string;
     keywords?: string[];
     typeSubject: string | TypeSubject;
-    imgDefault?: string;
     data: any[];
     status: string;
     key?: string;

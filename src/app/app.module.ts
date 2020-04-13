@@ -9,24 +9,30 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from '@app/core.module';
 import { SharedModule } from '@shared/shared.module';
-import { AdminContentLayoutComponent } from './layout/admin-content-layout/admin-content-layout.component';
-import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
+
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
-import { PageLoginComponent } from './layout/page-login/page-login.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { AccountLayoutComponent } from './layout/account-layout/account-layout.component';
+import { PageAccessDeniedComponent } from './layout/page-access-denied/page-access-denied.component';
+import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 import { ContentAuthComponent } from './layout/content-auth/content-auth.component';
+import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminContentLayoutComponent,
     ContentLayoutComponent,
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent,
-    PageLoginComponent,
-    ContentAuthComponent
+    ContentAuthComponent,
+    SidebarComponent,
+    AccountLayoutComponent,
+    PageAccessDeniedComponent
   ],
   imports: [
     BrowserModule,

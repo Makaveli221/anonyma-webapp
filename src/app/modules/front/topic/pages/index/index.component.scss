@@ -168,6 +168,11 @@
     &.thematiques-sujet .panel-body {
         padding: 8px 5px;
         .list-group .list-group-item {
+            .topic-title small,
+            .topic-title h3 {
+                width: 250px;
+                cursor: pointer;
+            }
             &.active .topic-title,
             &:hover .topic-title {
                 h3 a {
@@ -186,10 +191,6 @@
         height: 432px;
         overflow-y: hidden;
         overflow-x: hidden;
-        .collection-item.active {
-            background-color: #3F51B5;
-            color: #eafaf9;
-        }
         &:hover {
             overflow-y: auto;
             /* width */

@@ -11,27 +11,27 @@ export class TopicService {
 
   constructor(private http: HttpClient) { }
 
-  get(id: number) {
-		return this.http.get(`${environment.apiUrl}/topic/${id}`);
+  get(key: string) {
+		return this.http.get(`${environment.apiUrl}/topic/${key}`);
   }
   
   create(topic: Topic) {
 		return this.http.post(`${environment.apiUrl}/topic/add`, topic);
   }
   
-  update(id: number, topic: Topic) {
-		return this.http.put(`${environment.apiUrl}/topic/update/${id}`, topic);
+  update(key: string, topic: Topic) {
+		return this.http.put(`${environment.apiUrl}/topic/update/${key}`, topic);
   }
 
-	delete(id: number) {
-		return this.http.delete(`${environment.apiUrl}/topic/delete/${id}`);
+	delete(key: string) {
+		return this.http.delete(`${environment.apiUrl}/topic/delete/${key}`);
   }
 
   all() {
 		return this.http.get(`${environment.apiUrl}/topic/all`);
   }
   
-	getAllBySubject(key: string, page: number = 1) {
-		return this.http.get(`${environment.apiUrl}/topic/subject/${key}?page=${page - 1}`);
+	getAllBySubject(key: string, page: number = 1, limit: number = 20) {
+		return this.http.get(`${environment.apiUrl}/topic/subject/${key}?page=${page - 1}&limit=${limit}`);
   }
 }

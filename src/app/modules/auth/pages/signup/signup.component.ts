@@ -6,7 +6,7 @@ import { ErrorsMessage } from 'app/data/constants/errors-messge';
 import { first } from 'rxjs/operators';
 import { MustMatch } from '../../_helpers/must-match.validator';
 import { User } from '@schema/user';
-import { Roles } from '@schema/roles';
+import { ERoles } from '@schema/eroles';
 
 
 @Component({
@@ -56,7 +56,7 @@ export class SignupComponent implements OnInit {
     }
 
     const newUser: User = this.registerForm.value as User;
-    newUser.roles = [Roles.ROLE_USER];
+    newUser.roles = [ERoles.ROLE_USER];
 
     this.authenticationService.signUp(newUser)
       .pipe(first())

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminContentLayoutComponent } from './admin-content-layout.component';
+import { PageAccessDeniedComponent } from './page-access-denied.component';
 
-describe('AdminContentLayoutComponent', () => {
-  let component: AdminContentLayoutComponent;
-  let fixture: ComponentFixture<AdminContentLayoutComponent>;
+describe('PageAccessDeniedComponent', () => {
+  let component: PageAccessDeniedComponent;
+  let fixture: ComponentFixture<PageAccessDeniedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminContentLayoutComponent ]
+      declarations: [ PageAccessDeniedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminContentLayoutComponent);
+    fixture = TestBed.createComponent(PageAccessDeniedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

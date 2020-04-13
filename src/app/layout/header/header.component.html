@@ -9,7 +9,7 @@
                 <li routerLinkActive="active"><a [routerLink]="['/knowledges']">Religions et Astuces</a></li>
                 <li routerLinkActive="active"><a [routerLink]="['/coaching']">Coaching</a></li>
                 <li>
-                    <a [routerLink]="['/login']" *ngIf="!authenticate" class="waves-effect waves-light btn btn-login"><i class="material-icons left">lock</i> Connexion</a>
+                    <a (click)="signIn()" *ngIf="!authenticate" class="waves-effect waves-light btn btn-login"><i class="material-icons left">lock</i> Connexion</a>
                     <a class='dropdown-trigger btn' *ngIf="authenticate" href='#' data-target='dropdown1'><i class="material-icons left">person</i> Mon Compte</a>
                     <!-- Dropdown Structure -->
                     <ul *ngIf="authenticate" id='dropdown1' class='dropdown-content'>
@@ -44,7 +44,7 @@
     <li routerLinkActive="active"><a [routerLink]="['/forums']">Forums</a></li>
     <li routerLinkActive="active"><a [routerLink]="['/knowledges']">Religions et Astuces</a></li>
     <li routerLinkActive="active"><a [routerLink]="['/coaching']">Coaching</a></li>
-    <li *ngIf="!authenticate"><a href="#modal1" class="waves-effect waves-light btn modal-trigger btn-login"><i class="material-icons left">lock</i> Connexion</a></li>
+    <li *ngIf="!authenticate"><a (click)="signIn()" class="waves-effect waves-light btn modal-trigger btn-login"><i class="material-icons left">lock</i> Connexion</a></li>
     <li>
         <div class="divider"></div>
     </li>

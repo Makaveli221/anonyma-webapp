@@ -11,20 +11,20 @@ export class SubjectService {
 
   constructor(private http: HttpClient) { }
 
-  get(id: number) {
-		return this.http.get(`${environment.apiUrl}/subject/${id}`);
+  get(key: string) {
+		return this.http.get(`${environment.apiUrl}/subject/${key}`);
   }
   
   create(subject: Subject) {
 		return this.http.post(`${environment.apiUrl}/subject/add`, subject);
   }
   
-  update(id: number, subject: Subject) {
-		return this.http.put(`${environment.apiUrl}/subject/update/${id}`, subject);
+  update(key: string, subject: Subject) {
+		return this.http.put(`${environment.apiUrl}/subject/update/${key}`, subject);
   }
 
-	delete(id: number) {
-		return this.http.delete(`${environment.apiUrl}/subject/delete/${id}`);
+	delete(key: string) {
+		return this.http.delete(`${environment.apiUrl}/subject/delete/${key}`);
   }
   
 	all(page: number = 1) {

@@ -72,4 +72,13 @@ export class AuthenticationService {
   getToken() {
     return localStorage.getItem('accessToken');
   }
+
+  isAuthenticated() {
+    if (this.getToken() && !this.isExpired()) {
+      return true;
+    } else {
+      this.signOut();
+      return false;
+    }
+  }
 }

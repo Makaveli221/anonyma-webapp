@@ -8,6 +8,7 @@ export class Topic {
     description: string;
     keywords?: string[];
     subject: string | Subject;
+    imgDefault?: string;
     status: string;
     key?: string;
     appreciations?: Appreciation[];
