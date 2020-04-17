@@ -27,7 +27,7 @@ export class SubjectService {
 		return this.http.delete(`${environment.apiUrl}/subject/delete/${key}`);
   }
   
-	all(page: number = 1) {
-		return this.http.get(`${environment.apiUrl}/subject/all?page=${page - 1}`);
+	all(page: number = 1, limit: number = 20) {
+		return this.http.get(`${environment.apiUrl}/subject/all?page=${page - 1}&limit=${limit}`);
   }
 }
