@@ -1,1 +1,36 @@
-<p>sidebar works!</p>
+<aside id="sideBar">
+    <ul class="main-nav">
+        <!-- Your Logo Or Site Name -->
+        <li class="nav-brand">
+            <a href="index.html"><img class="circle" src="assets/images/yuna.jpg">
+                <span class="overflow-ellipsis">{{ user.firstName |titlecase }} {{ user.lastName |uppercase }}</span>
+                <small>{{ getRolesName(user.roles) }}</small>
+            </a>
+        </li>
+        <!-- Search -->
+        <li *ngIf="getRolesName(user.roles) == 'UTILISATEUR'">
+            <a [routerLink]="['/account/user/dashboard']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">home</i> Tableau de bord</a>
+        </li>
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+            <a [routerLink]="['/account/admin/dashboard']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">home</i> Tableau de bord</a>
+        </li>
+        <li *ngIf="getRolesName(user.roles) == 'UTILISATEUR'">
+            <a [routerLink]="['/account/user/mes-sujets']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">subject</i> Mes sujets</a>
+        </li>
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+            <a href="documentation.html#section_04" class="btn btn-raised btn-primary"><i class="material-icons">filter_4</i> Forums</a>
+        </li>
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+            <a href="documentation.html#section_07" class="btn btn-raised btn-primary"><i class="material-icons">filter_7</i>Thématiques</a>
+        </li>
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+            <a href="documentation.html#section_05" class="btn btn-raised btn-primary"><i class="material-icons">filter_5</i> Religions et Astuces</a>
+        </li>
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+            <a href="documentation.html#section_06" class="btn btn-raised btn-primary"><i class="material-icons">filter_6</i> Coaching</a>
+        </li>
+        <li>
+            <a [routerLink]="['/account/profil']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">account_box</i> Mon profil</a>
+        </li>
+    </ul>
+</aside>

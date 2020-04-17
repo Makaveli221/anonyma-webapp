@@ -1,1 +1,13 @@
-<p>account-layout works!</p>
+<div id="page-container-account">
+    <app-header class="header"></app-header>
+    <div class="main" [ngClass]="{'toggled': toggled}">
+        <app-sidebar></app-sidebar>
+        <main class="content-main">
+            <button id="menuToggler" (click)="toggleMenu()" class="btn btn-raised btn-info"><i class="material-icons">menu</i></button>
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+        <app-footer></app-footer>
+    </div>
+</div>

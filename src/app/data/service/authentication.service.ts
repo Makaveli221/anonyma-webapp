@@ -5,6 +5,7 @@ import { environment } from '@environment';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { Roles } from '@schema/roles';
 
 
 @Injectable({
@@ -71,6 +72,17 @@ export class AuthenticationService {
 
   getToken() {
     return localStorage.getItem('accessToken');
+  }
+
+  getRolesName(roles: string[]) {
+    let roleString = 'UTILISATEUR';
+    if (roles.indexOf(Roles.ROLE_ADMIN) > -1) {
+      roleString = 'ADMINISTRATEUR';
+    }
+    if (roles.indexOf(Roles.ROLE_MODERATOR) > -1) {
+      roleString = 'MODERATEUR';
+    }
+    return roleString;
   }
 
   isAuthenticated() {

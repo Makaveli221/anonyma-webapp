@@ -6,6 +6,8 @@ import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.co
 import { ContentAuthComponent } from './layout/content-auth/content-auth.component';
 import { PageAccessDeniedComponent } from './layout/page-access-denied/page-access-denied.component';
 import { FRONT_ROUTES } from './routes/front.routes';
+import { ACCOUNT_ROUTES } from './routes/account.routes';
+import { AccountLayoutComponent } from './layout/account-layout/account-layout.component';
 
 
 const routes: Routes = [
@@ -19,6 +21,12 @@ const routes: Routes = [
     component: ContentLayoutComponent,
     canActivate: [NoAuthGuard],
     children: FRONT_ROUTES
+  },
+  {
+    path: 'account',
+    component: AccountLayoutComponent,
+    canActivate: [NoAuthGuard],
+    children: ACCOUNT_ROUTES
   },
   {
     path: '',

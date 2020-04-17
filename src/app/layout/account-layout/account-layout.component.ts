@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-layout.component.scss']
 })
 export class AccountLayoutComponent implements OnInit {
+  toggled = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  toggleMenu() {
+    this.toggled = !this.toggled;
+  }
 }
