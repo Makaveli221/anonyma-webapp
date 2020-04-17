@@ -3,7 +3,7 @@ import { Topic } from '@schema/topic';
 import { User } from '@schema/user';
 
 export class Comment {
-    id?: number;
+    id?: string;
     topic?: Topic | string;
     parent?: Comment | string;
     message: string;

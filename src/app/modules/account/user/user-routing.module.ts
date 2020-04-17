@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MesSujetsComponent } from './pages/mes-sujets/mes-sujets.component';
+import { MyTopicsComponent } from './pages/my-topics/my-topics.component';
+import { NewTopicComponent } from './pages/new-topic/new-topic.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/account/user/mes-sujets',
+    redirectTo: '/account/user/my-topics',
     pathMatch: 'full'
   },
   {
-    path: 'mes-sujets',
-    component: MesSujetsComponent
+    path: 'my-topics',
+    component: MyTopicsComponent
+  },
+  {
+    path: 'my-topics/new',
+    component: NewTopicComponent
   }
 ];
 

@@ -2,7 +2,7 @@ import { User } from '@schema/user';
 import { TypeSubject } from '@schema/type-subject';
 
 export class Subject {
-    id?: number;
+    id?: string;
     title: string;
     description: string;
     keywords?: string[];

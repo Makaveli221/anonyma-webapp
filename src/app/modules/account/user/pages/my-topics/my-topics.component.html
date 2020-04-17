@@ -1,0 +1,67 @@
+<div class="content-page" @routeAnimations>
+    <div class="row">
+        <div class="col s12 m12">
+            <a [routerLink]="['/accueil']" class="breadcrumb grey-text">Anonyma</a>
+            <a [routerLink]="['/account/user/my-topics']" class="breadcrumb grey-text active">Mes sujets</a>
+        </div>
+    </div>
+
+    <section class="section-header">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light grey-text text-lighten-1">Liste de mes sujets</h5>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">search</i>
+                            <input type="text" id="autocomplete-input" class="autocomplete">
+                            <label for="autocomplete-input">Rechercher dans la liste</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m12">
+                            <button class="btn btn-raised btn-info gr right add-cucs" [routerLink]="['/account/user/my-topics/new']"><i class="material-icons left">add</i> Ajouter un sujet</button>
+                        </div>
+                        <div class="col m12">
+                            <table id="tableTopics" class="responsive-table centered highlight">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>Titre</th>
+                                        <th>description</th>
+                                        <th>Commentaires</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let topic of topics">
+                                        <td>{{topic.subject.title}}</td>
+                                        <td>{{topic.title }}</td>
+                                        <td class="line-champ-3">{{topic.description}}</td>
+                                        <td>87</td>
+                                    </tr>
+                                    <tr *ngIf="topics.length <= 0">
+                                        <td colspan="4" style="text-align: center;">Aucun sujet trouvé</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
+                                <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">
+                                    <a (click)="loadPage(pager.current - 1)"><i class="material-icons">chevron_left</i></a>
+                                </li>
+                                <li *ngFor="let page of pager.pages" [ngClass]="(pager.current === page) ? 'active' : 'waves-effect'">
+                                    <a (click)="loadPage(page)">{{page}}</a>
+                                </li>
+                                <li [ngClass]="pager.last ? 'disabled': 'waves-effect'">
+                                    <a (click)="loadPage(pager.current + 1)"><i class="material-icons">chevron_right</i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

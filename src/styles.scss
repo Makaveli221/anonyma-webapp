@@ -67,6 +67,18 @@ body {
 
 /* END LINE CHAMP */
 
+.breadcrumb {
+    color: #303F9F !important;
+}
+
+.breadcrumb:before {
+    color: #bdbdbd !important;
+}
+
+.breadcrumb.active {
+    color: #bdbdbd !important;
+}
+
 .section {
     padding: 7rem 0;
     display: block;
@@ -81,15 +93,10 @@ body {
     background-color: #ffffff;
     .breadcrumb {
         font-size: 1rem;
-        color: #303F9F;
     }
     .breadcrumb:before {
         font-size: 1.2rem;
         margin: 0 5px 0 5px;
-        color: #bdbdbd;
-    }
-    .breadcrumb.active {
-        color: #bdbdbd;
     }
     .checkbox {
         margin-left: 55px;

@@ -32,7 +32,7 @@ registerLocaleData(localeFr, 'fr');
     ContentAuthComponent,
     SidebarComponent,
     AccountLayoutComponent,
-    PageAccessDeniedComponent
+    PageAccessDeniedComponent,
   ],
   imports: [
     BrowserModule,

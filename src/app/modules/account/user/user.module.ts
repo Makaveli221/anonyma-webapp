@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '@shared/shared.module';
+
 
 import { UserRoutingModule } from './user-routing.module';
-import { MesSujetsComponent } from './pages/mes-sujets/mes-sujets.component';
+import { MyTopicsComponent } from './pages/my-topics/my-topics.component';
+import { NewTopicComponent } from './pages/new-topic/new-topic.component';
 
 
 @NgModule({
-  declarations: [MesSujetsComponent],
+  declarations: [MyTopicsComponent, NewTopicComponent],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    SharedModule
   ]
 })
 export class UserModule { }

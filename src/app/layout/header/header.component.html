@@ -19,7 +19,7 @@
                             </a>
                         </li>
                         <li class="divider" tabindex="-1"></li>
-                        <li class="ele-menu"><a [routerLink]="['/account/user/mes-sujets']"><i class="material-icons blue-text">subject</i> Mes sujets</a></li>
+                        <li class="ele-menu"><a [routerLink]="['/account/user/my-topics']"><i class="material-icons blue-text">subject</i> Mes sujets</a></li>
                         <li class="ele-menu"><a [routerLink]="['/accueil']"><i class="material-icons blue-text">account_box</i> Mon profil</a></li>
                         <li class="ele-menu"><a [routerLink]="" (click)="signOut()"><i class="material-icons red-text">power_settings_new</i>Déconnexion</a></li>
                     </ul>
@@ -49,7 +49,7 @@
         <div class="divider"></div>
     </li>
     <li *ngIf="authenticate"><a class="subheader">Sous menu</a></li>
-    <li *ngIf="authenticate" routerLinkActive="active"><a class="waves-effect" [routerLink]="['/account/user/mes-sujets']"><i class="material-icons blue-text">subject</i> Mes sujets</a></li>
+    <li *ngIf="authenticate" routerLinkActive="active"><a class="waves-effect" [routerLink]="['/account/user/my-topics']"><i class="material-icons blue-text">subject</i> Mes sujets</a></li>
     <li *ngIf="authenticate" routerLinkActive="active"><a class="waves-effect" [routerLink]="['/accueil']"><i class="material-icons blue-text">account_box</i> Mon profil</a></li>
     <li *ngIf="authenticate"><a class="waves-effect" [routerLink]="" (click)="signOut()"><i class="material-icons red-text">power_settings_new</i>Déconnexion</a></li>
 </ul>

@@ -15,7 +15,7 @@
             <a [routerLink]="['/account/admin/dashboard']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">home</i> Tableau de bord</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'UTILISATEUR'">
-            <a [routerLink]="['/account/user/mes-sujets']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">subject</i> Mes sujets</a>
+            <a [routerLink]="['/account/user/my-topics']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">subject</i> Mes sujets</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
             <a href="documentation.html#section_04" class="btn btn-raised btn-primary"><i class="material-icons">filter_4</i> Forums</a>

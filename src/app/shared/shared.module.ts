@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ControlMessagesComponent } from './component/control-messages/control-messages.component';
+import { FormTopicComponent } from './component/form-topic/form-topic.component';
 
 
 @NgModule({
@@ -14,13 +15,14 @@ import { ControlMessagesComponent } from './component/control-messages/control-m
     ReactiveFormsModule,
     RouterModule,
   ],
-  declarations: [ControlMessagesComponent],
+  declarations: [ControlMessagesComponent, FormTopicComponent],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    ControlMessagesComponent
+    ControlMessagesComponent,
+    FormTopicComponent
   ]
 })
 export class SharedModule { }

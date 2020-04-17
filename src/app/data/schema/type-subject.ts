@@ -1,5 +1,5 @@
 export class TypeSubject {
-    id?: number;
+    id?: string;
     name: string;
     active: boolean;
 }

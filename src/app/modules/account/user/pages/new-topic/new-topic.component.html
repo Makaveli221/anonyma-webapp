@@ -1,0 +1,22 @@
+<div class="content-page" @routeAnimations>
+    <div class="row">
+        <div class="col s12 m12">
+            <a [routerLink]="['/accueil']" class="breadcrumb grey-text">Anonyma</a>
+            <a [routerLink]="['/account/user/my-topics']" class="breadcrumb grey-text">Mes sujets</a>
+            <a [routerLink]="['/account/user/my-topics/new']" class="breadcrumb grey-text active">Ajouter un sujet</a>
+        </div>
+    </div>
+
+    <section class="section-header">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light grey-text text-lighten-1">Ajouter un sujet</h5>
+            </div>
+            <div class="row">
+                <div class="col s12 m12">
+                    <app-form-topic></app-form-topic>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

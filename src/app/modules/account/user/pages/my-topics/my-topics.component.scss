@@ -1,0 +1,13 @@
+@import 'src/styles/composants/topic-list.scss';
+#tableTopics {
+    tbody tr {
+        cursor: pointer;
+        td {
+            text-align: justify;
+            font-size: 0.85rem;
+        }
+        td:last-of-type {
+            text-align: center;
+        }
+    }
+}
