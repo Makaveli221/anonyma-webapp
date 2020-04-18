@@ -1,6 +1,7 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as M from 'materialize-css';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { Subject } from '@schema/subject';
 import { SubjectService } from '@service/forum/subject.service';
@@ -20,6 +21,9 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
   subjects: Subject[];
   elChips: any[];
   uploadFile: File;
+  Editor = ClassicEditor;
+  @Input() topic: Topic;
+  @Output() readonly formSubmit: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,7 +32,7 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.buildForm();
+    this.buildForm(this.topic);
   }
 
   ngAfterViewInit(): void {
@@ -74,29 +78,31 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
       return accumulator;
     },[]);
 
-    formData.append('info', new Blob([JSON.stringify(this.topicForm.value)],
-    {
-      type: "application/json"
-    }));
+    formData.append('info', JSON.stringify(this.topicForm.value));
 
-    console.log(this.topicForm.value);
-    console.log(formData);
+    this.topicService.create(formData).subscribe((response: any) => {
+      if(response && response.id) {
+        this.formSubmit.emit(true);
+      } else {
+        this.formSubmit.emit(false);
+      }
+    })
   }
 
-  private buildForm(): void {
+  private buildForm(top?: Topic): void {
     this.topicForm = this.formBuilder.group({
-      subject: ['', Validators.required],
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      keywords: ['', [Validators.required]],
-      status: [true],
-      imgDefault: ['']
+      subject: [top ? (top.subject as Subject).id : '', Validators.required],
+      title: [top ? top.title : '', Validators.required],
+      description: [top ? top.description : '', Validators.required],
+      keywords: [top ? top.keywords : '', [Validators.required]],
+      status: [top ? top.status : true],
+      data: [top ? top.data : '<p>Votre sujet...</p>', [Validators.required]],
+      imgDefault: [top ? top.imgDefault : '']
     });
   }
 
   fileChange(event) {
     let fileList: FileList = event.target.files;
-    console.log(fileList);
     let file: File = fileList[0];
     this.uploadFile = file;
   }

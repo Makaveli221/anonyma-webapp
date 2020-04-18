@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 import { ControlMessagesComponent } from './component/control-messages/control-messages.component';
 import { FormTopicComponent } from './component/form-topic/form-topic.component';
 
@@ -14,6 +16,7 @@ import { FormTopicComponent } from './component/form-topic/form-topic.component'
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    CKEditorModule
   ],
   declarations: [ControlMessagesComponent, FormTopicComponent],
   exports: [

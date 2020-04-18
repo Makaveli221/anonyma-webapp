@@ -20,6 +20,12 @@ export class TokenInterceptor implements HttpInterceptor {
       });
     }
 
+    if (req.headers.get('Content-Type') == 'multipart/form-data;boundary') {
+      req = req.clone({
+        headers: req.headers.delete('Content-Type')
+      });
+    }
+
     req = this.addAuthenticationToken(req);
 
     return next.handle(req);

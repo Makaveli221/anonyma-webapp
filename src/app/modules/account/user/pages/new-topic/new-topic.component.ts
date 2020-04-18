@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { slideToLeft } from 'app/layout/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-topic',
@@ -11,9 +12,15 @@ import { slideToLeft } from 'app/layout/animations';
 })
 export class NewTopicComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onFormSubmit(valid: boolean): void {
+    if (valid) {
+      this.router.navigate(['/account/user/my-topics']);
+    }
   }
 
 }

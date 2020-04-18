@@ -19,7 +19,7 @@
                 <div class="input-field col s12 m12">
                     <select name='subject' id='subject' [ngClass]="{'is-valid': !f.subject.errors}" [disabled]="submitted" formControlName="subject">
                         <option value="" disabled selected>Choisir un Forum</option>
-                        <option *ngFor="let subject of subjects" [value]="subject.key">{{subject.title}}</option>
+                        <option *ngFor="let subject of subjects" [value]="subject.id">{{subject.title}}</option>
                     </select>
                     <label for='subject'>Forum</label>
                     <p class="left m-0">
@@ -70,6 +70,13 @@
                     <p class="left m-0">
                         <app-control-messages [control]="f['keywords']"></app-control-messages>
                     </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col m12">
+                    <label>Contenu du sujet:</label>
+                    <ckeditor [disabled]="submitted" formControlName="data" [editor]="Editor"></ckeditor>
                 </div>
             </div>
 
