@@ -30,10 +30,10 @@ export class IndexComponent implements OnInit, AfterViewInit {
         return false;
       }
       this.currentTopic = response as Topic;
+      console.log(this.currentTopic);
       this.subject = this.currentTopic.subject as Subject;
-      this.topicService.getAllBySubject(this.subject.key, 1).subscribe((response: any) => {
+      this.topicService.getAllBySubject(this.subject.key, 1, -1).subscribe((response: any) => {
         if(response && response.content && response.content.length > 0) {
-          // response.totalPages
           this.topics = response.content as Topic[];
         }
       })
@@ -63,6 +63,10 @@ export class IndexComponent implements OnInit, AfterViewInit {
   updateCurrentTopic(topic: Topic) {
     this.currentTopic = topic;
     this.router.navigate(['/thematique/'+ topic.key]);
+  }
+
+  getCreateUser(u: any) {
+    return `${u.firstName} ${u.lastName}`;
   }
 
   isAuthenticated() {

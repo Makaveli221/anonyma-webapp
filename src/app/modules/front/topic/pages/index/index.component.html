@@ -53,7 +53,7 @@
                         <article class="well no-effect clearfix">
                             <div class="topic-desc row clearfix">
                                 <div class="col s12 m12">
-                                    <img src="assets/images/uploads/blog_02.jpg" alt="" style="width: 100%;" class="responsive-img">
+                                    <img *ngIf="currentTopic.imgDefault" src="{{currentTopic.imgDefault}}" alt="" style="width: 100%;" class="responsive-img">
 
                                     <div class="single-topic-meta">
                                         <h4><a [routerLink]="['/thematique', currentTopic.key]" title="">{{currentTopic.title | titlecase}}</a></h4>
@@ -61,30 +61,11 @@
                                             <small>{{currentTopic.createDate  |date:'fullDate':'+0200':'fr'}}</small>
                                             <small><a (click)="scrollToElement(listComments)">4 Comments</a></small>
                                             <small>in <a [routerLink]="['/thematique', currentTopic.key]"> Update</a></small>
-                                            <small>by <a [routerLink]="['/thematique', currentTopic.key]"> Jenny Doe</a></small>
+                                            <small>by <a [routerLink]="['/thematique', currentTopic.key]"> {{ getCreateUser(currentTopic.createUser) |titlecase }}</a></small>
                                         </div>
                                     </div>
+                                    <div [innerHTML]="currentTopic.data"></div>
 
-                                    <p> The best way to use these Bootstrap menu on the web is with our skeleton codes. It's lightweight, easy to use, and hosted by MaxCDN. Learn how to use font-based icons in our developer guide.</p>
-                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent
-                                        commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-
-                                    <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras justo odio, dapibus ac facilisis in, egestas eget
-                                        quam. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.</p>
-
-                                    <h4>What i need for start?</h4>
-
-                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent
-                                        commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-
-                                    <h4>Why choose us?</h4>
-
-                                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent
-                                        commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-
-                                    <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras justo odio, dapibus ac facilisis in, egestas eget
-                                        quam. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.
-                                    </p>
                                 </div>
                             </div>
                             <!-- end tpic-desc -->
