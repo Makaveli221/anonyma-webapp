@@ -13,8 +13,8 @@
                 <h5 class="header col s12 light grey-text text-lighten-1">Ajouter un sujet</h5>
             </div>
             <div class="row">
-                <div class="col s12 m12">
-                    <app-form-topic (formSubmit)="onFormSubmit($event)"></app-form-topic>
+                <div class="col s12 m12" *ngIf="canLoad">
+                    <app-form-topic [topic]="currentTopic" (formSubmit)="onFormSubmit($event)"></app-form-topic>
                 </div>
             </div>
         </div>

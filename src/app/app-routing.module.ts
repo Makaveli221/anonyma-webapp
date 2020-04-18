@@ -8,6 +8,7 @@ import { PageAccessDeniedComponent } from './layout/page-access-denied/page-acce
 import { FRONT_ROUTES } from './routes/front.routes';
 import { ACCOUNT_ROUTES } from './routes/account.routes';
 import { AccountLayoutComponent } from './layout/account-layout/account-layout.component';
+import { AuthGuard } from '@app/guard/auth.guard';
 
 
 const routes: Routes = [
@@ -25,7 +26,7 @@ const routes: Routes = [
   {
     path: 'account',
     component: AccountLayoutComponent,
-    canActivate: [NoAuthGuard],
+    canActivate: [AuthGuard],
     children: ACCOUNT_ROUTES
   },
   {

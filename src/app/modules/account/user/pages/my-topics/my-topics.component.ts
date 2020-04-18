@@ -34,7 +34,6 @@ export class MyTopicsComponent implements OnInit {
           pages.shift();
 
           this.topics = response.content as Topic[];
-          console.log(this.topics);
           this.pager.current = response.number + 1;
           this.pager.first = response.first;
           this.pager.last = response.last;
@@ -44,4 +43,7 @@ export class MyTopicsComponent implements OnInit {
     )
   }
 
+  getSubjetTitle(subject: any) {
+    return subject.title;
+  }
 }

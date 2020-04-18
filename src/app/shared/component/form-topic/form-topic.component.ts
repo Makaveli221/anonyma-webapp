@@ -32,6 +32,8 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+    this.submitted = false;
+    this.isLoading = false;
     this.buildForm(this.topic);
   }
 
@@ -40,12 +42,17 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
       (response: any) => {
         if(response && response.content && response.content.length > 0) {
           this.subjects = response.content as Subject[];
+          let dataChips = [];
+          if (this.topic && this.topic.keywords) {
+            this.topic.keywords.forEach((d: string) => dataChips.push({tag: d}))
+          }
           setTimeout(() => {
             M.FormSelect.init(document.querySelectorAll('select'),{});
             this.elChips = M.Chips.init(document.querySelectorAll('.chips'), {
+              data: dataChips,
               placeholder: 'Ajouter mots clés',
               secondaryPlaceholder: '+ Ajouter',
-              limit: 3
+              limit: 7
             });
           }, 0);
         }
@@ -58,6 +65,9 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
   }
 
   submitForm() {
+    if(this.submitted) {
+      return;
+    }
     this.submitted = true;
     this.isLoading = true;
 
@@ -80,13 +90,23 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
 
     formData.append('info', JSON.stringify(this.topicForm.value));
 
-    this.topicService.create(formData).subscribe((response: any) => {
-      if(response && response.id) {
-        this.formSubmit.emit(true);
-      } else {
-        this.formSubmit.emit(false);
-      }
-    })
+    if(this.topic) {
+      this.topicService.update(this.topic.key, formData).subscribe((response: any) => {
+        if(response && response.id) {
+          this.formSubmit.emit(true);
+        } else {
+          this.formSubmit.emit(false);
+        }
+      });
+    } else {
+      this.topicService.create(formData).subscribe((response: any) => {
+        if(response && response.id) {
+          this.formSubmit.emit(true);
+        } else {
+          this.formSubmit.emit(false);
+        }
+      });
+    }
   }
 
   private buildForm(top?: Topic): void {
@@ -94,10 +114,10 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
       subject: [top ? (top.subject as Subject).id : '', Validators.required],
       title: [top ? top.title : '', Validators.required],
       description: [top ? top.description : '', Validators.required],
-      keywords: [top ? top.keywords : '', [Validators.required]],
+      keywords: ['', top ? [] : [Validators.required]],
       status: [top ? top.status : true],
       data: [top ? top.data : '<p>Votre sujet...</p>', [Validators.required]],
-      imgDefault: [top ? top.imgDefault : '']
+      imgDefault: ['']
     });
   }
 

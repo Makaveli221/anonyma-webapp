@@ -15,15 +15,14 @@ export class TopicService {
 		return this.http.get(`${environment.apiUrl}/topic/${key}`);
   }
   
-  create(topic: any) {
-    // const headers = new HttpHeaders();
-    // headers.append('Content-Type', 'multipart/form-data');
-    const headers = { 'Content-Type': 'multipart/form-data;boundary' }
-		return this.http.post(`${environment.apiUrl}/topic/add`, topic, {headers});
+  create(formData: any) {
+    const headers = { 'Content-Type': 'multipart/form-data;boundary' };
+		return this.http.post(`${environment.apiUrl}/topic/add`, formData, {headers});
   }
   
-  update(key: string, topic: Topic) {
-		return this.http.put(`${environment.apiUrl}/topic/update/${key}`, topic);
+  update(key: string, formData: any) {
+    const headers = { 'Content-Type': 'multipart/form-data;boundary' }
+		return this.http.put(`${environment.apiUrl}/topic/update/${key}`, formData, {headers});
   }
 
 	delete(key: string) {

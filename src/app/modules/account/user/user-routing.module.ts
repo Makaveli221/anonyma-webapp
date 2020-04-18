@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'my-topics/new',
     component: NewTopicComponent
+  },
+  {
+    path: 'my-topics/update/:id',
+    component: NewTopicComponent
   }
 ];
 

@@ -7,7 +7,7 @@ export class Topic {
     title: string;
     description: string;
     keywords?: string[];
-    subject: string | Subject;
+    subject: Subject | string;
     imgDefault?: string;
     status: string;
     data: string;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { slideToLeft } from 'app/layout/animations';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { TopicService } from '@service/forum/topic.service';
+import { Topic } from '@schema/topic';
 
 @Component({
   selector: 'app-new-topic',
@@ -11,10 +13,25 @@ import { Router } from '@angular/router';
  ]
 })
 export class NewTopicComponent implements OnInit {
+  currentTopic: Topic;
+  canLoad = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute, private topicService: TopicService) { }
 
   ngOnInit(): void {
+    if(this.route.snapshot.paramMap.get('id')) {
+      this.topicService.get(this.route.snapshot.paramMap.get('id')).subscribe((response: any) => {
+        if(!response || !response.id) {
+          this.router.navigate(['/account/user/my-topics']);
+          return false;
+        }
+        this.canLoad = true;
+        this.currentTopic = response as Topic;
+      });
+    } else {
+      this.canLoad = true;
+      this.currentTopic = null;
+    }
   }
 
   onFormSubmit(valid: boolean): void {
