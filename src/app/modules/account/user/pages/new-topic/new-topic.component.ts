@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../../../../data/service/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { slideToLeft } from 'app/layout/animations';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -16,13 +17,17 @@ export class NewTopicComponent implements OnInit {
   currentTopic: Topic;
   canLoad = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private topicService: TopicService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private topicService: TopicService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     if(this.route.snapshot.paramMap.get('id')) {
       this.topicService.get(this.route.snapshot.paramMap.get('id')).subscribe((response: any) => {
-        if(!response || !response.id) {
+        if(!response || !response.id || !response.createUser) {
           this.router.navigate(['/account/user/my-topics']);
+          return false;
+        }
+        if(this.authenticationService.currentUserValue.id !== response.createUser.id) {
+          this.router.navigate(['/access-denied']);
           return false;
         }
         this.canLoad = true;

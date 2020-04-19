@@ -1,8 +1,10 @@
 <header class="header">
     <nav class="bleu">
         <div class="nav-wrapper">
-            <a href="javascript:void(0)" class="brand-logo"><img src="assets/images/logo2_lg.png" style="width: 195px;" class="responsive-img" alt="ANONYM@"></a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons icon-menu">menu</i></a>
+            <a href="javascript:void(0)" class="brand-logo">
+                <img src="assets/images/logo2_lg.png" *ngIf="account && !toggled" style="width: 195px;" class="responsive-img" alt="ANONYM@">
+            </a>
+            <a href="#" *ngIf="!account" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons icon-menu">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li routerLinkActive="active"><a [routerLink]="['/accueil']">Accueil</a></li>
                 <li routerLinkActive="active"><a [routerLink]="['/forums']">Forums</a></li>
@@ -29,7 +31,7 @@
     </nav>
 </header>
 
-<ul class="sidenav" id="mobile-demo">
+<ul class="sidenav" id="mobile-demo" *ngIf="!account">
     <li>
         <div class="user-view">
             <div class="background">

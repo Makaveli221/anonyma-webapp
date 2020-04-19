@@ -1,5 +1,5 @@
 <div id="page-container-account">
-    <app-header class="header"></app-header>
+    <app-header class="header" [account]="true" [toggled]="toggled"></app-header>
     <div class="main" [ngClass]="{'toggled': toggled}">
         <app-sidebar></app-sidebar>
         <main class="content-main">
