@@ -30,7 +30,7 @@
             <a [routerLink]="['/account/admin/coaching']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">filter_6</i> Coaching</a>
         </li> -->
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a [routerLink]="['/account/admin/users']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">filter_6</i> Gestion des utilisateurs</a>
+            <a [routerLink]="['/account/admin/users']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">filter_6</i> Utilisateurs</a>
         </li>
         <li>
             <a [routerLink]="['/account/profil']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">account_box</i> Mon profil</a>

@@ -1,0 +1,19 @@
+@import 'src/styles/composants/table-subjects.scss';
+.modal {
+    left: 0;
+    right: 0;
+    background-color: #e1f5fe;
+    padding: 0;
+    // max-height: 70%;
+    // width: 60%;
+    will-change: top, opacity;
+}
+
+.modal .modal-footer {
+    border-radius: 0 0 2px 2px;
+    background-color: #01579b;
+    padding: 4px 6px;
+    height: 60px;
+    width: 100%;
+    text-align: right;
+}

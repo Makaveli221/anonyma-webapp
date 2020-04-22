@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 
 import * as M from 'materialize-css';
 
@@ -12,16 +12,19 @@ import { SubjectService } from '@service/forum/subject.service';
   templateUrl: './form-subject.component.html',
   styleUrls: ['./form-subject.component.scss']
 })
-export class FormSubjectComponent implements OnInit, AfterViewInit {
+export class FormSubjectComponent implements OnInit, OnChanges {
   error: string;
   isLoading: boolean;
   isEditing: boolean;
   submitted = false;
   subjectForm: FormGroup;
   elChips: any[];
+  @Input() activeSubmit: boolean;
   @Input() typeSubject: TypeSubject;
   @Input() subject: Subject;
   @Output() readonly formSubmit: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('subjectFormElem') subjectFormElem: FormGroupDirective; 
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,11 +37,10 @@ export class FormSubjectComponent implements OnInit, AfterViewInit {
     this.isEditing = false;
     if(this.subject && this.subject.id) {
       this.isEditing = true;
+    } else {
+      this.subject = new Subject();
     }
     this.buildForm(this.subject);
-  }
-
-  ngAfterViewInit(): void {
     let dataChips = [];
     if (this.subject && this.subject.keywords) {
       this.subject.keywords.forEach((d: string) => dataChips.push({tag: d}))
@@ -50,6 +52,14 @@ export class FormSubjectComponent implements OnInit, AfterViewInit {
       limit: 7
     });
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    setTimeout(()=>{
+      if (changes.activeSubmit.currentValue === true && !this.subjectForm.invalid) {
+        this.subjectFormElem.ngSubmit.emit();
+      }
+    })
+	}
 
   get f () {
     return this.subjectForm.controls;
@@ -80,7 +90,6 @@ export class FormSubjectComponent implements OnInit, AfterViewInit {
     if(this.isEditing) {
       this.subjectService.update(this.subject.key, this.subject).subscribe((response: any) => {
         if(response && response.id) {
-          console.log(response, this.subject);
           this.formSubmit.emit(response);
         } else {
           this.formSubmit.emit(false);

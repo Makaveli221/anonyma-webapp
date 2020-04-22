@@ -1,1 +1,23 @@
-<p>new-topic works!</p>
+<div class="content-page" @routeAnimations *ngIf="subject">
+    <div class="row">
+        <div class="col s12 m12">
+            <a [routerLink]="['/accueil']" class="breadcrumb grey-text">Anonyma</a>
+            <a [routerLink]="['/account/admin', nameType]" class="breadcrumb grey-text">{{ nameType |titlecase }}</a>
+            <a [routerLink]="['/account/admin', nameType, key,'topics']" class="breadcrumb grey-text">Sujets</a>
+            <a [routerLink]="['/account/admin', nameType, key, 'topics', 'new']" class="breadcrumb grey-text active">Ajouter un sujet</a>
+        </div>
+    </div>
+
+    <section class="section-header">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light grey-text text-lighten-1">Ajouter un sujet sur {{ subject.title }}</h5>
+            </div>
+            <div class="row">
+                <div class="col s12 m12" *ngIf="canLoad">
+                    <app-form-topic [topic]="currentTopic" [idSubject]="subject.id" (formSubmit)="onFormSubmit($event)"></app-form-topic>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

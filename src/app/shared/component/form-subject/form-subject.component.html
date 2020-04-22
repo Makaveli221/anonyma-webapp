@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col m12">
-        <form (ngSubmit)="submitForm()" [formGroup]="subjectForm" class="col s12">
+        <form (ngSubmit)="submitForm()" [formGroup]="subjectForm" #subjectFormElem="ngForm" class="col s12">
             <div class='row'>
                 <div class='col s12'>
                 </div>
@@ -62,7 +62,7 @@
 
             <div class="center-align">
                 <div class='row'>
-                    <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo' [disabled]="subjectForm.invalid">
+                    <button type='submit' name='btn_login' *ngIf="activeSubmit == undefined" class='col s12 btn btn-large waves-effect indigo' [disabled]="subjectForm.invalid">
                         <span [hidden]="isLoading">Enregistrer</span>
                         <span [hidden]="!isLoading">
                             <div class="preloader-wrapper small active" style="margin-top: 10px;">

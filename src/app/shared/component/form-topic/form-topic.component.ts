@@ -22,6 +22,7 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
   elChips: any[];
   uploadFile: File;
   Editor = ClassicEditor;
+  @Input() idSubject: string;
   @Input() topic: Topic;
   @Output() readonly formSubmit: EventEmitter<any> = new EventEmitter<any>();
 
@@ -38,26 +39,18 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.subjectService.all(0, -1).subscribe(
-      (response: any) => {
-        if(response && response.content && response.content.length > 0) {
-          this.subjects = response.content as Subject[];
-          let dataChips = [];
-          if (this.topic && this.topic.keywords) {
-            this.topic.keywords.forEach((d: string) => dataChips.push({tag: d}))
+    if(this.idSubject) {
+      this.setDataShips();
+    } else {
+      this.subjectService.all(0, -1).subscribe(
+        (response: any) => {
+          if(response && response.content && response.content.length > 0) {
+            this.subjects = response.content as Subject[];
+            this.setDataShips();
           }
-          setTimeout(() => {
-            M.FormSelect.init(document.querySelectorAll('select'),{});
-            this.elChips = M.Chips.init(document.querySelectorAll('.chips'), {
-              data: dataChips,
-              placeholder: 'Ajouter mots clés',
-              secondaryPlaceholder: '+ Ajouter',
-              limit: 7
-            });
-          }, 0);
         }
-      }
-    )
+      )
+    }
   }
 
   get f () {
@@ -81,6 +74,10 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
       formData.append('uploadFile', this.uploadFile, this.uploadFile.name);
     }
 
+    if(this.idSubject) {
+      this.topicForm.value.subject = this.idSubject;
+    }
+
     this.topicForm.value.status = +this.topicForm.value.status;
 
     this.topicForm.value.keywords = this.elChips[0].chipsData.reduce((accumulator, currentValue) => {
@@ -89,7 +86,6 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
     },[]);
 
     formData.append('info', JSON.stringify(this.topicForm.value));
-
     if(this.topic) {
       this.topicService.update(this.topic.key, formData).subscribe((response: any) => {
         if(response && response.id) {
@@ -110,7 +106,7 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
   }
 
   private buildForm(top?: Topic): void {
-    this.topicForm = this.formBuilder.group({
+    let objectForm = {
       subject: [top ? (top.subject as Subject).id : '', Validators.required],
       title: [top ? top.title : '', Validators.required],
       description: [top ? top.description : '', Validators.required],
@@ -118,12 +114,32 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
       status: [top ? top.status : true],
       data: [top ? top.data : '<p>Votre sujet...</p>', [Validators.required]],
       imgDefault: ['']
-    });
+    }
+    if (this.idSubject) {
+      objectForm.subject = [this.idSubject, Validators.required]
+    }
+    this.topicForm = this.formBuilder.group(objectForm);
   }
 
   fileChange(event) {
     let fileList: FileList = event.target.files;
     let file: File = fileList[0];
     this.uploadFile = file;
+  }
+
+  setDataShips() {
+    let dataChips = [];
+    if (this.topic && this.topic.keywords) {
+      this.topic.keywords.forEach((d: string) => dataChips.push({tag: d}))
+    }
+    setTimeout(() => {
+      M.FormSelect.init(document.querySelectorAll('select'),{});
+      this.elChips = M.Chips.init(document.querySelectorAll('.chips'), {
+        data: dataChips,
+        placeholder: 'Ajouter mots clés',
+        secondaryPlaceholder: '+ Ajouter',
+        limit: 7
+      });
+    }, 0);
   }
 }

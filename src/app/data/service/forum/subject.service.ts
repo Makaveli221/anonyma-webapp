@@ -34,4 +34,8 @@ export class SubjectService {
 	all(page: number = 1, limit: number = 10) {
 		return this.http.get(`${environment.apiUrl}/subject/all?page=${page - 1}&limit=${limit}`);
   }
+
+  getTypeByName(name: string) {
+		return this.http.get(`${environment.apiUrl}/subject/type/name/${name}`);
+  }
 }

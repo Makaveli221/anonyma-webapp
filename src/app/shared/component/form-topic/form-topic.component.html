@@ -15,7 +15,7 @@
                 <div class='col s12'>
                 </div>
             </div>
-            <div class='row'>
+            <div class='row' *ngIf="!idSubject">
                 <div class="input-field col s12 m12">
                     <select name='subject' id='subject' [ngClass]="{'is-valid': !f.subject.errors}" [disabled]="submitted" formControlName="subject">
                         <option value="" disabled selected>Choisir un Forum</option>
