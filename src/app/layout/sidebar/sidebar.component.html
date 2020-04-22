@@ -18,16 +18,19 @@
             <a [routerLink]="['/account/user/my-topics']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">subject</i> Mes sujets</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a href="documentation.html#section_04" class="btn btn-raised btn-primary"><i class="material-icons">filter_4</i> Forums</a>
+            <a [routerLink]="['/account/admin/forums']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">filter_4</i> Forums</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a href="documentation.html#section_07" class="btn btn-raised btn-primary"><i class="material-icons">filter_7</i>Thématiques</a>
+            <a [routerLink]="['/account/admin/religions']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">filter_5</i> Religions</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a href="documentation.html#section_05" class="btn btn-raised btn-primary"><i class="material-icons">filter_5</i> Religions et Astuces</a>
+            <a [routerLink]="['/account/admin/astuces']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">filter_5</i> Astuces</a>
         </li>
+        <!-- <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+            <a [routerLink]="['/account/admin/coaching']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">filter_6</i> Coaching</a>
+        </li> -->
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a href="documentation.html#section_06" class="btn btn-raised btn-primary"><i class="material-icons">filter_6</i> Coaching</a>
+            <a [routerLink]="['/account/admin/users']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">filter_6</i> Gestion des utilisateurs</a>
         </li>
         <li>
             <a [routerLink]="['/account/profil']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">account_box</i> Mon profil</a>

@@ -1,0 +1,85 @@
+<div class="row" *ngIf="error">
+    <div class="col s12 m12">
+        <div class="card red darken-1" *ngIf="error">
+            <div class="card-content white-text" style="text-align: justify;">
+                {{ error }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col m12">
+        <form (ngSubmit)="submitForm()" [formGroup]="subjectForm" class="col s12">
+            <div class='row'>
+                <div class='col s12'>
+                </div>
+            </div>
+            <div class='row'>
+                <div class="input-field col s12 m12">
+                    <input class='validate' type='text' name='title' id='title' [ngClass]="{'is-valid': !f.title.errors}" [disabled]="submitted" formControlName="title" />
+                    <label for='title'>Titre</label>
+                    <p class="left m-0">
+                        <app-control-messages [control]="f['title']"></app-control-messages>
+                    </p>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <textarea class="materialize-textarea" name='description' id='description' [ngClass]="{'is-valid': !f.description.errors}" [disabled]="submitted" formControlName="description"></textarea>
+                    <label for="description">Description</label>
+                    <p class="left m-0">
+                        <app-control-messages [control]="f['description']"></app-control-messages>
+                    </p>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col s12'>
+                    <label for="keywords">Ajouter des mots clés en rapport avec votre sujet</label>
+                    <div class="chips chips-placeholder">
+                        <input class="custom-class" name='keywords' id='keywords' [ngClass]="{'is-valid': !f.keywords.errors}" [disabled]="submitted" formControlName="keywords">
+                    </div>
+                    <p class="left m-0">
+                        <app-control-messages [control]="f['keywords']"></app-control-messages>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6">
+                    <p>
+                        <label>
+                          <input type="checkbox" class="filled-in" [checked]="true" name='status' id='status' [disabled]="submitted" formControlName="status"/>
+                          <span>Mettre en ligne directement</span>
+                        </label>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="center-align">
+                <div class='row'>
+                    <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo' [disabled]="subjectForm.invalid">
+                        <span [hidden]="isLoading">Enregistrer</span>
+                        <span [hidden]="!isLoading">
+                            <div class="preloader-wrapper small active" style="margin-top: 10px;">
+                                <div class="spinner-layer spinner-green-only">
+                                    <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

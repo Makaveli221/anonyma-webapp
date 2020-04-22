@@ -26,8 +26,12 @@ export class SubjectService {
 	delete(key: string) {
 		return this.http.delete(`${environment.apiUrl}/subject/delete/${key}`);
   }
+
+  getAllByType(name: string, page: number = 1, limit: number = 10) {
+		return this.http.get(`${environment.apiUrl}/subject/typesubject/${name}?page=${page - 1}&limit=${limit}`);
+  }
   
-	all(page: number = 1, limit: number = 20) {
+	all(page: number = 1, limit: number = 10) {
 		return this.http.get(`${environment.apiUrl}/subject/all?page=${page - 1}&limit=${limit}`);
   }
 }

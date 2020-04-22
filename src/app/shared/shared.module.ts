@@ -8,6 +8,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { ControlMessagesComponent } from './component/control-messages/control-messages.component';
 import { FormTopicComponent } from './component/form-topic/form-topic.component';
+import { FormSubjectComponent } from './component/form-subject/form-subject.component';
 
 
 @NgModule({
@@ -18,14 +19,15 @@ import { FormTopicComponent } from './component/form-topic/form-topic.component'
     RouterModule,
     CKEditorModule
   ],
-  declarations: [ControlMessagesComponent, FormTopicComponent],
+  declarations: [ControlMessagesComponent, FormTopicComponent, FormSubjectComponent],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
     ControlMessagesComponent,
-    FormTopicComponent
+    FormTopicComponent,
+    FormSubjectComponent
   ]
 })
 export class SharedModule { }

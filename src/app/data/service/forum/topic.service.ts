@@ -33,11 +33,11 @@ export class TopicService {
 		return this.http.get(`${environment.apiUrl}/topic/all`);
   }
   
-	getAllBySubject(key: string, page: number = 1, limit: number = 20) {
+	getAllBySubject(key: string, page: number = 1, limit: number = 10) {
 		return this.http.get(`${environment.apiUrl}/topic/subject/${key}?page=${page - 1}&limit=${limit}`);
   }
 
-  getAllByCreateUser(id: string, page: number = 1, limit: number = 20) {
+  getAllByCreateUser(id: string, page: number = 1, limit: number = 10) {
 		return this.http.get(`${environment.apiUrl}/topic/createuser/${id}?page=${page - 1}&limit=${limit}`);
   }
 }

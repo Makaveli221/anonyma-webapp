@@ -2,14 +2,14 @@
     <div class="row">
         <div class="col s12 m12">
             <a [routerLink]="['/accueil']" class="breadcrumb grey-text">Anonyma</a>
-            <a [routerLink]="['/account/user/my-topics']" class="breadcrumb grey-text active">Mes sujets</a>
+            <a [routerLink]="['/account/admin/astuces']" class="breadcrumb grey-text active">Astuces</a>
         </div>
     </div>
 
     <section class="section-header">
         <div class="container">
             <div class="row center">
-                <h5 class="header col s12 light grey-text text-lighten-1">Liste de mes sujets</h5>
+                <h5 class="header col s12 light grey-text text-lighten-1">Liste des astuces</h5>
             </div>
             <div class="row">
                 <div class="col s12">
@@ -22,28 +22,26 @@
                     </div>
                     <div class="row">
                         <div class="col m12">
-                            <button class="btn btn-raised btn-info gr right add-cucs" [routerLink]="['/account/user/my-topics/new']"><i class="material-icons left">add</i> Ajouter un sujet</button>
+                            <button class="btn btn-raised btn-info gr right add-cucs" [routerLink]="['/account/user/my-topics/new']"><i class="material-icons left">add</i> Ajouter un rubrique</button>
                         </div>
                         <div class="col m12">
                             <table id="tableTopics" class="responsive-table centered highlight">
                                 <thead>
                                     <tr>
-                                        <th>Thématique</th>
                                         <th>Titre</th>
                                         <th>description</th>
-                                        <th>Commentaires</th>
+                                        <th>sujets</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr *ngFor="let topic of topics" [routerLink]="['/account/user/my-topics/update', topic.key]">
-                                        <td>{{getSubjetTitle(topic.subject)}}</td>
-                                        <td>{{topic.title }}</td>
-                                        <td class="line-champ-3">{{topic.description}}</td>
+                                    <tr *ngFor="let subject of subjects" [routerLink]="['/account/admin/astuces', subject.key,'topics']">
+                                        <td>{{subject.title }}</td>
+                                        <td class="line-champ-3">{{subject.description}}</td>
                                         <td>87</td>
                                     </tr>
-                                    <tr *ngIf="topics && topics.length <= 0">
-                                        <td colspan="4" style="text-align: center;">Aucun sujet trouvé</td>
+                                    <tr *ngIf="subjects && subjects.length <= 0">
+                                        <td colspan="4" style="text-align: center;">Aucun rubtique trouvé</td>
                                     </tr>
                                 </tbody>
                             </table>
