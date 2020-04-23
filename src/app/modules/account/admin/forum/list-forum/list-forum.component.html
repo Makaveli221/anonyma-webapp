@@ -38,7 +38,7 @@
                                     <tr *ngFor="let subject of subjects" [attr.data-subject]="subject.key" class="modal-trigger" data-target="modal1">
                                         <td>{{subject.title }}</td>
                                         <td class="line-champ-3">{{subject.description}}</td>
-                                        <td><a [routerLink]="['/account/admin/forums', subject.key,'topics']"><i class="material-icons left">eyes</i> Voir</a></td>
+                                        <td><a class="blue-text" [routerLink]="['/account/admin/forums', subject.key,'topics']"><i class="material-icons">visibility</i></a></td>
                                     </tr>
                                     <tr *ngIf="subjects && subjects.length <= 0">
                                         <td colspan="4" style="text-align: center;">Aucun rubtique trouvé</td>
