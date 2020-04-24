@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   };
   user: User = null;
   authenticate = false;
+  roleName: string = "";
   @Input() account: boolean;
   @Input() toggled: boolean;
 
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     if(this.authenticationService.isAuthenticated()) {
       this.user = this.authenticationService.currentUserValue;
       this.authenticate = true;
+      this.roleName = this.authenticationService.getRolesName(this.user.roles);
     }
   }
 
@@ -43,24 +45,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     );
   }
 
-  getRolesName(roles: string[]) {
-    let roleString = 'UTILISATEUR';
-    if (roles.indexOf(Roles.ROLE_ADMIN) > -1) {
-      roleString = 'ADMINISTRATEUR';
-    }
-    if (roles.indexOf(Roles.ROLE_MODERATOR) > -1) {
-      roleString = 'MODERATEUR';
-    }
-    return roleString;
-  }
-
   signIn() {
     this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
   }
 
   signOut() {
     if(this.authenticationService.signOut().valueOf()) {
-      this.router.navigate(['/login']);
+      setTimeout(()=>{
+        this.router.navigate(['/login']);
+      })
     }
   }
 

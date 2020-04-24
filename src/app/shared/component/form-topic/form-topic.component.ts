@@ -42,10 +42,10 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
     if(this.idSubject) {
       this.setDataShips();
     } else {
-      this.subjectService.all(0, -1).subscribe(
+      this.subjectService.getByPublicType(1).subscribe(
         (response: any) => {
-          if(response && response.content && response.content.length > 0) {
-            this.subjects = response.content as Subject[];
+          if(response && response.length > 0) {
+            this.subjects = response as Subject[];
             this.setDataShips();
           }
         }

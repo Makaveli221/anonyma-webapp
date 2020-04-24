@@ -38,4 +38,8 @@ export class SubjectService {
   getTypeByName(name: string) {
 		return this.http.get(`${environment.apiUrl}/subject/type/name/${name}`);
   }
+
+  getByPublicType(access: number) {
+		return this.http.get(`${environment.apiUrl}/subject/access/${access}`);
+  }
 }

@@ -9,6 +9,7 @@ import { FRONT_ROUTES } from './routes/front.routes';
 import { ACCOUNT_ROUTES } from './routes/account.routes';
 import { AccountLayoutComponent } from './layout/account-layout/account-layout.component';
 import { AuthGuard } from '@app/guard/auth.guard';
+import { RoleGuard } from '@app/guard/role.guard';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
     path: 'account',
     component: AccountLayoutComponent,
     canActivate: [AuthGuard],
+    canActivateChild: [RoleGuard],
     children: ACCOUNT_ROUTES
   },
   {

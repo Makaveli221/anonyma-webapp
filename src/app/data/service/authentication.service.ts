@@ -40,17 +40,6 @@ export class AuthenticationService {
   }
 
   signOut() {
-    // const body = new HttpParams()
-    //   .set('refresh_token', this.getRefreshToken());
-    
-    // // log user out to Keycloak
-    // this.http.post<any>(`${environment.apiUrl}/protocol/openid-connect/logout`, body.toString(),{
-    //   headers: new HttpHeaders()
-    //     .set('Content-Type', 'application/json')
-    //     .set('Authorization', `Bearer ${this.getToken()}`)
-    //   }
-    // );
-    // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     localStorage.removeItem('accessToken');
     this.currentUserSubject.next(null);
