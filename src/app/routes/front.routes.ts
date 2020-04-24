@@ -10,14 +10,14 @@ export const FRONT_ROUTES = [
 		loadChildren: () => import('../modules/front/forum/forum.module').then((m) => m.ForumModule)
 	},
 	{
-		path: 'thematique',
-		data: {animation: 'thematique'},
-		loadChildren: () => import('../modules/front/topic/topic.module').then((m) => m.TopicModule)
+		path: 'religions',
+		data: {animation: 'religions'},
+		loadChildren: () => import('../modules/front/religions/religions.module').then((m) => m.ReligionsModule)
 	},
 	{
-		path: 'knowledges',
-		data: {animation: 'knowledges'},
-		loadChildren: () => import('../modules/front/knowledge/knowledge.module').then((m) => m.KnowledgeModule)
+		path: 'astuces',
+		data: {animation: 'astuces'},
+		loadChildren: () => import('../modules/front/astuces/astuces.module').then((m) => m.AstucesModule)
 	},
 	{
 		path: 'coaching',

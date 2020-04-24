@@ -64,7 +64,7 @@
                                     <div class="list-group-item">
                                         <div class="row-topic">
                                             <header class="topic-title clearfix">
-                                                <h3><a [routerLink]="['/thematique', 'comment-devenir-riche']">Using font icons on this..</a></h3>
+                                                <h3><a [routerLink]="['/forums/thematique', 'comment-devenir-riche']">Using font icons on this..</a></h3>
                                                 <small>Item name: Helper</small>
                                                 <small>Version: 1.0</small>
                                             </header>
@@ -74,7 +74,7 @@
                                     <div class="list-group-item">
                                         <div class="row-topic">
                                             <header class="topic-title clearfix">
-                                                <h3><a [routerLink]="['/thematique', 'comment-devenir-riche']">Getting starting edit any HTM..</a></h3>
+                                                <h3><a [routerLink]="['/forums/thematique', 'comment-devenir-riche']">Getting starting edit any HTM..</a></h3>
                                                 <small>Item name: Milano</small>
                                                 <small>Version: 1.0</small>
                                             </header>
@@ -84,7 +84,7 @@
                                     <div class="list-group-item">
                                         <div class="row-topic">
                                             <header class="topic-title clearfix">
-                                                <h3><a [routerLink]="['/thematique', 'comment-devenir-riche']">How to change color schemes..</a></h3>
+                                                <h3><a [routerLink]="['/forums/thematique', 'comment-devenir-riche']">How to change color schemes..</a></h3>
                                                 <small>Item name: Helper</small>
                                                 <small>Version: 1.0</small>
                                             </header>
@@ -104,18 +104,18 @@
                                     <img [src]="topic.imgDefault ? topic.imgDefault : 'assets/images/paper-pen-1.png'" alt="" class="responsive-img img-thumbnail">
                                 </div>
                                 <div class="col s12 m8">
-                                    <h4><a [routerLink]="['/thematique', topic.key]">{{topic.title}}</a></h4>
+                                    <h4><a [routerLink]="['/forums/thematique', topic.key]">{{topic.title}}</a></h4>
                                     <div class="blog-meta clearfix">
                                         <small>{{topic.createDate  |date:'fullDate':'+0200':'fr'}}</small>
-                                        <small><a [routerLink]="['/thematique', 'comment-devenir-riche']" >11 Comments</a></small>
-                                        <small>in <a [routerLink]="['/thematique', 'comment-devenir-riche']" > Updates</a></small>
-                                        <small>by <a [routerLink]="['/thematique', 'comment-devenir-riche']" > John Doe</a></small>
+                                        <small><a [routerLink]="['/forums/thematique', 'comment-devenir-riche']" >11 Comments</a></small>
+                                        <small>in <a [routerLink]="['/forums/thematique', 'comment-devenir-riche']" > Updates</a></small>
+                                        <small>by <a [routerLink]="['/forums/thematique', 'comment-devenir-riche']" > John Doe</a></small>
                                     </div>
                                     <div class="blog-forums-chips">
                                         <div class="chip" *ngFor="let keyword of topic.keywords">{{keyword}}</div>
                                     </div>
                                     <p class="line-champ-3"> {{topic.description}}</p>
-                                    <a [routerLink]="['/thematique', topic.key]" class="readmore" title="">Continuez la lecture →</a>
+                                    <a [routerLink]="['/forums/thematique', topic.key]" class="readmore" title="">Continuez la lecture →</a>
                                 </div>
                             </div>
                         </article>

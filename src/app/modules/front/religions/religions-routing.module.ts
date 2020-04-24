@@ -7,7 +7,7 @@ import { SingleComponent } from './pages/single/single.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/forums/list',
+    redirectTo: '/religions/list',
     pathMatch: 'full'
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
   },
 	{
 		path: 'thematique',
-		data: {animation: 'thematique', name: 'forums'},
+		data: {animation: 'thematique', name: 'religions'},
 		loadChildren: () => import('../topic/topic.module').then((m) => m.TopicModule)
 	}
 ];
@@ -29,4 +29,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ForumRoutingModule { }
+export class ReligionsRoutingModule { }

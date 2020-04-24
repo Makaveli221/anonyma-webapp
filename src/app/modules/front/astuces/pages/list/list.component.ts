@@ -11,13 +11,13 @@ import { TypeSubject } from '@schema/type-subject';
   styleUrls: ['./list.component.scss'],
   animations: [
     slideToTop
- ]
+  ]
 })
 export class ListComponent implements OnInit {
   subjects: Subject[] = [];
-  typeSubject: TypeSubject;
   pager: any = {};
   initialPage: number;
+  typeSubject: TypeSubject;
 
   constructor(private route: ActivatedRoute, private subjectService: SubjectService) { }
 
@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
 
   loadPage(page: number) {
     // get page of items from api
-    this.subjectService.getTypeByName('forums').subscribe((res: any) => {
+    this.subjectService.getTypeByName('astuces').subscribe((res: any) => {
       if(res && res.id) {
         this.typeSubject = res as TypeSubject;
         this.subjectService.getAllByType(this.typeSubject.name, page).subscribe(

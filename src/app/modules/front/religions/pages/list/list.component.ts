@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
 
   loadPage(page: number) {
     // get page of items from api
-    this.subjectService.getTypeByName('forums').subscribe((res: any) => {
+    this.subjectService.getTypeByName('religions').subscribe((res: any) => {
       if(res && res.id) {
         this.typeSubject = res as TypeSubject;
         this.subjectService.getAllByType(this.typeSubject.name, page).subscribe(

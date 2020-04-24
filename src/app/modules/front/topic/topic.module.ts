@@ -5,6 +5,7 @@ import { SharedModule } from '@shared/shared.module';
 
 import { TopicRoutingModule } from './topic-routing.module';
 import { IndexComponent } from './pages/index/index.component';
+import { CommentsModule } from '../comments/comments.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { IndexComponent } from './pages/index/index.component';
   imports: [
     CommonModule,
     TopicRoutingModule,
-    SharedModule
+    SharedModule,
+    CommentsModule
   ]
 })
 export class TopicModule { }

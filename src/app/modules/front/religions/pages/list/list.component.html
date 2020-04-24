@@ -1,15 +1,15 @@
 <div class="content-page" @routeAnimations>
     <section class="section-header">
         <div class="container">
-            <h4 class="header center blue-text"><i class="material-icons">forum</i> FORUMS</h4>
+            <h4 class="header center blue-text"><i class="material-icons">brightness_3</i> Religions</h4>
             <div class="nav-wrapper center">
                 <div class="col s12">
                     <a [routerLink]="['/accueil']" class="breadcrumb">Accueil</a>
-                    <a [routerLink]="['/forums/list']" class="breadcrumb active">Forums</a>
+                    <a [routerLink]="['/religions/list']" class="breadcrumb active">Religions</a>
                 </div>
             </div>
             <div class="row center">
-                <h5 class="header col s12 light grey-text text-lighten-1">Rechercher parmis les meilleurs forums disponibles sur Anonyma</h5>
+                <h5 class="header col s12 light grey-text text-lighten-1">Rechercher parmis les meilleurs forums de religion disponibles sur Anonyma</h5>
             </div>
             <div class="row">
                 <div class="col s12">
@@ -49,7 +49,7 @@
                 <div class="col s12 m4">
                     <div class="widget clearfix">
                         <div class="banner-widget">
-                            <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner.jpg" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
+                            <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner-ramadan.jpg" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
                         </div>
                     </div>
 
@@ -99,12 +99,12 @@
                     <ul class="list-topic">
                         <li class="well topic" *ngFor="let subject of subjects">
                             <div class="topic-title">
-                                <h3 [routerLink]="['/forums', subject.key, 'thematiques']">{{ subject.title |titlecase }}</h3>
+                                <h3 [routerLink]="['/religions', subject.key, 'thematiques']">{{ subject.title |titlecase }}</h3>
                                 <div class="chip" *ngFor="let keyword of subject.keywords">{{keyword}}</div>
                             </div>
                             <div class="topic-desc">
                                 <p class="line-champ-3">{{ subject.description }}</p>
-                                <a [routerLink]="['/forums', subject.key, 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
+                                <a [routerLink]="['/religions', subject.key, 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
                             </div>
                         </li>
                     </ul>

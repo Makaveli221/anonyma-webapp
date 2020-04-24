@@ -20,17 +20,18 @@ export class IndexComponent implements OnInit, AfterViewInit {
   subject: Subject;
   currentTopic: Topic;
   topics: Topic[] = [];
+  nameType: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService, private topicService: TopicService) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
+    this.nameType = this.route.snapshot.data.name;
     this.topicService.get(this.route.snapshot.paramMap.get('id')).subscribe((response: any) => {
       if(!response || !response.id) {
-        this.router.navigate(['/forums']);
+        this.router.navigate([`/${this.nameType}`]);
         return false;
       }
       this.currentTopic = response as Topic;
-      console.log(this.currentTopic);
       this.subject = this.currentTopic.subject as Subject;
       this.topicService.getAllBySubject(this.subject.key, 1, -1).subscribe((response: any) => {
         if(response && response.content && response.content.length > 0) {
@@ -45,7 +46,6 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   scrollToElement($element: HTMLElement): void {
-    console.log($element);
     $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   }
 

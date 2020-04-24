@@ -40,4 +40,12 @@ export class TopicService {
   getAllByCreateUser(id: string, page: number = 1, limit: number = 10) {
 		return this.http.get(`${environment.apiUrl}/topic/createuser/${id}?page=${page - 1}&limit=${limit}`);
   }
+
+  getAllComments(key: string, id?: string) {
+    let url = `${environment.apiUrl}/topic/${key}/comments`;
+    if(id) {
+      url = `${url}/comments/${id}`;
+    }
+		return this.http.get(url);
+  }
 }
