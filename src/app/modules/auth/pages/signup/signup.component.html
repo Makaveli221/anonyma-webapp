@@ -1,41 +1,37 @@
-<h6 class="indigo-text title-page">
-    Inscrivez vous et plus rien ne vous empêche de dire en tout <strong>anonymat</strong> ce qui vous fait mal. </h6>
-<div class="section"></div>
-
-<div class="container">
-    <div class="z-depth-1 grey lighten-4 row card-auth">
-
+<div class="container" @routeAnimations>
+    <div class="col s12 z-depth-4 card-panel">
         <div class="row" *ngIf="error || registered">
             <div class="col s12 m12">
-                <div class="card red darken-1" *ngIf="error">
-                    <div class="row">
-                        <div class="col s12 m12">
-                            <div class="card-content white-text" style="text-align: justify;">
-                                {{ error }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card teal darken-1" *ngIf="registered">
-                    <div class="row">
-                        <div class="col s12 m12">
-                            <div class="card-content white-text" style="text-align: justify;">
-                                Une email de confirmation vous a été envoyer sur l'adresse email: <strong>{{f['email'].value}}</strong>. <br> Pour finaliser votre inscription veuillez confirmer l'email
-                            </div>
-                        </div>
+                <div class="card teal darken-1">
+                    <div class="card-content white-text" style="text-align: justify;">
+                        Une email de confirmation vous a été envoyer sur l'adresse email: <strong>{{f['email'].value}}</strong>. <br> Pour finaliser votre inscription veuillez confirmer l'email
                     </div>
                 </div>
             </div>
         </div>
 
-        <form *ngIf="!registered" (ngSubmit)="register()" [formGroup]="registerForm" class="col s12">
-            <div class='row'>
-                <div class='col s12'>
+        <form class="login-form" *ngIf="!registered" (ngSubmit)="register()" [formGroup]="registerForm">
+            <div class="row">
+                <div class="input-field col s12 center">
+                    <img class="responsive-img" [routerLink]="['/accueil']" routerLinkActive="router-link-active" style="width: 250px; cursor: pointer;" src="assets/images/logo2_lg.png" />
+                    <h4>Inscription</h4>
+                    <p class="center margin">Inscrivez vous et plus rien ne vous empêche de dire en tout <strong>anonymat</strong> ce qui vous fait mal !</p>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="error">
+                <div class="col s12 m12">
+                    <div class="card red darken-1">
+                        <div class="card-content white-text" style="text-align: justify;">
+                            {{ error }}
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class='row'>
                 <div class='input-field col s12 m6'>
+                    <i class="material-icons prefix">info_outline</i>
                     <input class='validate' type='text' name='firstName' id='firstName' [ngClass]="{'is-valid': !f.firstName.errors}" [disabled]="submitted" formControlName="firstName" />
                     <label for='firstName'>Prénom</label>
                     <p class="left m-0">
@@ -44,6 +40,7 @@
                 </div>
 
                 <div class='input-field col s12 m6'>
+                    <i class="material-icons prefix">info_outline</i>
                     <input class='validate' type='text' name='lastName' id='lastName' [ngClass]="{'is-valid': !f.lastName.errors}" [disabled]="submitted" formControlName="lastName" />
                     <label for='lastName'>Nom</label>
                     <p class="left m-0">
@@ -54,6 +51,7 @@
 
             <div class='row'>
                 <div class='input-field col s12 m6'>
+                    <i class="material-icons prefix">mail_outline</i>
                     <input class='validate' type='text' name='email' id='email' [ngClass]="{'is-valid': !f.email.errors}" [disabled]="submitted" formControlName="email" />
                     <label for='email'>Email</label>
                     <p class="left m-0">
@@ -62,6 +60,7 @@
                 </div>
 
                 <div class='input-field col s12 m6'>
+                    <i class="material-icons prefix">person_outline</i>
                     <input class='validate' type='text' name='username' id='username' [ngClass]="{'is-valid': !f.username.errors}" [disabled]="submitted" formControlName="username" />
                     <label for='username' class="required">Nom d'utilisateur (6 caractères minimum)</label>
                     <p class="left m-0">
@@ -72,6 +71,7 @@
 
             <div class='row'>
                 <div class='input-field col s12 m6'>
+                    <i class="material-icons prefix">lock_outline</i>
                     <input class='validate' type='password' name='password' id='password' [disabled]="submitted" [ngClass]="{'is-valid': !f.password.errors}" formControlName="password" />
                     <label for='password'>Mot de passe (6 caractères minimum)</label>
                     <p class="left m-0">
@@ -80,6 +80,7 @@
                 </div>
 
                 <div class='input-field col s12 m6'>
+                    <i class="material-icons prefix">lock_outline</i>
                     <input class='validate' type='password' name='confirmPassword' id='confirmPassword' [disabled]="submitted" [ngClass]="{'is-valid': !f.confirmPassword.errors}" formControlName="confirmPassword" />
                     <label for='confirmPassword'>Mot de passe (6 caractères minimum)</label>
                     <p class="left m-0">
@@ -89,12 +90,12 @@
             </div>
 
             <p class="text-cgi">
-                En cliquant sur Accepter et s’inscrire, vous acceptez les Conditions d’utilisation, la Politique de confidentialité et la Politique relative aux cookies de LinkedIn.
+                En cliquant sur Accepter et s’inscrire, vous acceptez les Conditions d’utilisation, la Politique de confidentialité et la Politique relative aux cookies de Anonyma.
             </p>
-            <br />
-            <div class="center-align">
-                <div class='row'>
-                    <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo btn_login' [disabled]="registerForm.invalid">
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <button type='submit' name='btn_login' class='btn waves-effect waves-light col s12' [disabled]="registerForm.invalid">
                         <span [hidden]="isLoading">Accepter et s'inscrire</span>
                         <span [hidden]="!isLoading">
                             <div class="preloader-wrapper small active" style="margin-top: 10px;">
@@ -111,8 +112,10 @@
                         </span>
                     </button>
                 </div>
+                <div class="input-field col s12">
+                    <p class="margin center medium-small sign-up">Déjà inscrit(e)? <a [routerLink]="['/login']">S'identifer</a></p>
+                </div>
             </div>
         </form>
     </div>
 </div>
-<a [routerLink]="['/login']"><span class="grey-text">Déjà inscrit(e) ? </span> <u><strong>S'identifer</strong></u></a>

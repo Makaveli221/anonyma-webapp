@@ -25,7 +25,6 @@ export class FormSubjectComponent implements OnInit, OnChanges {
   @Output() readonly formSubmit: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('subjectFormElem') subjectFormElem: FormGroupDirective; 
 
-
   constructor(
     private formBuilder: FormBuilder,
     private subjectService: SubjectService

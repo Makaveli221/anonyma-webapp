@@ -48,4 +48,8 @@ export class TopicService {
     }
 		return this.http.get(url);
   }
+
+  addComment(formData: any) {
+		return this.http.post(`${environment.apiUrl}/topic/comment/add`, formData);
+  }
 }

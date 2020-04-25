@@ -7,12 +7,14 @@ import { first } from 'rxjs/operators';
 import { MustMatch } from '../../_helpers/must-match.validator';
 import { User } from '@schema/user';
 import { ERoles } from '@schema/eroles';
+import { slideToRight } from 'app/layout/animations';
 
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
+  animations: [slideToRight]
 })
 export class SignupComponent implements OnInit {
   error: string;

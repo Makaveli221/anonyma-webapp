@@ -31,7 +31,8 @@ body {
 
 /* MARGIN */
 
-.m-0 {
+.m-0,
+.margin {
     margin: 0;
 }
 
@@ -77,6 +78,39 @@ body {
 
 .breadcrumb.active {
     color: #bdbdbd !important;
+}
+
+.heart {
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    background-image: url('assets/images/default/web_heart_animation.png');
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 2900%;
+    .count-heart {
+        position: relative;
+        top: 13.5px;
+        left: 37px;
+    }
+}
+
+.heart:hover,
+.heart.active {
+    background-position: right;
+}
+
+.is_animating {
+    animation: heart-burst .8s steps(28) 1;
+}
+
+@keyframes heart-burst {
+    from {
+        background-position: left;
+    }
+    to {
+        background-position: right;
+    }
 }
 
 .section {

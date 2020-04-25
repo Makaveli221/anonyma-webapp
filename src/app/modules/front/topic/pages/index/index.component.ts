@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { slideToTop } from 'app/layout/animations';
 import * as M from 'materialize-css';
@@ -22,7 +22,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
   topics: Topic[] = [];
   nameType: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService, private topicService: TopicService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private elementRef: ElementRef, private authenticationService: AuthenticationService, private topicService: TopicService) { }
 
   ngOnInit(): void {
     this.nameType = this.route.snapshot.data.name;
@@ -33,6 +33,9 @@ export class IndexComponent implements OnInit, AfterViewInit {
       }
       this.currentTopic = response as Topic;
       this.subject = this.currentTopic.subject as Subject;
+      setTimeout(() => {
+        this.animateButton(this.elementRef.nativeElement.querySelectorAll('div.heart'));
+      });
       this.topicService.getAllBySubject(this.subject.key, 1, -1).subscribe((response: any) => {
         if(response && response.content && response.content.length > 0) {
           this.topics = response.content as Topic[];
@@ -49,15 +52,15 @@ export class IndexComponent implements OnInit, AfterViewInit {
     $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   }
 
-  animateButton(id: string) {
-    let btn = document.querySelector('#'+ id) as HTMLButtonElement;
-    //reset animation
-    btn.classList.remove('animate');
-    
-    btn.classList.add('animate');
-    setTimeout(function(){
-      btn.classList.remove('animate');
-    },700);
+  animateButton(hearts: any) {
+    hearts.forEach((ele: HTMLElement) => {
+      ele.addEventListener('click', (e) => {
+        ele.classList.toggle('is_animating');
+        setTimeout(function(){
+          ele.classList.toggle('is_animating');
+        },700);
+      });
+    });
   }
 
   updateCurrentTopic(topic: Topic) {

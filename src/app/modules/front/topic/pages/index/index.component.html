@@ -71,8 +71,9 @@
                                 <div class="row">
                                     <div class="col s12">
                                         <ul class="list-inline tags">
-                                            <li><span class="btn-like bubbly-button" id="btnlike" (click)="animateButton('btnlike')"><i class="material-icons">thumb_up</i></span> <span class="waves-effect waves-light count-like"> 120</span></li>
-                                            <li><span class="btn-like bubbly-button" id="btnDislike" (click)="animateButton('btnDislike')"><i class="material-icons">thumb_down</i></span> <span class="waves-effect waves-light count-like"> 43</span></li>
+                                            <li>
+                                                <div class="heart"><span class="count-heart">120</span></div>
+                                            </li>
                                             <li><span class="comment" (click)="scrollToElement(makeComment)"><small>Faire un commentaire </small><i class="material-icons">insert_comment</i></span></li>
                                         </ul>
                                     </div>
@@ -89,7 +90,7 @@
                             <div class="widget">
                                 <div class="custom-module">
                                     <h4 class="module-title">Commentaires</h4>
-                                    <app-comments *ngIf="isAuthenticated()"></app-comments>
+                                    <app-comments [isAuthenticated]="isAuthenticated()" [key]="currentTopic.key" [id]="currentTopic.id"></app-comments>
                                     <div #makeComment id="makecomment"></div>
                                     <div style="text-align: center;" *ngIf="!isAuthenticated()">
                                         <button type="button" (click)="goToLoginPage()" class="btn btn-raised btn-info gr">Cliquez-ici pour vous connectez d'abord</button>

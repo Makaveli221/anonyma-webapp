@@ -1,32 +1,27 @@
-<h6 class="indigo-text title-page">
-    Bon retour parmi nous</h6>
-<div class="section"></div>
-
-<div class="container">
-    <div class="z-depth-1 grey lighten-4 row card-auth">
-
-        <form (ngSubmit)="login()" [formGroup]="loginForm" class="col s12">
-            <div class='row'>
-                <div class='col s12'>
+<div class="container" @routeAnimations>
+    <div class="col s12 z-depth-4 card-panel card-auth">
+        <form (ngSubmit)="login()" [formGroup]="loginForm">
+            <div class="row">
+                <div class="input-field col s12 center">
+                    <img class="responsive-img" [routerLink]="['/accueil']" routerLinkActive="router-link-active" style="width: 250px; cursor: pointer;" src="assets/images/logo2_lg.png" />
+                    <h5>Connexion</h5>
+                    <p class="center margin">Bon retour parmi nous !</p>
                 </div>
             </div>
 
             <div class="row" [hidden]="!error">
                 <div class="col s12 m12">
                     <div class="card red darken-1">
-                        <div class="row">
-                            <div class="col s12 m12">
-                                <div class="card-content white-text" style="text-align: justify;">
-                                    {{ error }}
-                                </div>
-                            </div>
+                        <div class="card-content white-text" style="text-align: justify;">
+                            {{ error }}
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class='row'>
-                <div class='input-field col s12'>
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">person_outline</i>
                     <input class='validate' type='text' name='username' id='username' [ngClass]="{'is-valid': !f.username.errors}" [disabled]="submitted" formControlName="username" />
                     <label for='username'>Nom d'utilisateur</label>
                     <p class="left m-0">
@@ -35,23 +30,20 @@
                 </div>
             </div>
 
-            <div class='row'>
-                <div class='input-field col s12'>
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock_outline</i>
                     <input class='validate' type='password' name='password' id='password' [disabled]="submitted" [ngClass]="{'is-valid': !f.password.errors}" formControlName="password" />
                     <label for='password'>Mot de passe</label>
                     <p class="left m-0">
                         <app-control-messages [control]="f['password']"></app-control-messages>
                     </p>
                 </div>
-                <label style='float: right;'>
-                    <a class='pink-text' href='#!'><b>Mot de passe oublié?</b></a>
-                </label>
             </div>
 
-            <br />
-            <div class="center-align">
-                <div class='row'>
-                    <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo btn_login' [disabled]="loginForm.invalid">
+            <div class="row">
+                <div class="input-field col s12">
+                    <button type='submit' name='btn_login' class='btn waves-effect waves-light col s12' [disabled]="loginForm.invalid">
                         <span [hidden]="isLoading">Se connecter</span>
                         <span [hidden]="!isLoading">
                             <div class="preloader-wrapper small active" style="margin-top: 10px;">
@@ -68,8 +60,10 @@
                         </span>
                     </button>
                 </div>
+                <div class="input-field col s12">
+                    <p class="margin center medium-small sign-up">Nouveau sur Anonyma? <a [routerLink]="['/register']">S'inscrire</a></p>
+                </div>
             </div>
         </form>
     </div>
 </div>
-<a [routerLink]="['/register']"><span class="grey-text">Nouveau sur Anonyma ? </span> <u><strong>S'inscrire</strong></u></a>
