@@ -7,16 +7,17 @@ import { first } from 'rxjs/operators';
 import { MustMatch } from '../../_helpers/must-match.validator';
 import { User } from '@schema/user';
 import { ERoles } from '@schema/eroles';
-import { slideToRight } from 'app/layout/animations';
-
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { bounceInRight } from 'ng-animate';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
-  animations: [slideToRight]
+  animations: [trigger('bounce', [transition('* => *', useAnimation(bounceInRight))])]
 })
 export class SignupComponent implements OnInit {
+  bounce: any;
   error: string;
   isLoading: boolean;
   submitted = false;

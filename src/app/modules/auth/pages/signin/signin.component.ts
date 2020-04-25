@@ -4,15 +4,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ErrorsMessage } from 'app/data/constants/errors-messge';
 import { first } from 'rxjs/operators';
-import { slideToLeft } from 'app/layout/animations';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { bounceInLeft } from 'ng-animate';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
-  animations: [slideToLeft]
+  animations: [trigger('bounce', [transition('* => *', useAnimation(bounceInLeft))])]
 })
 export class SigninComponent implements OnInit {
+  bounce: any;
   error: string;
   isLoading: boolean;
   submitted = false;
