@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environment';
-import { Topic } from '@schema/topic';
 
 
 @Injectable({
@@ -32,6 +31,10 @@ export class TopicService {
   all() {
 		return this.http.get(`${environment.apiUrl}/topic/all`);
   }
+
+  getLastComments(count: number) {
+		return this.http.get(`${environment.apiUrl}/topic/last/${count}`);
+  }
   
 	getAllBySubject(key: string, page: number = 1, limit: number = 10) {
 		return this.http.get(`${environment.apiUrl}/topic/subject/${key}?page=${page - 1}&limit=${limit}`);
@@ -51,5 +54,13 @@ export class TopicService {
 
   addComment(formData: any) {
 		return this.http.post(`${environment.apiUrl}/topic/comment/add`, formData);
+  }
+
+  addLike(key: string, action: number) {
+		return this.http.put(`${environment.apiUrl}/topic/${key}/like/add/${action}`, {});
+  }
+
+  deleteLike(key: string, id: any) {
+		return this.http.put(`${environment.apiUrl}/topic/${key}/like/delete/${id}`, {});
   }
 }

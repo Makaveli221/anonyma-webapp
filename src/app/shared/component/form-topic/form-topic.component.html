@@ -63,7 +63,7 @@
 
             <div class='row'>
                 <div class='col s12'>
-                    <label for="keywords">Ajouter des mots clés en rapport avec votre sujet</label>
+                    <label for="keywords">Ajouter des mots clés en rapport avec votre thématique</label>
                     <div class="chips chips-placeholder">
                         <input class="custom-class" name='keywords' id='keywords' [ngClass]="{'is-valid': !f.keywords.errors}" [disabled]="submitted" formControlName="keywords">
                     </div>
@@ -75,7 +75,7 @@
 
             <div class="row">
                 <div class="col m12">
-                    <label>Contenu du sujet:</label>
+                    <label>Contenu du thématique:</label>
                     <ckeditor [disabled]="submitted" formControlName="data" [editor]="Editor"></ckeditor>
                 </div>
             </div>

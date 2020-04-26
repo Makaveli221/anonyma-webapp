@@ -64,9 +64,11 @@ export class SignupComponent implements OnInit {
     this.authenticationService.signUp(newUser)
       .pipe(first())
       .subscribe(
-          data => {
-            this.error= null;
-            this.registered = true;
+          (data: any) => {
+            if (data.email) {
+              this.error= null;
+              this.registered = true;
+            }
           },
           error => {
             if(error.status === 400) {
@@ -84,6 +86,8 @@ export class SignupComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      sex: [false, Validators.required],
+      age: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.min(10), Validators. max(100)]],
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]

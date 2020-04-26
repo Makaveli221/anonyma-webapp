@@ -3,6 +3,6 @@ import { User } from '@schema/user';
 export class Appreciation {
     id?: string;
     liked: boolean;
-    createUser?: User;
+    user?: User;
     createDate?: Date;
 }

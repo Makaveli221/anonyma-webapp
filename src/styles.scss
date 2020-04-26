@@ -36,6 +36,14 @@ body {
     margin: 0;
 }
 
+.animated {
+    visibility: visible !important;
+}
+
+.hide-on-init {
+    visibility: hidden;
+}
+
 
 /* START LINE CHAMP */
 
@@ -95,7 +103,7 @@ body {
     }
 }
 
-.heart:hover,
+.heart:not(.desabled):hover,
 .heart.active {
     background-position: right;
 }

@@ -7,38 +7,7 @@
                 <div class="col s12">
                     <a [routerLink]="['/accueil']" class="breadcrumb">Accueil</a>
                     <a [routerLink]="['/astuces/list']" class="breadcrumb">Astuces</a>
-                    <a [routerLink]="['/astuces', subject.key, 'thematiques']" *ngIf="subject" class="breadcrumb active">Sujet</a>
-                </div>
-            </div>
-            <div class="row center">
-                <h5 class="header col s12 light grey-text text-lighten-1">Rechercher parmis les meilleurs sujets disponibles sur ce forum</h5>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">search</i>
-                            <input type="text" id="autocomplete-input" class="autocomplete">
-                            <label for="autocomplete-input">Rechercher le meilleur</label>
-                        </div>
-                        <div class="checkbox left">
-                            <label>
-                            <input type="checkbox" class="filled-in" />
-                            <span>Nouveau</span>
-                        </label>
-                            <label>
-                            <input type="checkbox" class="filled-in" />
-                            <span>En cours</span>
-                        </label>
-                            <label>
-                            <input type="checkbox" class="filled-in" />
-                            <span>Clôturé</span>
-                        </label>
-                        </div>
-                        <div class="submit-button right">
-                            <a class="btn btn-raised btn-info gr" href="javascript:void(O)"><i class="material-icons left">search</i> Rechecher</a>
-                        </div>
-                    </div>
+                    <a [routerLink]="['/astuces', subject.key, 'thematiques']" *ngIf="subject" class="breadcrumb active">Thématiques</a>
                 </div>
             </div>
         </div>
@@ -108,9 +77,6 @@
                                     <h4><a [routerLink]="['/astuces/thematique', topic.key]">{{topic.title}}</a></h4>
                                     <div class="blog-meta clearfix">
                                         <small>{{topic.createDate  |date:'fullDate':'+0200':'fr'}}</small>
-                                        <small><a [routerLink]="['/astuces/thematique', 'comment-devenir-riche']" >11 Comments</a></small>
-                                        <small>in <a [routerLink]="['/astuces/thematique', 'comment-devenir-riche']" > Updates</a></small>
-                                        <small>by <a [routerLink]="['/astuces/thematique', 'comment-devenir-riche']" > John Doe</a></small>
                                     </div>
                                     <div class="blog-forums-chips">
                                         <div class="chip" *ngFor="let keyword of topic.keywords">{{keyword}}</div>
@@ -120,7 +86,7 @@
                                 </div>
                             </div>
                         </article>
-                        <h5 class="title center orange-text" *ngIf="topics.length <= 0"> <i class="material-icons medium">warning</i><br>Aucun sujet pour le moment !</h5>
+                        <h5 class="title center orange-text" *ngIf="topics.length <= 0"> <i class="material-icons medium">warning</i><br>Aucun thématique pour le moment !</h5>
 
                         <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
                             <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">

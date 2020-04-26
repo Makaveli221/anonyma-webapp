@@ -19,20 +19,6 @@
                             <input type="text" id="autocomplete-input" class="autocomplete">
                             <label for="autocomplete-input">search the best</label>
                         </div>
-                        <div class="checkbox left">
-                            <label>
-                            <input type="checkbox" class="filled-in" />
-                            <span>Nouveau</span>
-                        </label>
-                            <label>
-                            <input type="checkbox" class="filled-in" />
-                            <span>En cours</span>
-                        </label>
-                            <label>
-                            <input type="checkbox" class="filled-in" />
-                            <span>Clôturé</span>
-                        </label>
-                        </div>
                         <div class="submit-button right">
                             <a class="btn btn-raised btn-info gr" href="javascript:void(O)"><i class="material-icons left">search</i> Rechecher</a>
                         </div>
@@ -46,6 +32,34 @@
     <section class="section lb">
         <div class="container">
             <div class="row">
+                <div class="col s12 m8">
+                    <ul class="list-topic">
+                        <li class="well topic" *ngFor="let subject of subjects">
+                            <div class="topic-title">
+                                <h3 [routerLink]="['/forums', subject.key, 'thematiques']">{{ subject.title |titlecase }}</h3>
+                                <div class="chip" *ngFor="let keyword of subject.keywords">{{keyword}}</div>
+                            </div>
+                            <div class="topic-desc">
+                                <p class="line-champ-3">{{ subject.description }}</p>
+                                <a [routerLink]="['/forums', subject.key, 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
+                        <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">
+                            <a (click)="loadPage(pager.current - 1)"><i class="material-icons">chevron_left</i></a>
+                        </li>
+                        <li *ngFor="let page of pager.pages" [ngClass]="(pager.current === page) ? 'active' : 'waves-effect'">
+                            <a (click)="loadPage(page)">{{page}}</a>
+                        </li>
+                        <li [ngClass]="pager.last ? 'disabled': 'waves-effect'">
+                            <a (click)="loadPage(pager.current + 1)"><i class="material-icons">chevron_right</i></a>
+                        </li>
+                    </ul>
+
+                </div>
+
                 <div class="col s12 m4">
                     <div class="widget clearfix">
                         <div class="banner-widget">
@@ -93,34 +107,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col s12 m8">
-                    <ul class="list-topic">
-                        <li class="well topic" *ngFor="let subject of subjects">
-                            <div class="topic-title">
-                                <h3 [routerLink]="['/forums', subject.key, 'thematiques']">{{ subject.title |titlecase }}</h3>
-                                <div class="chip" *ngFor="let keyword of subject.keywords">{{keyword}}</div>
-                            </div>
-                            <div class="topic-desc">
-                                <p class="line-champ-3">{{ subject.description }}</p>
-                                <a [routerLink]="['/forums', subject.key, 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
-                        <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">
-                            <a (click)="loadPage(pager.current - 1)"><i class="material-icons">chevron_left</i></a>
-                        </li>
-                        <li *ngFor="let page of pager.pages" [ngClass]="(pager.current === page) ? 'active' : 'waves-effect'">
-                            <a (click)="loadPage(page)">{{page}}</a>
-                        </li>
-                        <li [ngClass]="pager.last ? 'disabled': 'waves-effect'">
-                            <a (click)="loadPage(pager.current + 1)"><i class="material-icons">chevron_right</i></a>
-                        </li>
-                    </ul>
-
                 </div>
                 <!-- end col -->
             </div>

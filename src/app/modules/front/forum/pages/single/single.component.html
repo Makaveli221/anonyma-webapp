@@ -6,38 +6,7 @@
                 <div class="col s12">
                     <a [routerLink]="['/accueil']" class="breadcrumb">Accueil</a>
                     <a [routerLink]="['/forums/list']" class="breadcrumb">Forums</a>
-                    <a [routerLink]="['/forums', subject.key, 'thematiques']" *ngIf="subject" class="breadcrumb active">Sujet</a>
-                </div>
-            </div>
-            <div class="row center">
-                <h5 class="header col s12 light grey-text text-lighten-1">Rechercher parmis les meilleurs sujets disponibles sur ce forum</h5>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">search</i>
-                            <input type="text" id="autocomplete-input" class="autocomplete">
-                            <label for="autocomplete-input">Rechercher le meilleur</label>
-                        </div>
-                        <div class="checkbox left">
-                            <label>
-                            <input type="checkbox" class="filled-in" />
-                            <span>Nouveau</span>
-                        </label>
-                            <label>
-                            <input type="checkbox" class="filled-in" />
-                            <span>En cours</span>
-                        </label>
-                            <label>
-                            <input type="checkbox" class="filled-in" />
-                            <span>Clôturé</span>
-                        </label>
-                        </div>
-                        <div class="submit-button right">
-                            <a class="btn btn-raised btn-info gr" href="javascript:void(O)"><i class="material-icons left">search</i> Rechecher</a>
-                        </div>
-                    </div>
+                    <a [routerLink]="['/forums', subject.key, 'thematiques']" *ngIf="subject" class="breadcrumb active">Thématiques</a>
                 </div>
             </div>
         </div>
@@ -47,6 +16,42 @@
     <section class="section lb">
         <div class="container">
             <div class="row">
+                <div class="col s12 m8">
+                    <div class="topic-list">
+                        <article class="well" *ngFor="let topic of topics">
+                            <div class="topic-desc row clearfix">
+                                <div class="col s12 m4">
+                                    <img [src]="topic.imgDefault ? topic.imgDefault : 'assets/images/paper-pen-1.png'" alt="" class="responsive-img img-thumbnail">
+                                </div>
+                                <div class="col s12 m8">
+                                    <h4><a [routerLink]="['/forums/thematique', topic.key]">{{topic.title}}</a></h4>
+                                    <div class="blog-meta clearfix">
+                                        <small>{{topic.createDate  |date:'fullDate':'+0200':'fr'}}</small>
+                                    </div>
+                                    <div class="blog-forums-chips">
+                                        <div class="chip" *ngFor="let keyword of topic.keywords">{{keyword}}</div>
+                                    </div>
+                                    <p class="line-champ-3"> {{topic.description}}</p>
+                                    <a [routerLink]="['/forums/thematique', topic.key]" class="readmore" title="">Continuez la lecture →</a>
+                                </div>
+                            </div>
+                        </article>
+                        <h5 class="title center orange-text" *ngIf="topics.length <= 0"> <i class="material-icons medium">warning</i><br>Aucun thématique pour le moment !</h5>
+
+                        <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
+                            <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">
+                                <a (click)="loadPage(pager.current - 1)"><i class="material-icons">chevron_left</i></a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="(pager.current === page) ? 'active' : 'waves-effect'">
+                                <a (click)="loadPage(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="pager.last ? 'disabled': 'waves-effect'">
+                                <a (click)="loadPage(pager.current + 1)"><i class="material-icons">chevron_right</i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="col s12 m4">
                     <div class="widget clearfix">
                         <div class="banner-widget">
@@ -93,44 +98,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col s12 m8">
-                    <div class="topic-list">
-                        <article class="well" *ngFor="let topic of topics">
-                            <div class="topic-desc row clearfix">
-                                <div class="col s12 m4">
-                                    <img [src]="topic.imgDefault ? topic.imgDefault : 'assets/images/paper-pen-1.png'" alt="" class="responsive-img img-thumbnail">
-                                </div>
-                                <div class="col s12 m8">
-                                    <h4><a [routerLink]="['/forums/thematique', topic.key]">{{topic.title}}</a></h4>
-                                    <div class="blog-meta clearfix">
-                                        <small>{{topic.createDate  |date:'fullDate':'+0200':'fr'}}</small>
-                                        <small><a [routerLink]="['/forums/thematique', 'comment-devenir-riche']" >11 Comments</a></small>
-                                        <small>in <a [routerLink]="['/forums/thematique', 'comment-devenir-riche']" > Updates</a></small>
-                                        <small>by <a [routerLink]="['/forums/thematique', 'comment-devenir-riche']" > John Doe</a></small>
-                                    </div>
-                                    <div class="blog-forums-chips">
-                                        <div class="chip" *ngFor="let keyword of topic.keywords">{{keyword}}</div>
-                                    </div>
-                                    <p class="line-champ-3"> {{topic.description}}</p>
-                                    <a [routerLink]="['/forums/thematique', topic.key]" class="readmore" title="">Continuez la lecture →</a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
-                            <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">
-                                <a (click)="loadPage(pager.current - 1)"><i class="material-icons">chevron_left</i></a>
-                            </li>
-                            <li *ngFor="let page of pager.pages" [ngClass]="(pager.current === page) ? 'active' : 'waves-effect'">
-                                <a (click)="loadPage(page)">{{page}}</a>
-                            </li>
-                            <li [ngClass]="pager.last ? 'disabled': 'waves-effect'">
-                                <a (click)="loadPage(pager.current + 1)"><i class="material-icons">chevron_right</i></a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <!-- end col -->

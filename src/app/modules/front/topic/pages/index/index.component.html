@@ -6,7 +6,7 @@
                 <div class="col s12">
                     <a [routerLink]="['/accueil']" class="breadcrumb">Accueil</a>
                     <a [routerLink]="['/', nameType, 'list']" class="breadcrumb">{{ nameType |titlecase }}</a>
-                    <a [routerLink]="['/', nameType, subject.key, 'thematiques']" class="breadcrumb">Sujet</a>
+                    <a [routerLink]="['/', nameType, subject.key, 'thematiques']" class="breadcrumb">Thématiques</a>
                     <a [routerLink]="['/', nameType, 'thematique', currentTopic.key]" class="breadcrumb active">Détails</a>
                 </div>
             </div>
@@ -17,37 +17,6 @@
     <section class="section lb">
         <div class="container">
             <div class="row">
-                <div class="col s12 m3">
-                    <div class="widget clearfix thematiques-sujet" id="thematiques-sujet">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Thématiques</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="list-group list-group-no-icon">
-                                    <ng-container *ngFor="let topic of topics; let i = index">
-                                        <div class="list-group-item" [ngClass]="{active: topic.id == currentTopic.id}">
-                                            <div class="row-topic">
-                                                <header class="topic-title clearfix">
-                                                    <h3 class="overflow-ellipsis"><a (click)="updateCurrentTopic(topic)">{{topic.title}} outil tout</a></h3>
-                                                    <small (click)="updateCurrentTopic(topic)" class="overflow-ellipsis">{{topic.description}}</small>
-                                                </header>
-                                            </div>
-                                        </div>
-                                        <div class="list-group-separator" *ngIf="i < topics.length - 1"></div>
-                                    </ng-container>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="widget clearfix">
-                        <div class="banner-widget">
-                            <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner.jpg" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col s12 m9">
                     <div class="single-topic-page topic-page topic-list blog-list">
                         <article class="well no-effect clearfix">
@@ -59,7 +28,6 @@
                                         <h4><a [routerLink]="['/thematique', currentTopic.key]" title="">{{currentTopic.title | titlecase}}</a></h4>
                                         <div class="blog-meta clearfix">
                                             <small>{{currentTopic.createDate  |date:'fullDate':'+0200':'fr'}}</small>
-                                            <small><a (click)="scrollToElement(listComments)">4 Commentaires</a></small>
                                         </div>
                                     </div>
                                     <div [innerHTML]="currentTopic.data"></div>
@@ -70,12 +38,10 @@
                             <footer class="topic-footer clearfix">
                                 <div class="row">
                                     <div class="col s12">
-                                        <ul class="list-inline tags">
-                                            <li>
-                                                <div class="heart"><span class="count-heart">120</span></div>
-                                            </li>
-                                            <li><span class="comment" (click)="scrollToElement(makeComment)"><small>Faire un commentaire </small><i class="material-icons">insert_comment</i></span></li>
-                                        </ul>
+                                        <div class="topic-actions">
+                                            <div class="heart" [ngClass]="{'active': liked, 'desabled': !isAuthenticated()}" (click)="addLike($event)"><span class="count-heart">{{countLiked}}</span></div>
+                                            <div class="comment" (click)="scrollToElement(makeComment)">Faire un commentaire <i class="material-icons">insert_comment</i></div>
+                                        </div>
                                     </div>
                                 </div>
                             </footer>
@@ -92,8 +58,8 @@
                                     <h4 class="module-title">Commentaires</h4>
                                     <app-comments [isAuthenticated]="isAuthenticated()" [key]="currentTopic.key" [id]="currentTopic.id"></app-comments>
                                     <div #makeComment id="makecomment"></div>
-                                    <div style="text-align: center;" *ngIf="!isAuthenticated()">
-                                        <button type="button" (click)="goToLoginPage()" class="btn btn-raised btn-info gr">Cliquez-ici pour vous connectez d'abord</button>
+                                    <div style="margin: 20px;" *ngIf="!isAuthenticated()">
+                                        <a style="cursor: pointer; text-decoration:underline" (click)="goToLoginPage()">Cliquez-ici pour vous connectez d'abord</a>
                                     </div>
                                 </div>
                                 <!-- end custom-module -->
@@ -102,6 +68,37 @@
                         </div>
                     </div>
                     <!-- end row -->
+                </div>
+
+                <div class="col s12 m3">
+                    <div class="widget clearfix thematiques-sujet" id="thematiques-sujet">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Thématiques</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group list-group-no-icon">
+                                    <ng-container *ngFor="let topic of topics; let i = index">
+                                        <div class="list-group-item" [ngClass]="{active: topic.id == currentTopic.id}">
+                                            <div class="row-topic">
+                                                <header class="topic-title clearfix">
+                                                    <h3 class="overflow-ellipsis"><a (click)="updateCurrentTopic(topic)">{{topic.title}}</a></h3>
+                                                    <small (click)="updateCurrentTopic(topic)" class="overflow-ellipsis">{{topic.description}}</small>
+                                                </header>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-separator" *ngIf="i < topics.length - 1"></div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget clearfix">
+                        <div class="banner-widget">
+                            <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner.jpg" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
+                        </div>
+                    </div>
                 </div>
                 <!-- end col -->
             </div>

@@ -112,7 +112,7 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
       description: [top ? top.description : '', Validators.required],
       keywords: ['', top ? [] : [Validators.required]],
       status: [top ? top.status : true],
-      data: [top ? top.data : '<p>Votre sujet...</p>', [Validators.required]],
+      data: [top ? top.data : '<p>Votre thématique...</p>', [Validators.required]],
       imgDefault: ['']
     }
     if (this.idSubject) {

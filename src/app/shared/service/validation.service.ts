@@ -8,10 +8,13 @@ export class ValidationService {
   public static getValidationErrorMessage(validatorName: string, validatorValue?: any, labelName?: string): any {
     const config = {
       required: `Ce champ est obligatoire.`,
-      invalidPassword: 'Invalid password. Password must be at least 6 characters long, and contain a number.',
-      maxlength: `The field can't contain more than ${validatorValue.requiredLength} characters.`,
-      minlength: `The field must contain atleast ${validatorValue.requiredLength} characters.`,
-      mustMatch: `Passwords must match`
+      invalidPassword: 'Mot de passe invalide. Le mot de passe doit être d’au moins 6 caractères de long, et contenir un nombre.',
+      max: `Le champ ne peut être supérieur à ${validatorValue.max}.`,
+      min: `Le champ doit être supérieur au moins ${validatorValue.min}.`,
+      maxlength: `Le champ ne peut contenir plus de ${validatorValue.requiredLength} caractères.`,
+      minlength: `Le champ doit contenir au moins ${validatorValue.requiredLength} caractères.`,
+      mustMatch: `Passwords must match`,
+      pattern: `Ce champ est invalide.`
     };
 
     return config[validatorName];

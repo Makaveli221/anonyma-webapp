@@ -7,6 +7,7 @@ import { AuthenticationService } from '@service/authentication.service';
 import { TopicService } from '@service/forum/topic.service';
 import { Topic } from '@schema/topic';
 import { Subject } from '@schema/subject';
+import { Appreciation } from '@schema/appreciation';
 
 @Component({
   selector: 'app-index',
@@ -21,6 +22,8 @@ export class IndexComponent implements OnInit, AfterViewInit {
   currentTopic: Topic;
   topics: Topic[] = [];
   nameType: string;
+  countLiked = 0;
+  liked = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private elementRef: ElementRef, private authenticationService: AuthenticationService, private topicService: TopicService) { }
 
@@ -36,6 +39,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.animateButton(this.elementRef.nativeElement.querySelectorAll('div.heart'));
       });
+      this.countLiked = this.countLike(true, this.currentTopic.appreciations);
       this.topicService.getAllBySubject(this.subject.key, 1, -1).subscribe((response: any) => {
         if(response && response.content && response.content.length > 0) {
           this.topics = response.content as Topic[];
@@ -53,6 +57,9 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   animateButton(hearts: any) {
+    if (!this.isAuthenticated()) {
+      return;
+    }
     hearts.forEach((ele: HTMLElement) => {
       ele.addEventListener('click', (e) => {
         ele.classList.toggle('is_animating');
@@ -65,7 +72,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
 
   updateCurrentTopic(topic: Topic) {
     this.currentTopic = topic;
-    this.router.navigate(['/thematique/'+ topic.key]);
+    this.router.navigate([`/${this.nameType}/thematique/${topic.key}`]);
   }
 
   getCreateUser(u: any) {
@@ -78,5 +85,32 @@ export class IndexComponent implements OnInit, AfterViewInit {
 
   goToLoginPage() {
     this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+  }
+
+  countLike(like: boolean, appreciations?: Appreciation[]) {
+    if (!appreciations || appreciations.length <= 0) {
+      return 0;
+    }
+    this.liked = false;
+    const result = appreciations.filter((app: Appreciation) => {
+      if(this.isAuthenticated() && (app.liked == true) && (app.user.email == this.authenticationService.currentUserValue.email)) {
+        this.liked = true;
+      }
+      return app.liked == like;
+    });
+    return result.length;
+  }
+
+  addLike(event: any) {
+    if (!this.isAuthenticated()) {
+      return;
+    }
+    this.topicService.addLike(this.currentTopic.key, +(!this.liked)).subscribe((res: any) => {
+      if (res && res.length > 0) {
+        ((event.target || event.srcElement || event.currentTarget) as HTMLButtonElement).classList.toggle('active');
+        this.currentTopic.appreciations = res as Appreciation[];
+        this.countLiked = this.countLike(true, this.currentTopic.appreciations);
+      }
+    })
   }
 }

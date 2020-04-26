@@ -46,9 +46,8 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private refreshData(): void {
     this.commentsSubscription = this.topicService.getAllComments(this.key).subscribe((res: any) => {
-      if(res && res.content && res.content.length > 0) {
-        this.comments = res.content as Comment[];
-        console.log('update');
+      if(res && res && res.length != this.comments.length) {
+        this.comments = res as Comment[];
         setTimeout(() => {
           this.animateButton(this.elementRef.nativeElement.querySelectorAll('div.heart'));
         });
@@ -70,14 +69,6 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
         },700);
       });
     });
-  }
-
-  countLike(like: boolean, appreciations?: Appreciation[]) {
-    if (!appreciations || appreciations.length <= 0) {
-      return 0;
-    }
-    const result = appreciations.filter(app => app.liked == like);
-    return result.length;
   }
 
   listenSubmitForm() {

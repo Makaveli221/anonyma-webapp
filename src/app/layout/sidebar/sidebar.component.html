@@ -9,31 +9,31 @@
         </li>
         <!-- Search -->
         <li *ngIf="getRolesName(user.roles) == 'UTILISATEUR'">
-            <a [routerLink]="['/account/user/dashboard']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">home</i> Tableau de bord</a>
+            <a [routerLink]="['/account/user/dashboard']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">home</i> Tableau de bord</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a [routerLink]="['/account/admin/dashboard']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">home</i> Tableau de bord</a>
+            <a [routerLink]="['/account/admin/dashboard']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">home</i> Tableau de bord</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'UTILISATEUR'">
-            <a [routerLink]="['/account/user/my-topics']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">subject</i> Mes sujets</a>
+            <a [routerLink]="['/account/user/my-topics']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">subject</i> Mes thématiques</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a [routerLink]="['/account/admin/forums']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">forum</i> Forums</a>
+            <a [routerLink]="['/account/admin/forums']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">forum</i> Forums</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a [routerLink]="['/account/admin/religions']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">brightness_3</i> Religions</a>
+            <a [routerLink]="['/account/admin/religions']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">brightness_3</i> Religions</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a [routerLink]="['/account/admin/astuces']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">lightbulb</i> Astuces</a>
+            <a [routerLink]="['/account/admin/astuces']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">lightbulb</i> Astuces</a>
         </li>
         <!-- <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a [routerLink]="['/account/admin/coaching']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">filter_6</i> Coaching</a>
+            <a [routerLink]="['/account/admin/coaching']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">filter_6</i> Coaching</a>
         </li> -->
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
-            <a [routerLink]="['/account/admin/users']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">group</i> Utilisateurs</a>
+            <a [routerLink]="['/account/admin/users']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">group</i> Utilisateurs</a>
         </li>
         <li>
-            <a [routerLink]="['/account/profil']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons">account_box</i> Mon profil</a>
+            <a [routerLink]="['/account/profil']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">account_box</i> Mon profil</a>
         </li>
     </ul>
 </aside>
