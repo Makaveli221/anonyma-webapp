@@ -22,9 +22,8 @@ const routes: Routes = [
 		path: 'thematique',
 		data: {animation: 'thematique', name: 'forums'},
 		loadChildren: () => import('../topic/topic.module').then((m) => m.TopicModule)
-	}
-];
-
+  }
+]
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
