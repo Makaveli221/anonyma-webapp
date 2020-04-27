@@ -1,4 +1,3 @@
-import { TypeSubject } from './../../../data/schema/type-subject';
 import { Component, OnInit, AfterViewInit, HostListener, ElementRef } from '@angular/core';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { jackInTheBox, fadeInRight, rotateInDownLeft } from 'ng-animate';
@@ -7,7 +6,9 @@ import * as M from 'materialize-css';
 import { SubjectService } from '@service/forum/subject.service';
 import { TopicService } from '@service/forum/topic.service';
 import { Subject } from '@schema/subject';
+import { TypeSubject } from '@schema/type-subject';
 import { Topic } from '@schema/topic';
+import { Comment } from '@schema/comment';
 
 @Component({
   selector: 'app-accueil',
@@ -26,6 +27,7 @@ export class AccueilComponent implements OnInit, AfterViewInit {
   religions: Subject[] = [];
   astuces: Subject[] = [];
   lastTopics: Topic[] = [];
+  lastComments: Comment[] = [];
   countForum: number = 0;
   countReligion: number = 0;
   countAstuce: number = 0;
@@ -60,9 +62,9 @@ export class AccueilComponent implements OnInit, AfterViewInit {
         }
       }
     );
-    this.topicService.getLastComments(5).subscribe((response: any) => {
+    this.topicService.getLastComments().subscribe((response: any) => {
       if(response && response.length > 0) {
-        this.lastTopics = response as Topic[];
+        this.lastComments = response as Comment[];
       }
     });
   }

@@ -32,8 +32,8 @@ export class TopicService {
 		return this.http.get(`${environment.apiUrl}/topic/all`);
   }
 
-  getLastComments(count: number) {
-		return this.http.get(`${environment.apiUrl}/topic/last/${count}`);
+  getLastComments() {
+		return this.http.get(`${environment.apiUrl}/topic/comments/last`);
   }
   
 	getAllBySubject(key: string, page: number = 1, limit: number = 10) {

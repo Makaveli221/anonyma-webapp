@@ -136,18 +136,18 @@
                             </div>
                             <div class="panel-body">
                                 <div class="list-group list-group-no-icon">
-                                    <ng-container *ngFor="let topic of lastTopics; let i = index">
+                                    <ng-container *ngFor="let comment of lastComments; let i = index">
                                         <div class="list-group-item">
                                             <div class="row-topic">
                                                 <header class="topic-title clearfix">
-                                                    <h3 class="overflow-ellipsis"><a [routerLink]="[getRoute(topic)]">{{topic.title}}</a></h3>
-                                                    <small class="overflow-ellipsis">{{topic.description}}</small>
+                                                    <h3 class="overflow-ellipsis"><a [routerLink]="[getRoute(comment.topic)]">{{comment.topic.title}}</a></h3>
+                                                    <small class="overflow-ellipsis">{{comment.message}}</small>
                                                 </header>
                                             </div>
                                         </div>
-                                        <div class="list-group-separator" *ngIf="i < lastTopics.length - 1"></div>
+                                        <div class="list-group-separator" *ngIf="i < lastComments.length - 1"></div>
                                     </ng-container>
-                                    <div class="list-group-item" *ngIf="lastTopics.length <= 0">
+                                    <div class="list-group-item" *ngIf="lastComments.length <= 0">
                                         <div class="row-topic">
                                             <header class="topic-title clearfix">
                                                 <h3 class="overflow-ellipsis">Aucun post !</h3>

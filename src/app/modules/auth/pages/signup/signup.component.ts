@@ -65,7 +65,7 @@ export class SignupComponent implements OnInit {
       .pipe(first())
       .subscribe(
           (data: any) => {
-            if (data.email) {
+            if (data && data.message === 'User registered successfully!') {
               this.error= null;
               this.registered = true;
             }
