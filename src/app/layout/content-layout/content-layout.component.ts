@@ -8,10 +8,12 @@ import * as M from 'materialize-css';
   styleUrls: ['./content-layout.component.scss']
 })
 export class ContentLayoutComponent implements OnInit, AfterViewInit {
+  canChat: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.canChat = false;
   }
 
   ngAfterViewInit(): void {
@@ -19,7 +21,7 @@ export class ContentLayoutComponent implements OnInit, AfterViewInit {
   }
 
   activeChat() {
-    
+    this.canChat = true;
   }
 
 }
