@@ -14,10 +14,6 @@ const routes: Routes = [
     path: 'list',
     component: ListComponent
   },
-  {
-    path: ':id/thematiques',
-    component: SingleComponent
-  },
 	{
 		path: 'thematique',
 		data: {animation: 'thematique', name: 'religions'},

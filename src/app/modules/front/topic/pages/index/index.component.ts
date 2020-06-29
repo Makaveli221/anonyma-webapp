@@ -1,7 +1,6 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { slideToTop } from 'app/layout/animations';
-import * as M from 'materialize-css';
 
 import { AuthenticationService } from '@service/authentication.service';
 import { TopicService } from '@service/forum/topic.service';
@@ -17,7 +16,7 @@ import { Appreciation } from '@schema/appreciation';
     slideToTop
   ]
 })
-export class IndexComponent implements OnInit, AfterViewInit {
+export class IndexComponent implements OnInit {
   subject: Subject;
   currentTopic: Topic;
   topics: Topic[] = [];
@@ -46,10 +45,6 @@ export class IndexComponent implements OnInit, AfterViewInit {
         }
       })
     });
-  }
-
-  ngAfterViewInit(): void {
-    M.FloatingActionButton.init(document.querySelectorAll('.fixed-action-btn'), {});
   }
 
   scrollToElement($element: HTMLElement): void {

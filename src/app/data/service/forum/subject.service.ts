@@ -30,6 +30,10 @@ export class SubjectService {
   getAllByType(name: string, page: number = 1, limit: number = 10) {
 		return this.http.get(`${environment.apiUrl}/subject/typesubject/${name}?page=${page - 1}&limit=${limit}`);
   }
+
+  getAllDefaultByType(name: string) {
+		return this.http.get(`${environment.apiUrl}/subject/typesubject/${name}/default`);
+  }
   
 	all(page: number = 1, limit: number = 10) {
 		return this.http.get(`${environment.apiUrl}/subject/all?page=${page - 1}&limit=${limit}`);

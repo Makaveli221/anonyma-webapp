@@ -6,8 +6,7 @@
                 <div class="col s12">
                     <a [routerLink]="['/accueil']" class="breadcrumb">Accueil</a>
                     <a [routerLink]="['/', nameType, 'list']" class="breadcrumb">{{ nameType |titlecase }}</a>
-                    <a [routerLink]="['/', nameType, subject.key, 'thematiques']" class="breadcrumb">Thématiques</a>
-                    <a [routerLink]="['/', nameType, 'thematique', currentTopic.key]" class="breadcrumb active">Détails</a>
+                    <a [routerLink]="['/', nameType, 'thematique', currentTopic.key]" class="breadcrumb active">{{ subject.title }}</a>
                 </div>
             </div>
         </div>
@@ -22,7 +21,7 @@
                         <article class="well no-effect clearfix">
                             <div class="topic-desc row clearfix">
                                 <div class="col s12 m12">
-                                    <img *ngIf="currentTopic.imgDefault" src="{{currentTopic.imgDefault}}" alt="" style="width: 100%;" class="responsive-img">
+                                    <img *ngIf="currentTopic.imgDefault" src="{{currentTopic.imgDefault}}" alt="" class="cover">
 
                                     <div class="single-topic-meta">
                                         <h4><a [routerLink]="['/thematique', currentTopic.key]" title="">{{currentTopic.title | titlecase}}</a></h4>
@@ -39,7 +38,7 @@
                                 <div class="row">
                                     <div class="col s12">
                                         <div class="topic-actions">
-                                            <div class="heart" [ngClass]="{'active': liked, 'desabled': !isAuthenticated()}" (click)="addLike($event)"><span class="count-heart">{{countLiked}}</span></div>
+                                            <!-- <div class="heart" [ngClass]="{'active': liked, 'desabled': !isAuthenticated()}" (click)="addLike($event)"><span class="count-heart">{{countLiked}}</span></div> -->
                                             <div class="comment" (click)="scrollToElement(makeComment)">Faire un commentaire <i class="material-icons">insert_comment</i></div>
                                         </div>
                                     </div>
@@ -56,11 +55,8 @@
                             <div class="widget">
                                 <div class="custom-module">
                                     <h4 class="module-title">Commentaires</h4>
-                                    <app-comments [isAuthenticated]="isAuthenticated()" [key]="currentTopic.key" [id]="currentTopic.id"></app-comments>
+                                    <app-comments [key]="currentTopic.key" [id]="currentTopic.id"></app-comments>
                                     <div #makeComment id="makecomment"></div>
-                                    <div style="margin: 20px;" *ngIf="!isAuthenticated()">
-                                        <a style="cursor: pointer; text-decoration:underline" (click)="goToLoginPage()">Cliquez-ici pour vous connectez d'abord</a>
-                                    </div>
                                 </div>
                                 <!-- end custom-module -->
                             </div>
@@ -106,16 +102,4 @@
         </div>
         <!-- end container -->
     </section>
-</div>
-
-<div class="fixed-action-btn">
-    <a class="btn-floating btn-large red">
-        <i class="large material-icons">share</i>
-    </a>
-    <ul>
-        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-    </ul>
 </div>

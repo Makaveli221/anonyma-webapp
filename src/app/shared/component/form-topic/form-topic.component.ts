@@ -88,20 +88,27 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
     formData.append('info', JSON.stringify(this.topicForm.value));
     if(this.topic) {
       this.topicService.update(this.topic.key, formData).subscribe((response: any) => {
-        if(response && response.id) {
-          this.formSubmit.emit(true);
-        } else {
-          this.formSubmit.emit(false);
-        }
+        this.validResponse(response);
+      }, (error: any) => {
+        this.validResponse(error);
       });
     } else {
       this.topicService.create(formData).subscribe((response: any) => {
-        if(response && response.id) {
-          this.formSubmit.emit(true);
-        } else {
-          this.formSubmit.emit(false);
-        }
+        this.validResponse(response);
+      }, (error: any) => {
+        this.validResponse(error);
       });
+    }
+  }
+
+  validResponse(response: any) {
+    if(response && response.id) {
+      this.formSubmit.emit(true);
+    } else {
+      this.submitted = false;
+      this.isLoading = false;
+      this.error = 'La taille de la photo que vous venez de charger est trop gros';
+      this.formSubmit.emit(false);
     }
   }
 

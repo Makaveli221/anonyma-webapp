@@ -23,5 +23,10 @@ export const FRONT_ROUTES = [
 		path: 'coaching',
 		data: {animation: 'coaching'},
 		loadChildren: () => import('../modules/front/coaching/coaching.module').then((m) => m.CoachingModule)
+	},
+	{
+		path: 'search',
+		data: {animation: 'search'},
+		loadChildren: () => import('../modules/front/search/search.module').then((m) => m.SearchModule)
 	}
 ];

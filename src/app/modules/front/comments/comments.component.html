@@ -49,13 +49,13 @@
     </li> -->
     <li class="collection-item avatar" *ngFor="let comment of comments">
         <img src="assets/images/default/user-male-circle.png" alt="Anonyma" class="circle">
-        <span class="title bold-text">Anonyme</span>
+        <span class="title bold-text blue-text">Anonyme</span>
         <p>{{ comment.message }}</p>
     </li>
 </ul>
 <h6>Partagez nous votre commentaire</h6>
 <hr>
-<div class="panel panel-primary" *ngIf="isAuthenticated">
+<div class="panel panel-primary">
     <div class="panel-body">
         <div class="row">
             <form class="col s12">

@@ -3,16 +3,24 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse } fr
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '@service/authentication.service';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   private AUTH_HEADER = 'Authorization';
   private token = '';
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.token = this.authenticationService.getToken();
+
+    if(this.authenticationService.isAuthenticated() && this.authenticationService.isExpired()) {
+      this.authenticationService.signOut();
+      this.router.navigate(['login']);
+      console.log('expired !');
+      return;
+    }
 
     if (!req.headers.has('Content-Type')) {
       req = req.clone({

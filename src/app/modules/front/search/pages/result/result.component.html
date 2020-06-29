@@ -1,0 +1,87 @@
+<div class="content-page" @routeAnimations>
+    <section class="section-header">
+        <div class="container">
+            <h4 class="header center blue-text"><i class="material-icons">forum</i> Recherche</h4>
+            <div class="nav-wrapper center">
+                <div class="col s12">
+                    <a [routerLink]="['/accueil']" class="breadcrumb">Accueil</a>
+                    <a [routerLink]="['/search/result']" class="breadcrumb active">Recherche</a>
+                </div>
+            </div>
+            <div class="row center">
+                <h5 class="header col s12 light grey-text text-lighten-1">Résultats</h5>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <app-form-search></app-form-search>
+                </div>
+            </div>
+        </div>
+        <!-- end container -->
+    </section>
+
+    <section class="section lb">
+        <div class="container">
+            <div class="row">
+                <div class="col m4">
+                    <div class="widget">
+                        <div class="custom-module">
+                            <h4 class="module-title"><i class="material-icons">forum</i> Forums ({{countForum}})</h4>
+                            <div class="list-group">
+                                <div class="list-group-item" *ngFor="let forum of forums">
+                                    <div class="row-content well">
+                                        <p class="list-group-item-heading"><a [routerLink]="['/forums']"><i class="material-icons overflow-ellipsis">description</i> {{forum.title}}</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a [routerLink]="['/forums']" class="readmore" title="">Voir tout →</a>
+                        </div>
+                        <!-- end custom-module -->
+                    </div>
+                    <!-- end widget -->
+                </div>
+                <!-- end col -->
+
+                <div class="col m4">
+                    <div class="widget">
+                        <div class="custom-module">
+                            <h4 class="module-title"><i class="material-icons">brightness_3</i> Religions ({{countReligion}})</h4>
+                            <div class="list-group">
+                                <div class="list-group-item" *ngFor="let religion of religions">
+                                    <div class="row-content well">
+                                        <p class="list-group-item-heading"><a [routerLink]="['/religions']"><i class="material-icons overflow-ellipsis">description</i> {{religion.title}}</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a [routerLink]="['/religions']" class="readmore" title="">Voir tout →</a>
+                        </div>
+                        <!-- end custom-module -->
+                    </div>
+                    <!-- end widget -->
+                </div>
+                <!-- end col -->
+
+                <div class="col m4">
+                    <div class="widget">
+                        <div class="custom-module">
+                            <h4 class="module-title"><i class="material-icons">lightbulb</i> Asctuces ({{countAstuce}})</h4>
+                            <div class="list-group">
+                                <div class="list-group-item" *ngFor="let astuce of astuces">
+                                    <div class="row-content well">
+                                        <p class="list-group-item-heading"><a [routerLink]="['/astuces']"><i class="material-icons overflow-ellipsis">description</i> {{astuce.title}}</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a [routerLink]="['/astuces']" class="readmore" title="">Voir tout →</a>
+                        </div>
+                        <!-- end custom-module -->
+                    </div>
+                    <!-- end widget -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+</div>

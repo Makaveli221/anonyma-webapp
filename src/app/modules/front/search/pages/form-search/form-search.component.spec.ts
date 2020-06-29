@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SingleComponent } from './single.component';
+import { FormSearchComponent } from './form-search.component';
 
-describe('SingleComponent', () => {
-  let component: SingleComponent;
-  let fixture: ComponentFixture<SingleComponent>;
+describe('FormSearchComponent', () => {
+  let component: FormSearchComponent;
+  let fixture: ComponentFixture<FormSearchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SingleComponent ]
+      declarations: [ FormSearchComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SingleComponent);
+    fixture = TestBed.createComponent(FormSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

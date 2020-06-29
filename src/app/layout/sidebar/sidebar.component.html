@@ -2,7 +2,7 @@
     <ul class="main-nav">
         <!-- Your Logo Or Site Name -->
         <li class="nav-brand">
-            <a href="index.html"><img class="circle" src="assets/images/yuna.jpg">
+            <a [routerLink]=""><img class="circle" src="assets/images/default/user-male-circle.png">
                 <span class="overflow-ellipsis">{{ user.firstName |titlecase }} {{ user.lastName |uppercase }}</span>
                 <small>{{ getRolesName(user.roles) }}</small>
             </a>

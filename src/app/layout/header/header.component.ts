@@ -49,12 +49,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
   }
 
-  signOut() {
-    if(this.authenticationService.signOut().valueOf()) {
-      setTimeout(()=>{
-        this.router.navigate(['/login']);
-      })
-    }
+  signOut(event: Event): void {
+    event.preventDefault();
+    console.log('singout')
+    this.authenticationService.signOut();
+    this.router.navigate(['/login']);
   }
 
 }

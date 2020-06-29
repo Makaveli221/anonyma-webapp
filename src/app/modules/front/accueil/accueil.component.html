@@ -1,120 +1,152 @@
 <div class="content-page">
-    <section class="section welcome bg1" [@bounce]="bounce">
-        <div class="container">
-            <div class="row">
-                <div class="content col s8">
-                    <div class="welcome-text">
-                        <h1>Bienvenue sur <strong>Anonym@</strong></h1>
-                        <p><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Bienvenue sur le portail de soutien à Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
-                        </p>
-                        <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">forum</i> Visitez nos forums</a>
+    <div class="carousel carousel-slider">
+        <div class="carousel-fixed-item center">
+            <div class="center-align card-form-search">
+                <div class="widget nopadding clearfix" [@pulse]="pulse">
+                    <div class="panel panel-primary nopadding">
+                        <div class="panel-body">
+                            <app-form-search></app-form-search>
+                            <!-- end well -->
+                        </div>
                     </div>
                 </div>
-                <!-- end col -->
             </div>
-            <!-- end container -->
         </div>
-        <!-- end container -->
-    </section>
+        <div class="carousel-item">
+            <section class="section welcome bg1" [@bounce]="bounce">
+                <div class="container">
+                    <div class="row">
+                        <div class="content col s8">
+                            <div class="welcome-text">
+                                <h1>Bienvenue sur <strong>Anonym@</strong></h1>
+                                <p><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Bienvenue sur le portail de soutien à Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
+                                </p>
+                                <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">forum</i> Visitez nos forums</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end container -->
+                </div>
+                <!-- end container -->
+            </section>
+        </div>
+        <div class="carousel-item">
+            <section class="section welcome bg1" [@bounce]="bounce">
+                <div class="container">
+                    <div class="row">
+                        <div class="content col s8">
+                            <div class="welcome-text">
+                                <h1>Welcome to <strong>Anonym@</strong></h1>
+                                <p><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Welcome to the support portal at Anonym@! Look for your answers with the search area above, or you can create a theme in our forums.
+                                </p>
+                                <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">forum</i> Visit our forums</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end container -->
+                </div>
+                <!-- end container -->
+            </section>
+        </div>
+        <div class="carousel-item">
+            <section class="section welcome bg1" [@bounce]="bounce">
+                <div class="container">
+                    <div class="row">
+                        <div class="content col s8">
+                            <div class="welcome-text">
+                                <h1>Dalal ak jàmm ci <strong>Anonym@</strong></h1>
+                                <p><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Dalal ak jàmm ci portail de soutien à Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
+                                </p>
+                                <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">forum</i> Visitez nos forums</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end container -->
+                </div>
+                <!-- end container -->
+            </section>
+        </div>
+    </div>
 
     <section class="section lb">
         <div class="container">
             <div class="row">
                 <div class="col s12 m12 l9">
-                    <div class="widget nopadding clearfix">
-                        <div class="panel panel-primary nopadding">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Recherchez ici</h3>
-                            </div>
-                            <div class="panel-body">
-                                <form class="site-search">
-                                    <div class="input-field">
-                                        <input id="last_name" type="text" class="validate">
-                                        <label for="last_name">Que désirez-vous rechercher aujourd'hui?</label>
-                                    </div>
-                                    <div class="form-group clearfix">
-                                        <!-- inline style is just to demo custom css to put checkbox below input above -->
-                                        <div class="row">
-                                            <div class="col m8 s12 left-align">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" class="filled-in" />
-                                                        <span>Forums</span>
-                                                    </label>
-                                                    <label>
-                                                        <input type="checkbox" class="filled-in" />
-                                                        <span>Thématiques</span>
-                                                    </label>
-                                                    <label>
-                                                        <input type="checkbox" class="filled-in" />
-                                                        <span>Religions et Asctuces</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col m4 s12 right-align">
-                                                <div class="submit-button">
-                                                    <a class="btn btn-raised btn-info gr" href="javascript:void(O)"><i class="material-icons left">search</i> Rechecher</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                <!-- end well -->
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="row">
                         <div class="col s12">
                             <ul class="tabs tabs-fixed-width">
-                                <li class="tab col s3"><a href="#forumsTab" class="active"><i class="material-icons">forum</i> Forums ({{countForum}})</a></li>
-                                <li class="tab col s3"><a href="#topicsTab"><i class="material-icons">brightness_3</i>Religions ({{countReligion}})</a></li>
-                                <li class="tab col s3"><a href="#knowledgesTab"><i class="material-icons">lightbulb</i>  Astuces ({{countAstuce}})</a></li>
+                                <li class="tab col s3"><a href="#subjectA" class="active"><i class="material-icons">forum</i> {{titleA}}</a></li>
+                                <li class="tab col s3"><a href="#subjectB"><i class="material-icons">forum</i> {{titleB}}</a></li>
+                                <li class="tab col s3"><a href="#subjectC"><i class="material-icons">forum</i> {{titleC}}</a></li>
                             </ul>
                         </div>
-                        <div id="forumsTab" class="col s12">
-                            <ul class="list-topic">
-                                <li class="well topic" *ngFor="let forum of forums">
-                                    <div class="topic-title">
-                                        <h3 [routerLink]="['/forums', forum.key, 'thematiques']">{{ forum.title |titlecase }}</h3>
-                                        <div class="chip" *ngFor="let keyword of forum.keywords">{{keyword}}</div>
+                        <div id="subjectA" class="col s12">
+                            <div class="topic-list" *ngIf="subjectTopics.subjectA">
+                                <article class="well" *ngFor="let topic of subjectTopics.subjectA">
+                                    <div class="topic-desc row clearfix m-b-0">
+                                        <div class="col s12 m4">
+                                            <img [src]="topic.imgDefault ? topic.imgDefault : 'assets/images/paper-pen-1.png'" alt="" class="responsive-img img-thumbnail">
+                                        </div>
+                                        <div class="col s12 m8">
+                                            <h4><a [routerLink]="['/forums/thematique', topic.key]">{{topic.title}}</a></h4>
+                                            <div class="blog-meta clearfix">
+                                                <small>{{topic.createDate  |date:'fullDate':'+0200':'fr'}}</small>
+                                            </div>
+                                            <div class="blog-forums-chips">
+                                                <div class="chip" *ngFor="let keyword of topic.keywords">{{keyword}}</div>
+                                            </div>
+                                            <p class="line-champ-3"> {{topic.description}}</p>
+                                            <a [routerLink]="['/forums/thematique', topic.key]" class="readmore" title="">Continuez la lecture →</a>
+                                        </div>
                                     </div>
-                                    <div class="topic-desc">
-                                        <p class="line-champ-3">{{ forum.description }}</p>
-                                        <a [routerLink]="['/forums', forum.key, 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                                    </div>
-                                </li>
-                            </ul>
+                                </article>
+                            </div>
                             <a [routerLink]="['/forums']" class="readmore blue-grey-text" title="">Voir tout →</a>
                         </div>
-                        <div id="topicsTab" class="col s12">
-                            <ul class="list-topic">
-                                <li class="well topic" *ngFor="let religion of religions">
-                                    <div class="topic-title">
-                                        <h3 [routerLink]="['/religions', religion.key, 'thematiques']">{{ religion.title |titlecase }}</h3>
-                                        <div class="chip" *ngFor="let keyword of religion.keywords">{{keyword}}</div>
+                        <div id="subjectB" class="col s12">
+                            <div class="topic-list" *ngIf="subjectTopics.subjectB">
+                                <article class="well" *ngFor="let topic of subjectTopics.subjectB">
+                                    <div class="topic-desc row clearfix m-b-0">
+                                        <div class="col s12 m4">
+                                            <img [src]="topic.imgDefault ? topic.imgDefault : 'assets/images/paper-pen-1.png'" alt="" class="responsive-img img-thumbnail">
+                                        </div>
+                                        <div class="col s12 m8">
+                                            <h4><a [routerLink]="['/forums/thematique', topic.key]">{{topic.title}}</a></h4>
+                                            <div class="blog-meta clearfix">
+                                                <small>{{topic.createDate  |date:'fullDate':'+0200':'fr'}}</small>
+                                            </div>
+                                            <div class="blog-forums-chips">
+                                                <div class="chip" *ngFor="let keyword of topic.keywords">{{keyword}}</div>
+                                            </div>
+                                            <p class="line-champ-3"> {{topic.description}}</p>
+                                            <a [routerLink]="['/forums/thematique', topic.key]" class="readmore" title="">Continuez la lecture →</a>
+                                        </div>
                                     </div>
-                                    <div class="topic-desc">
-                                        <p class="line-champ-3">{{ religion.description }}</p>
-                                        <a [routerLink]="['/religions', religion.key, 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                                    </div>
-                                </li>
-                            </ul>
+                                </article>
+                            </div>
                             <a [routerLink]="['/religions']" class="readmore blue-grey-text" title="">Voir tout →</a>
                         </div>
-                        <div id="knowledgesTab" class="col s12">
-                            <ul class="list-topic">
-                                <li class="well topic" *ngFor="let astuce of astuces">
-                                    <div class="topic-title">
-                                        <h3 [routerLink]="['/astuces', astuce.key, 'thematiques']">{{ astuce.title |titlecase }}</h3>
-                                        <div class="chip" *ngFor="let keyword of astuce.keywords">{{keyword}}</div>
+                        <div id="subjectC" class="col s12">
+                            <div class="topic-list" *ngIf="subjectTopics.subjectC">
+                                <article class="well" *ngFor="let topic of subjectTopics.subjectC">
+                                    <div class="topic-desc row clearfix m-b-0">
+                                        <div class="col s12 m4">
+                                            <img [src]="topic.imgDefault ? topic.imgDefault : 'assets/images/paper-pen-1.png'" alt="" class="responsive-img img-thumbnail">
+                                        </div>
+                                        <div class="col s12 m8">
+                                            <h4><a [routerLink]="['/forums/thematique', topic.key]">{{topic.title}}</a></h4>
+                                            <div class="blog-meta clearfix">
+                                                <small>{{topic.createDate  |date:'fullDate':'+0200':'fr'}}</small>
+                                            </div>
+                                            <div class="blog-forums-chips">
+                                                <div class="chip" *ngFor="let keyword of topic.keywords">{{keyword}}</div>
+                                            </div>
+                                            <p class="line-champ-3"> {{topic.description}}</p>
+                                            <a [routerLink]="['/forums/thematique', topic.key]" class="readmore" title="">Continuez la lecture →</a>
+                                        </div>
                                     </div>
-                                    <div class="topic-desc">
-                                        <p class="line-champ-3">{{ astuce.description }}</p>
-                                        <a [routerLink]="['/astuces', astuce.key, 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                                    </div>
-                                </li>
-                            </ul>
+                                </article>
+                            </div>
                             <a [routerLink]="['/astuces']" class="readmore blue-grey-text" title="">Voir tout →</a>
                         </div>
                     </div>
@@ -140,7 +172,7 @@
                                         <div class="list-group-item">
                                             <div class="row-topic">
                                                 <header class="topic-title clearfix">
-                                                    <h3 class="overflow-ellipsis"><a [routerLink]="[getRoute(comment.topic)]">{{comment.topic.title}}</a></h3>
+                                                    <h3 class="overflow-ellipsis"><a [routerLink]="[getRoute(comment.topic)]">{{$any(comment).topic.title}}</a></h3>
                                                     <small class="overflow-ellipsis">{{comment.message}}</small>
                                                 </header>
                                             </div>
@@ -165,4 +197,7 @@
         </div>
         <!-- end container -->
     </section>
+</div>
+<div class="aspect-ratio aspect-ratio-16-9">
+    <iframe width="500" height="300" src="//www.youtube-nocookie.com/embed/ZjsbbdsFOOU?rel=0" frameborder="0" allowfullscreen=""></iframe>
 </div>

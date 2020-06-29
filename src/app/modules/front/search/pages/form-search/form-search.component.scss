@@ -1,0 +1,9 @@
+.input-field>label,
+.checkbox label,
+#last_name {
+    color: #ffffff !important;
+}
+
+[type="checkbox"].filled-in:not(:checked)+span:not(.lever):after {
+    border: 2px solid #ffffff;
+}

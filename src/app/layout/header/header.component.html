@@ -1,19 +1,19 @@
 <header class="header">
     <nav class="bleu">
         <div class="nav-wrapper">
-            <a href="javascript:void(0)" class="brand-logo">
+            <a [routerLink]="['/accueil']" class="brand-logo">
                 <img src="assets/images/logo2_lg.png" *ngIf="(account && !toggled) || !account" style="width: 195px;" class="responsive-img" alt="ANONYM@">
             </a>
             <a href="#" *ngIf="!account" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons icon-menu">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li routerLinkActive="active"><a [routerLink]="['/accueil']">Accueil</a></li>
-                <li routerLinkActive="active"><a [routerLink]="['/forums']">Forums</a></li>
-                <li routerLinkActive="active"><a [routerLink]="['/religions']">Religions</a></li>
-                <li routerLinkActive="active"><a [routerLink]="['/astuces']">Astuces</a></li>
-                <li routerLinkActive="active"><a [routerLink]="['/coaching']">Coaching</a></li>
+                <li *ngIf="!account" routerLinkActive="active"><a [routerLink]="['/accueil']">Accueil</a></li>
+                <li *ngIf="!account" routerLinkActive="active"><a [routerLink]="['/forums']">Forums</a></li>
+                <li *ngIf="!account" routerLinkActive="active"><a [routerLink]="['/religions']">Religions</a></li>
+                <li *ngIf="!account" routerLinkActive="active"><a [routerLink]="['/astuces']">Astuces</a></li>
+                <li *ngIf="!account" routerLinkActive="active"><a [routerLink]="['/coaching']">Coaching</a></li>
                 <li>
-                    <a (click)="signIn()" *ngIf="!authenticate" class="waves-effect waves-light btn btn-login"><i class="material-icons left">lock</i> Connexion</a>
-                    <a class='dropdown-trigger btn' *ngIf="authenticate" href='#' data-target='dropdown1'><i class="material-icons left">person</i> Mon Compte</a>
+                    <!-- <a (click)="signIn()" *ngIf="!authenticate" class="waves-effect waves-light btn btn-login"><i class="material-icons left">lock</i> Connexion</a> -->
+                    <a class='dropdown-trigger btn' *ngIf="authenticate" href='#' data-target='dropdown1'><i class="material-icons left">person</i> {{ !account ? 'Mon Compte' : user.firstName + ' ' + user.lastName |uppercase }}</a>
                     <!-- Dropdown Structure -->
                     <ul *ngIf="authenticate" id='dropdown1' class='dropdown-content'>
                         <li>
@@ -25,7 +25,7 @@
                         <li *ngIf="roleName == 'UTILISATEUR'" class="ele-menu"><a [routerLink]="['/account/user/my-topics']"><i class="material-icons blue-text">subject</i> Mes thématiques</a></li>
                         <li *ngIf="roleName == 'ADMINISTRATEUR' || roleName == 'MODERATEUR'" class="ele-menu"><a [routerLink]="['/account/admin/dashboard']"><i class="material-icons blue-text">settings</i> Administration</a></li>
                         <li class="ele-menu"><a [routerLink]="['/accueil']"><i class="material-icons blue-text">account_box</i> Mon profil</a></li>
-                        <li class="ele-menu"><a [routerLink]="" (click)="signOut()"><i class="material-icons red-text">power_settings_new</i>Déconnexion</a></li>
+                        <li class="ele-menu"><a [routerLink]="" (click)="signOut($event)"><i class="material-icons red-text">power_settings_new</i>Déconnexion</a></li>
                     </ul>
                 </li>
             </ul>
@@ -39,7 +39,7 @@
             <div class="background">
                 <img src="assets/images/office.jpg">
             </div>
-            <a *ngIf="authenticate" [routerLink]=""><img class="circle" src="assets/images/yuna.jpg"></a>
+            <a *ngIf="authenticate" [routerLink]=""><img class="circle" src="assets/images/default/user-male-circle.png"></a>
             <a *ngIf="authenticate" [routerLink]=""><span class="white-text name">{{ user.firstName |titlecase }} {{ user.lastName |uppercase }}</span></a>
             <a *ngIf="authenticate" [routerLink]=""><span class="white-text email">{{ roleName }}</span></a>
         </div>
@@ -49,7 +49,7 @@
     <li routerLinkActive="active"><a [routerLink]="['/religions']">Religions</a></li>
     <li routerLinkActive="active"><a [routerLink]="['/astuces']">Astuces</a></li>
     <li routerLinkActive="active"><a [routerLink]="['/coaching']">Coaching</a></li>
-    <li *ngIf="!authenticate"><a (click)="signIn()" class="waves-effect waves-light btn modal-trigger btn-login"><i class="material-icons left">lock</i> Connexion</a></li>
+    <!-- <li *ngIf="!authenticate"><a (click)="signIn()" class="waves-effect waves-light btn modal-trigger btn-login"><i class="material-icons left">lock</i> Connexion</a></li> -->
     <li>
         <div class="divider"></div>
     </li>
@@ -57,5 +57,5 @@
     <li *ngIf="authenticate && roleName == 'UTILISATEUR'" routerLinkActive="active"><a class="waves-effect" [routerLink]="['/account/user/my-topics']"><i class="material-icons blue-text">subject</i> Mes thématiques</a></li>
     <li *ngIf="authenticate && roleName == 'ADMINISTRATEUR' || roleName == 'MODERATEUR'" routerLinkActive="active"><a class="waves-effect" [routerLink]="['/account/user/my-topics']"><i class="material-icons blue-text">settings</i> Administration</a></li>
     <li *ngIf="authenticate" routerLinkActive="active"><a class="waves-effect" [routerLink]="['/accueil']"><i class="material-icons blue-text">account_box</i> Mon profil</a></li>
-    <li *ngIf="authenticate"><a class="waves-effect" [routerLink]="" (click)="signOut()"><i class="material-icons red-text">power_settings_new</i>Déconnexion</a></li>
+    <li *ngIf="authenticate"><a class="waves-effect" [routerLink]="" (click)="signOut($event)"><i class="material-icons red-text">power_settings_new</i>Déconnexion</a></li>
 </ul>

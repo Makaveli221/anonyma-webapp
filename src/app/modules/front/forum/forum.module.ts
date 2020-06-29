@@ -5,11 +5,10 @@ import { SharedModule } from '@shared/shared.module';
 
 import { ForumRoutingModule } from './forum-routing.module';
 import { ListComponent } from './pages/list/list.component';
-import { SingleComponent } from './pages/single/single.component';
 
 
 @NgModule({
-  declarations: [ListComponent, SingleComponent],
+  declarations: [ListComponent],
   imports: [
     CommonModule,
     ForumRoutingModule,

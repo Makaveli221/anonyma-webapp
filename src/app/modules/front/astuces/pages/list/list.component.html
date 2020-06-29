@@ -32,81 +32,71 @@
     <section class="section lb">
         <div class="container">
             <div class="row">
+                <div class="col s12 m8">
+                    <div class="topic-list">
+                        <article class="well" @routeAnimations *ngFor="let topic of topics">
+                            <div class="topic-desc row clearfix m-b-0">
+                                <div class="col s12 m4">
+                                    <img [src]="topic.imgDefault ? topic.imgDefault : 'assets/images/paper-pen-1.png'" alt="" class="responsive-img img-thumbnail">
+                                </div>
+                                <div class="col s12 m8">
+                                    <h4><a [routerLink]="['/forums/thematique', topic.key]">{{topic.title}}</a></h4>
+                                    <div class="blog-meta clearfix">
+                                        <small>{{topic.createDate  |date:'fullDate':'+0200':'fr'}}</small>
+                                    </div>
+                                    <div class="blog-forums-chips">
+                                        <div class="chip" *ngFor="let keyword of topic.keywords">{{keyword}}</div>
+                                    </div>
+                                    <p class="line-champ-3"> {{topic.description}}</p>
+                                    <a [routerLink]="['/forums/thematique', topic.key]" class="readmore" title="">Continuez la lecture →</a>
+                                </div>
+                            </div>
+                        </article>
+                        <h5 class="title center orange-text" *ngIf="topics.length <= 0"> <i class="material-icons medium">warning</i><br>Aucun thématique pour ce forums !</h5>
+
+                        <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
+                            <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">
+                                <a (click)="loadTopics(pager.current - 1)"><i class="material-icons">chevron_left</i></a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="(pager.current === page) ? 'active' : 'waves-effect'">
+                                <a (click)="loadTopics(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="pager.last ? 'disabled': 'waves-effect'">
+                                <a (click)="loadTopics(pager.current + 1)"><i class="material-icons">chevron_right</i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="col s12 m4">
+                    <div class="widget clearfix">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Thématiques</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group list-group-no-icon">
+                                    <ng-container *ngFor="let subject of subjects; let i = index">
+                                        <div class="list-group-item" [ngClass]="{active: subject.key == subjectKey}">
+                                            <div class="row-topic">
+                                                <header class="topic-title clearfix" (click)="updateCurrentSubject(subject.key)">
+                                                    <h3 class="overflow-ellipsis">{{subject.title}}</h3>
+                                                    <p class="overflow-ellipsis">{{subject.keywords.join(", ") }}</p>
+                                                </header>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-separator" *ngIf="i < subjects.length - 1"></div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="widget clearfix">
                         <div class="banner-widget">
                             <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner-secur.jpg" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
                         </div>
                     </div>
-
-                    <div class="widget clearfix">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Derniers posts</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="list-group list-group-no-icon">
-                                    <div class="list-group-item">
-                                        <div class="row-topic">
-                                            <header class="topic-title clearfix">
-                                                <h3><a href="index.html#">Using font icons on this..</a></h3>
-                                                <small>Item name: Helper</small>
-                                                <small>Version: 1.0</small>
-                                            </header>
-                                        </div>
-                                    </div>
-                                    <div class="list-group-separator"></div>
-                                    <div class="list-group-item">
-                                        <div class="row-topic">
-                                            <header class="topic-title clearfix">
-                                                <h3><a href="index.html#">Getting starting edit any HTM..</a></h3>
-                                                <small>Item name: Milano</small>
-                                                <small>Version: 1.0</small>
-                                            </header>
-                                        </div>
-                                    </div>
-                                    <div class="list-group-separator"></div>
-                                    <div class="list-group-item">
-                                        <div class="row-topic">
-                                            <header class="topic-title clearfix">
-                                                <h3><a href="index.html#">How to change color schemes..</a></h3>
-                                                <small>Item name: Helper</small>
-                                                <small>Version: 1.0</small>
-                                            </header>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s12 m8">
-                    <ul class="list-topic">
-                        <li class="well topic" *ngFor="let subject of subjects">
-                            <div class="topic-title">
-                                <h3 [routerLink]="['/astuces', subject.key, 'thematiques']">{{ subject.title |titlecase }}</h3>
-                                <div class="chip" *ngFor="let keyword of subject.keywords">{{keyword}}</div>
-                            </div>
-                            <div class="topic-desc">
-                                <p class="line-champ-3">{{ subject.description }}</p>
-                                <a [routerLink]="['/astuces', subject.key, 'thematiques']" class="readmore" title="">Voir les thématiques →</a>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
-                        <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">
-                            <a (click)="loadPage(pager.current - 1)"><i class="material-icons">chevron_left</i></a>
-                        </li>
-                        <li *ngFor="let page of pager.pages" [ngClass]="(pager.current === page) ? 'active' : 'waves-effect'">
-                            <a (click)="loadPage(page)">{{page}}</a>
-                        </li>
-                        <li [ngClass]="pager.last ? 'disabled': 'waves-effect'">
-                            <a (click)="loadPage(pager.current + 1)"><i class="material-icons">chevron_right</i></a>
-                        </li>
-                    </ul>
-
                 </div>
                 <!-- end col -->
             </div>

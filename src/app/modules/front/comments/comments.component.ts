@@ -14,7 +14,6 @@ import { timer, combineLatest } from 'rxjs';
 export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() key: string;
   @Input() id: string;
-  @Input() isAuthenticated: boolean;
   isLoading: boolean;
   comments: Comment [];
   postsSubscription: any;
@@ -30,9 +29,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    if(this.isAuthenticated) {
-      this.listenSubmitForm();
-    }
+    this.listenSubmitForm();
   }
 
   public ngOnDestroy(): void {

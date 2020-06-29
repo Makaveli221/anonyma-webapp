@@ -5,6 +5,7 @@ import { SharedModule } from '@shared/shared.module';
 
 import { AccueilRoutingModule } from './accueil-routing.module';
 import { AccueilComponent } from './accueil.component';
+import { SearchModule } from '../search/search.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { AccueilComponent } from './accueil.component';
   imports: [
     CommonModule,
     AccueilRoutingModule,
-    SharedModule
+    SharedModule,
+    SearchModule
   ]
 })
 export class AccueilModule { }

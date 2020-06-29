@@ -1,42 +1,27 @@
-.list-topic {
-    display: block;
-    margin-top: 0;
-    a {
-        color: #3F51B5;
+@import 'src/styles/composants/topic-list.scss';
+.topic-list .well .topic-desc {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.list-group .list-group-item {
+    .topic-title p,
+    .topic-title h3 {
+        cursor: pointer;
     }
-    .topic {
-        background-color: #ffffff;
-        padding: 30px;
-        .topic-title {
-            h3 {
-                padding: 0;
-                margin: 0;
-                margin-bottom: 10px;
-                background-color: transparent !important;
-                font-size: 1.2rem;
-                font-weight: 500;
-                text-transform: none;
-                text-decoration: none;
-                cursor: pointer;
-            }
-            &:hover {
-                h3 {
-                    color: #3F51B5;
-                }
-            }
-        }
-        .topic-desc {
-            padding: 10px;
-            border: 1px solid #eaecef;
-            border-radius: 5px;
-        }
+    .topic-title p {
+        margin: 0;
+        font-size: 0.89rem;
     }
-    li.well {
-        margin-bottom: 10px;
-        -webkit-transition: all .4s ease-in-out;
-        -moz-transition: all .4s ease-in-out;
-        -o-transition: all .4s ease-in-out;
-        -ms-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
+    &.active .topic-title,
+    &:hover .topic-title {
+        h3 {
+            color: #228fca;
+            font-weight: 700;
+        }
+        p {
+            color: #228fca !important;
+            font-weight: 600;
+        }
     }
 }

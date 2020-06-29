@@ -139,7 +139,7 @@
         position: fixed;
         opacity: .99;
         left: 0;
-        background: #303F9F;
+        background: #228fca;
         height: 100%;
         overflow-y: auto;
         -webkit-transition: all .25s ease-in-out;
@@ -209,17 +209,22 @@
     .main-nav li.nav-brand {
         border: none;
         box-shadow: none;
-        background-color: #3F51B5;
+        background-color: #ffffff;
         width: 100%;
         text-align: center;
         padding: 30px;
         margin: 30px 0 30px;
-        color: #ffffff;
+        color: #228fca;
         font-size: 1.5rem;
         font-weight: bold;
         height: inherit;
         line-height: inherit;
         position: relative;
+        box-shadow: inset 0px 0px 10px 0px #228fca;
+        a,
+        a small {
+            color: #228fca;
+        }
     }
     .main-nav li.nav-brand a {
         text-align: left;
@@ -256,8 +261,8 @@
         text-decoration: none;
     }
     .main-nav li .btn.btn-raised.btn-primary {
-        background-color: #303F9F;
-        padding: 0px 30px;
+        background-color: #228fca;
+        padding: 5px 30px;
         margin: 10px 1px;
         letter-spacing: 0;
         font-size: 15px;
@@ -269,7 +274,8 @@
         max-height: 45px;
         &:hover,
         &.active {
-            background-color: #3F51B5;
+            background-color: #ffffff;
+            color: #228fca;
         }
     }
     .breadcrumb {

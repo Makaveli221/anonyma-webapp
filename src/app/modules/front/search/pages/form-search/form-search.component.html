@@ -1,0 +1,32 @@
+<form class="site-search" (ngSubmit)="submitForm()" [formGroup]="searchForm">
+    <div class="input-field">
+        <input id="last_name" type="text" [ngClass]="{'is-valid': !f.question.errors}" formControlName="question" class="validate">
+        <label for="last_name">Que désirez-vous rechercher aujourd'hui?</label>
+    </div>
+    <div class="form-group clearfix">
+        <!-- inline style is just to demo custom css to put checkbox below input above -->
+        <div class="row">
+            <div class="col m8 s12 left-align">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" formControlName="inForums" class="filled-in" />
+                        <span>Forums</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" formControlName="inReligions" class="filled-in" />
+                        <span>Thématiques</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" formControlName="inAstuces" class="filled-in" />
+                        <span>Religions et Asctuces</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col m4 s12 right-align">
+                <div class="submit-button">
+                    <button class="btn btn-raised btn-info gr" type="submit"><i class="material-icons left">search</i> Rechecher</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
