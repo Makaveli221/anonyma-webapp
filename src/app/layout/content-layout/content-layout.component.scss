@@ -48,7 +48,7 @@ main {
 .chat-window {
     flex: auto;
     max-height: calc(100% - 60px);
-    background: #2f323b;
+    background: #ffffff;
     overflow: auto;
 }
 
@@ -108,7 +108,7 @@ main {
 
 .msg-box {
     display: flex;
-    background: #5b5e6c;
+    background: #313FA0;
     padding: 10px 10px 0 10px;
     border-radius: 0 6px 6px 0;
     max-width: 80%;
@@ -143,6 +143,7 @@ main {
     line-height: 13pt;
     color: rgba(255, 255, 255, .7);
     margin: 0 0 4px 0;
+    font-weight: bold;
     &:first-of-type {
         margin-top: 8px;
     }

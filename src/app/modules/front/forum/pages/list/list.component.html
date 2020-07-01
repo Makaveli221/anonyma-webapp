@@ -9,21 +9,7 @@
                 </div>
             </div>
             <div class="row center">
-                <h5 class="header col s12 light grey-text text-lighten-1">Rechercher parmis les meilleurs forums disponibles sur Anonyma</h5>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">search</i>
-                            <input type="text" id="autocomplete-input" class="autocomplete">
-                            <label for="autocomplete-input">search the best</label>
-                        </div>
-                        <div class="submit-button right">
-                            <a class="btn btn-raised btn-info gr" href="javascript:void(O)"><i class="material-icons left">search</i> Rechecher</a>
-                        </div>
-                    </div>
-                </div>
+                <h5 class="header col s12 light grey-text text-lighten-1">{{ 'séen naqar, suñu yitté.' |uppercase }}</h5>
             </div>
         </div>
         <!-- end container -->
@@ -31,6 +17,60 @@
 
     <section class="section lb">
         <div class="container">
+            <div class="row">
+                <div class="col s12 m8">
+                    <div class="widget clearfix">
+                        <div class="panel panel-primary panel-addsubject">
+                            <!-- <div class="panel-heading">
+                                <h3 class="panel-title">Partagez-nous votre histoire</h3>
+                            </div> -->
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" id="autocomplete-input" class="autocomplete">
+                                        <label for="autocomplete-input">Votre adresse email</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <textarea class="materialize-textarea message"></textarea>
+                                        <label for="textarea1" style="font-size: 1.5rem;">Ecrivez votre histoire ici...</label>
+                                    </div>
+
+                                    <div class="submit-button right">
+                                        <a class="btn btn-raised btn-info gr" href="javascript:void(O)"><i class="material-icons left">send</i> Envoyer</a>
+                                    </div>
+                                </div>
+                                <small style="color: #fff;">Après validation et réponse de votre coach votre histoire sera publié anonymement !</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m4">
+                    <div class="widget clearfix">
+                        <div class="panel panel-primary" style="height: 320px">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Thématiques</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group list-group-no-icon">
+                                    <ng-container *ngFor="let subject of subjects; let i = index">
+                                        <div class="list-group-item" [ngClass]="{active: subject.key == subjectKey}">
+                                            <div class="row-topic">
+                                                <header class="topic-title clearfix" (click)="updateCurrentSubject(subject.key)">
+                                                    <h3 class="overflow-ellipsis">{{subject.title}}</h3>
+                                                    <p class="overflow-ellipsis">{{subject.keywords.join(", ") }}</p>
+                                                </header>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-separator" *ngIf="i < subjects.length - 1"></div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col s12 m8">
                     <div class="topic-list">
@@ -69,29 +109,6 @@
                 </div>
 
                 <div class="col s12 m4">
-                    <div class="widget clearfix">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Thématiques</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="list-group list-group-no-icon">
-                                    <ng-container *ngFor="let subject of subjects; let i = index">
-                                        <div class="list-group-item" [ngClass]="{active: subject.key == subjectKey}">
-                                            <div class="row-topic">
-                                                <header class="topic-title clearfix" (click)="updateCurrentSubject(subject.key)">
-                                                    <h3 class="overflow-ellipsis">{{subject.title}}</h3>
-                                                    <p class="overflow-ellipsis">{{subject.keywords.join(", ") }}</p>
-                                                </header>
-                                            </div>
-                                        </div>
-                                        <div class="list-group-separator" *ngIf="i < subjects.length - 1"></div>
-                                    </ng-container>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="widget clearfix">
                         <div class="banner-widget">
                             <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner.jpg" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>

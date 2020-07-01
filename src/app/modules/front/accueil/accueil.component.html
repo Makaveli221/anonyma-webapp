@@ -72,12 +72,12 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m12 l9">
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col s12">
                             <ul class="tabs tabs-fixed-width">
-                                <li class="tab col s3"><a href="#subjectA" class="active"><i class="material-icons">forum</i> {{titleA}}</a></li>
-                                <li class="tab col s3"><a href="#subjectB"><i class="material-icons">forum</i> {{titleB}}</a></li>
-                                <li class="tab col s3"><a href="#subjectC"><i class="material-icons">forum</i> {{titleC}}</a></li>
+                                <li class="tab col s3"><a href="#subjectA" class="active"><i class="material-icons">forum</i> Forums</a></li>
+                                <li class="tab col s3"><a href="#subjectB"><i class="material-icons">forum</i> Astuces</a></li>
+                                <li class="tab col s3"><a href="#subjectC"><i class="material-icons">forum</i> Coaching</a></li>
                             </ul>
                         </div>
                         <div id="subjectA" class="col s12">
@@ -85,7 +85,12 @@
                                 <article class="well" *ngFor="let topic of subjectTopics.subjectA">
                                     <div class="topic-desc row clearfix m-b-0">
                                         <div class="col s12 m4">
-                                            <img [src]="topic.imgDefault ? topic.imgDefault : 'assets/images/paper-pen-1.png'" alt="" class="responsive-img img-thumbnail">
+                                            <video controls class="responsive-img img-thumbnail">
+
+                                                <source src="assets/images/amina.mp4" type="video/mp4">
+
+                                                Sorry, your browser doesn't support embedded videos.
+                                            </video>
                                         </div>
                                         <div class="col s12 m8">
                                             <h4><a [routerLink]="['/forums/thematique', topic.key]">{{topic.title}}</a></h4>
@@ -149,6 +154,86 @@
                             </div>
                             <a [routerLink]="['/astuces']" class="readmore blue-grey-text" title="">Voir tout →</a>
                         </div>
+                    </div> -->
+                    <div class="topic-list">
+                        <article class="well">
+                            <div class="topic-desc row clearfix m-b-0">
+                                <div class="col s12 m4">
+                                    <video controls class="responsive-img img-thumbnail responsive-video">
+
+                                        <source src="assets/images/amina.mp4" type="video/mp4">
+
+                                        Sorry, your browser doesn't support embedded videos.
+                                    </video>
+                                </div>
+                                <div class="col s12 m8">
+                                    <h4><a [routerLink]="['/forums/thematique',' topic.key']">Forums</a></h4>
+                                    <div class="blog-meta clearfix">
+                                        <small>dimanche 17 mai 2020</small>
+                                    </div>
+                                    <div class="blog-forums-chips">
+                                        <div class="chip">violence conjugal</div>
+                                    </div>
+                                    <p class="line-champ-3">
+                                        Parmi ces agressions, le viol conjugal occupe une place importante et méconnue : près de la moitié des femmes victimes de viol l’ont été de la part d’un conjoint. L’Enveff a ainsi mis en évidence l’ampleur du silence et l’occultation des violences par
+                                    </p>
+                                    <a [routerLink]="['/forums/thematique', 'topic.key']" class="readmore" title="">Continuez la lecture →</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="well">
+                            <div class="topic-desc row clearfix m-b-0">
+                                <div class="col s12 m4">
+                                    <video controls class="responsive-img img-thumbnail responsive-video">
+
+                                        <source src="assets/images/amina.mp4" type="video/mp4">
+
+                                        Sorry, your browser doesn't support embedded videos.
+                                    </video>
+                                </div>
+                                <div class="col s12 m8">
+                                    <h4><a [routerLink]="['/forums/thematique',' topic.key']">Astuces</a></h4>
+                                    <div class="blog-meta clearfix">
+                                        <small>dimanche 17 mai 2020</small>
+                                    </div>
+                                    <div class="blog-forums-chips">
+                                        <div class="chip">Beauté</div>
+                                        <div class="chip">Cuisine</div>
+                                    </div>
+                                    <p class="line-champ-3">
+                                        Parmi ces agressions, le viol conjugal occupe une place importante et méconnue : près de la moitié des femmes victimes de viol l’ont été de la part d’un conjoint. L’Enveff a ainsi mis en évidence l’ampleur du silence et l’occultation des violences par
+                                    </p>
+                                    <a [routerLink]="['/forums/thematique', 'topic.key']" class="readmore" title="">Continuez la lecture →</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="well">
+                            <div class="topic-desc row clearfix m-b-0">
+                                <div class="col s12 m4">
+                                    <video controls class="responsive-img img-thumbnail responsive-video">
+
+                                        <source src="assets/images/amina.mp4" type="video/mp4">
+
+                                        Sorry, your browser doesn't support embedded videos.
+                                    </video>
+                                </div>
+                                <div class="col s12 m8">
+                                    <h4><a [routerLink]="['/forums/thematique',' topic.key']">Coaching</a></h4>
+                                    <div class="blog-meta clearfix">
+                                        <small>dimanche 17 mai 2020</small>
+                                    </div>
+                                    <div class="blog-forums-chips">
+                                        <div class="chip">Confiance en soi</div>
+                                    </div>
+                                    <p class="line-champ-3">
+                                        Parmi ces agressions, le viol conjugal occupe une place importante et méconnue : près de la moitié des femmes victimes de viol l’ont été de la part d’un conjoint. L’Enveff a ainsi mis en évidence l’ampleur du silence et l’occultation des violences par
+                                    </p>
+                                    <a [routerLink]="['/forums/thematique', 'topic.key']" class="readmore" title="">Continuez la lecture →</a>
+                                </div>
+                            </div>
+                        </article>
                     </div>
                 </div>
                 <!-- end col -->
@@ -198,6 +283,6 @@
         <!-- end container -->
     </section>
 </div>
-<div class="aspect-ratio aspect-ratio-16-9">
-    <iframe width="500" height="300" src="//www.youtube-nocookie.com/embed/ZjsbbdsFOOU?rel=0" frameborder="0" allowfullscreen=""></iframe>
-</div>
+<!-- <div class="aspect-ratio aspect-ratio-16-9" [@pulse]="pulse">
+    <iframe width="500" height="300" src="assets/images/amina.mp4" frameborder="0" allowfullscreen=""></iframe>
+</div> -->

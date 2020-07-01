@@ -78,8 +78,8 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
 
-    (document.querySelector('.tabs .indicator') as HTMLElement).style.backgroundColor = '#ffffff';
-    (document.querySelector('.tabs .indicator') as HTMLElement).style.height = '5px';
+    // (document.querySelector('.tabs .indicator') as HTMLElement).style.backgroundColor = '#ffffff';
+    // (document.querySelector('.tabs .indicator') as HTMLElement).style.height = '5px';
     this.autoplay();
   }
 

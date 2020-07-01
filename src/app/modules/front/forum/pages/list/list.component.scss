@@ -25,3 +25,23 @@
         }
     }
 }
+
+.section-header {
+    padding: 1rem 0;
+}
+
+.panel-addsubject {
+    background: #318aaf;
+    opacity: 0.9;
+    border-radius: 20px;
+}
+
+.input-field>label,
+.checkbox label,
+#last_name {
+    color: #ffffff !important;
+}
+
+[type="checkbox"].filled-in:not(:checked)+span:not(.lever):after {
+    border: 2px solid #ffffff;
+}

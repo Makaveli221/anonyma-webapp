@@ -51,10 +51,11 @@
 
 .card-form-search {
     margin: 10px auto;
-    width: 65%;
+    width: 60%;
     .widget .panel {
         border-radius: 20px;
-        background-color: rgba(0, 0, 0, 0.5);
+        background: #318aaf;
+        opacity: 0.9;
         .panel-body {
             padding: 5px;
             padding-top: 20px;
@@ -217,4 +218,10 @@
     top: 90px;
     right: 0;
     z-index: 9;
+}
+
+.responsive-video {
+    max-height: 200px;
+    height: 200px !important;
+    object-fit: cover;
 }
