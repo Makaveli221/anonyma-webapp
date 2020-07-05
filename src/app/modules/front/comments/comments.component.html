@@ -1,66 +1,22 @@
 <ul class="collection">
-    <!-- <li class="collection-item avatar">
-        <img src="assets/images/default/user-male-circle.png" alt="Anonyma" class="circle">
-        <span class="title bold-text">Anonyme</span>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        </p>
-        <div class="row">
-            <div class="col s12">
-                <ul class="list-inline tags">
-                    <li><span class="btn-like bubbly-button" (click)="animateButton($event)"><i class="material-icons">thumb_up</i></span> <span class="waves-effect waves-light count-like"> 120</span></li>
-                    <li><span class="btn-like bubbly-button" (click)="animateButton($event)"><i class="material-icons">thumb_down</i></span> <span class="waves-effect waves-light count-like"> 43</span></li>
-                    <li><span class="comment"><small>Faire un commentaire </small><i class="material-icons">insert_comment</i></span></li>
-                </ul>
-            </div>
-        </div>
-        <a href="#!" class="secondary-content"><i class="material-icons">edit</i></a>
-        <ul class="collection">
-            <li class="collection-item avatar">
-                <img src="assets/images/default/user-male-circle.png" alt="Anonyma" class="circle">
-                <span class="title bold-text">Anonyme</span>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="list-inline tags">
-                            <li><span class="btn-like bubbly-button" (click)="animateButton($event)"><i class="material-icons">thumb_up</i></span> <span class="waves-effect waves-light count-like"> 120</span></li>
-                            <li><span class="btn-like bubbly-button" (click)="animateButton($event)"><i class="material-icons">thumb_down</i></span> <span class="waves-effect waves-light count-like"> 43</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <a href="#!" class="secondary-content"><i class="material-icons">edit</i></a>
-            </li>
-        </ul>
-        <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <textarea class="materialize-textarea message"></textarea>
-                        <label for="textarea1">Ecrivez votre commentaire ici...</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <button type="button" class="btn btn-raised btn-info gr">Envoyer</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </li> -->
     <li class="collection-item avatar" *ngFor="let comment of comments">
         <img src="assets/images/default/user-male-circle.png" alt="Anonyma" class="circle">
         <span class="title bold-text blue-text">Anonyme</span>
         <p>{{ comment.message }}</p>
     </li>
+    <li class="collection-item avatar" *ngIf="comments.length <= 0">
+        <p>Aucun commentaire pour le moment</p>
+    </li>
 </ul>
+<br>
+<br>
+<br>
 <h6>Partagez nous votre commentaire</h6>
 <hr>
 <div class="panel panel-primary">
     <div class="panel-body">
         <div class="row">
             <form class="col s12">
-                <input type="hidden" class="source" value="topic">
-                <input type="hidden" class="id-source" value="{{id}}">
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea class="materialize-textarea message"></textarea>

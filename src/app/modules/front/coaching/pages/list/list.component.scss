@@ -25,29 +25,3 @@
         }
     }
 }
-
-.section-header {
-    padding: 1rem 0;
-}
-
-.panel-addsubject {
-    background: #318aaf;
-    opacity: 0.9;
-    border-radius: 20px;
-}
-
-.input-field>label,
-.checkbox label {
-    color: #ffffff !important;
-}
-
-#message-email,
-#message-title,
-#message-texte {
-    color: #d8d8d8 !important;
-    border-bottom: 1px solid #cccccc !important;
-}
-
-[type="checkbox"].filled-in:not(:checked)+span:not(.lever):after {
-    border: 2px solid #ffffff;
-}

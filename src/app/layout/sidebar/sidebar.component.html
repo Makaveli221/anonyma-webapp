@@ -17,8 +17,14 @@
         <li *ngIf="getRolesName(user.roles) == 'UTILISATEUR'">
             <a [routerLink]="['/account/user/my-topics']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">subject</i> Mes thématiques</a>
         </li>
-        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+        <!--<li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
             <a [routerLink]="['/account/admin/forums']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">forum</i> Forums</a>
+        </li>-->
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+            <a [routerLink]="['/account/admin/histoires']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">forum</i> Histoires</a>
+        </li>
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+            <a [routerLink]="['/account/admin/chatbots']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">question_answer</i> Chatbots</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
             <a [routerLink]="['/account/admin/religions']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">brightness_3</i> Religions</a>

@@ -20,6 +20,7 @@ import { ContentAuthComponent } from './layout/content-auth/content-auth.compone
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { ChatbotModule } from '@modules/front/chatbot/chatbot.module';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -42,6 +43,8 @@ registerLocaleData(localeFr, 'fr');
     // core & shared
     CoreModule,
     SharedModule,
+
+    ChatbotModule
   ],
   providers: [],
   bootstrap: [AppComponent]

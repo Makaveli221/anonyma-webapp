@@ -14,10 +14,12 @@ import { NewReligionComponent } from './religions/new-religion/new-religion.comp
 import { ListAstuceComponent } from './astuces/list-astuce/list-astuce.component';
 import { NewAstuceComponent } from './astuces/new-astuce/new-astuce.component';
 import { ListUserComponent } from './users/list-user/list-user.component';
+import { ListChatbotComponent } from './messages/list-chatbot/list-chatbot.component';
+import { ListHistoryComponent } from './messages/list-history/list-history.component';
 
 
 @NgModule({
-  declarations: [ListForumComponent, NewForumComponent, NewTopicComponent, ListTopicComponent, DashboardComponent, ListReligionComponent, NewReligionComponent, ListAstuceComponent, NewAstuceComponent, ListUserComponent],
+  declarations: [ListForumComponent, NewForumComponent, NewTopicComponent, ListTopicComponent, DashboardComponent, ListReligionComponent, NewReligionComponent, ListAstuceComponent, NewAstuceComponent, ListUserComponent, ListChatbotComponent, ListHistoryComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

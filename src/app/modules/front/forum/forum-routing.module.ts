@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListComponent } from './pages/list/list.component';
+import { IndexComponent } from './pages/index/index.component';
 
 
 const routes: Routes = [
@@ -13,10 +14,9 @@ const routes: Routes = [
     path: 'list',
     component: ListComponent
   },
-	{
-		path: 'thematique',
-		data: {animation: 'thematique', name: 'forums'},
-		loadChildren: () => import('../topic/topic.module').then((m) => m.TopicModule)
+  {
+    path: ':id/details',
+    component: IndexComponent
   }
 ]
 @NgModule({

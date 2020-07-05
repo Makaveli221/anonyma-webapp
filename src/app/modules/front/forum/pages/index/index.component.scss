@@ -1,0 +1,173 @@
+.topic-list.single-topic-page.blog-list {
+    .well {
+        margin: 0;
+        margin-bottom: 10px;
+        position: relative;
+        padding: 30px 30px 20px;
+        display: block;
+        border: 1px solid #eaecef !important;
+        box-shadow: none;
+        background-color: #fff;
+        z-index: 1;
+        -webkit-transition: all .4s ease-in-out;
+        -moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -ms-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+        .topic-desc {
+            padding: 15px 0;
+            border: 0;
+            border-bottom: 1px solid #eaecef;
+            img {
+                width: 100%;
+                max-height: 400px;
+                margin-top: 5px;
+            }
+            .single-topic-meta {
+                padding: 15px 0 15px;
+                h4,
+                h4 a {
+                    color: #727272;
+                    font-size: 2.1rem;
+                    text-decoration: none;
+                    font-weight: 500;
+                    line-height: 1.4;
+                    margin: 0;
+                    padding: 0;
+                }
+                .blog-meta small {
+                    color: #bdbdbd;
+                    display: inline-block;
+                    font-size: 0.95rem;
+                    line-height: 1;
+                    margin: 0;
+                    padding-bottom: 0;
+                    padding-right: 2px;
+                    &::after {
+                        content: "|";
+                        padding-left: 5px;
+                    }
+                    &:last-child:after {
+                        content: "";
+                    }
+                }
+            }
+            p {
+                font-weight: 400;
+                font-size: 1rem;
+                line-height: 1.8;
+                margin: 5px 0 7px;
+            }
+            h4 {
+                color: #212121;
+                font-size: 1.4rem;
+                font-weight: 500;
+                padding: 20px 0;
+                text-decoration: none;
+                line-height: 1.4;
+                margin: 0;
+            }
+        }
+        .topic-footer {
+            display: block;
+            margin-top: 20px;
+            .topic-actions {
+                display: flex;
+                padding-right: 5px;
+                font-size: 1rem;
+                .comment {
+                    margin-left: 30px;
+                    padding-top: 6px;
+                    cursor: pointer;
+                    &hover {
+                        color: #212121;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.widget {
+    background-color: #ffffff;
+    padding: 25px;
+    margin-bottom: 40px;
+    position: relative;
+    display: block;
+    .module-title {
+        text-transform: capitalize;
+        padding: 10px 5px 10px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eaecef;
+        font-weight: 500;
+        margin: 0;
+        color: #212121;
+        font-size: 1.4rem;
+        i {
+            vertical-align: top;
+            margin: 0 5px 0 0;
+        }
+    }
+    .panel-primary {
+        margin: 0;
+        box-shadow: none;
+    }
+    .panel-body {
+        padding: 30px 20px;
+    }
+    &.thematiques-sujet .panel-body {
+        padding: 8px 5px;
+        .list-group .list-group-item {
+            .topic-title small,
+            .topic-title h3 {
+                width: 250px;
+                cursor: pointer;
+            }
+            &.active .topic-title,
+            &:hover .topic-title {
+                h3 a {
+                    color: #228fca;
+                    font-weight: 500;
+                }
+                small {
+                    color: #727272 !important;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    .collection.sujet-forum,
+    &.thematiques-sujet .panel-body .list-group {
+        height: 432px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        &:hover {
+            overflow-y: auto;
+            /* width */
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+            /* Track */
+            &::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px grey;
+                border-radius: 50px;
+            }
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background: #90a4ae;
+                border-radius: 50px;
+            }
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+                background: #90a4ae;
+            }
+        }
+    }
+}
+
+#makecomment {
+    height: 10px;
+    z-index: 0;
+    position: absolute;
+    bottom: 370px;
+}

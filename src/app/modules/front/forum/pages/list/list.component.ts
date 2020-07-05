@@ -1,11 +1,16 @@
 import { SubjectService } from '@service/forum/subject.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import * as M from 'materialize-css';
+import { timer, combineLatest } from 'rxjs';
 import { slideToTop } from 'app/layout/animations';
 import { Subject } from '@schema/subject';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TypeSubject } from '@schema/type-subject';
 import { TopicService } from '@service/forum/topic.service';
 import { Topic } from '@schema/topic';
+import { Message } from '@schema/message';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from '@service/forum/message.service';
 
 @Component({
   selector: 'app-list',
@@ -15,19 +20,52 @@ import { Topic } from '@schema/topic';
     slideToTop
   ]
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   subjectKey: string;
   subjects: Subject[] = [];
   typeSubject: TypeSubject;
   topics: Topic[] = [];
   pager: any = {};
   initialPage: number;
+  timerSlider: any;
+  messageForm: FormGroup;
+  histoires: Message[];
+  isLoading: boolean;
+  submitted: boolean;
 
-  constructor(private route: ActivatedRoute, private router: Router, private subjectService: SubjectService,  private topicService: TopicService) { }
+  constructor(private formBuilder: FormBuilder, private messageService: MessageService, private route: ActivatedRoute, private router: Router, private subjectService: SubjectService,  private topicService: TopicService) { }
 
   ngOnInit(): void {
+    this.histoires = [];
     this.initialPage = 1;
+    this.submitted = false;
+    this.isLoading = false;
     this.listSubject();
+    this.buildForm();
+    this.getLsteHistory();
+  }
+
+  get f () {
+    return this.messageForm.controls;
+  }
+
+  ngAfterViewInit(): void {
+
+    M.Carousel.init(document.querySelectorAll('.carousel'), {
+      dist: 0,
+      padding: 0,
+      fullWidth: true,
+      indicators: true,
+      duration: 200,
+    });
+
+    this.autoplay();
+  }
+
+  ngOnDestroy(): void {
+    if (this.timerSlider) {
+      this.timerSlider.unsubscribe();
+    } 
   }
 
   updateCurrentSubject(key: string) {
@@ -74,4 +112,47 @@ export class ListComponent implements OnInit {
     )
   }
 
+  updateSlider() {
+    M.Carousel.getInstance(document.querySelector('.carousel')).next();
+    this.autoplay();
+  }
+
+  autoplay() {    
+    this.timerSlider = combineLatest(timer(4500)).subscribe(() => this.updateSlider());
+  }
+
+  addHistory() {
+    this.submitted = true;
+    this.isLoading = true;
+
+    // stop here if form is invalid
+    if (this.messageForm.invalid) {
+      return;
+    }
+
+    const newMessage: Message = this.messageForm.value as Message;
+
+    this.messageService.create(newMessage).subscribe((res: any) => {
+      var toastHTML = '<span>Votre histoire a été enregistré avec succès</span><button class="btn-flat toast-action" onclick="M.toast.dismiss();">Fermer</button>';
+      M.toast({html: toastHTML});
+      this.messageForm.reset();
+      this.submitted = false;
+      this.isLoading = false;
+      this.messageForm.controls.type.setValue('history');
+    });
+  }
+
+  private buildForm(): void {
+    this.messageForm = this.formBuilder.group({
+      type: ['history'],
+      email: ['', [Validators.required, Validators.email]],
+      texte: ['', Validators.required]
+    });
+  }
+
+  getLsteHistory() {
+    this.messageService.allHistoryPublished().subscribe((res: any) => {
+      this.histoires = res as Message[];
+    });
+  }
 }

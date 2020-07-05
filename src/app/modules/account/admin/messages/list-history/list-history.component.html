@@ -1,0 +1,163 @@
+<div class="content-page" @routeAnimations>
+    <div class="row">
+        <div class="col s12 m12">
+            <a [routerLink]="['/accueil']" class="breadcrumb grey-text">Anonyma</a>
+            <a [routerLink]="['/account/admin/forums']" class="breadcrumb grey-text active">Forums</a>
+        </div>
+    </div>
+
+    <section class="section-header">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light grey-text text-lighten-1">Liste des forums</h5>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">search</i>
+                            <input type="text" id="autocomplete-input" class="autocomplete">
+                            <label for="autocomplete-input">Rechercher dans la liste</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m12">
+                            <button class="btn btn-raised btn-info gr right add-cucs modal-trigger" data-target="modal1"><i class="material-icons left">add</i> Ajouter une histoire</button>
+                        </div>
+                        <div class="col m12">
+                            <table id="tableHistoires" class="responsive-table centered striped">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Histoire</th>
+                                        <th>Etat</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let histoire of histoires">
+                                        <td>{{histoire.email }}</td>
+                                        <td class="line-champ-3" style="text-align: justify;">{{histoire.texte}}</td>
+                                        <td>
+                                            <div class="badges">
+                                                <span class="new badge" [ngClass]="{'green': histoire.validate, 'red': !histoire.validate}">Valider</span>
+                                                <span class="new badge" [ngClass]="{'green': histoire.published, 'red': !histoire.published}">Publié</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="actions">
+                                                <a class="blue-text" [routerLink]="['/account/admin/histoires', histoire.id,'details']"><i class="material-icons">visibility</i></a>
+                                                <span class="modal-trigger link" [attr.data-histoire]="histoire.id" data-target="modal1"><i class="material-icons">edit</i></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="histoires && histoires.length <= 0">
+                                        <td colspan="5" style="text-align: center;">Aucun rubtique trouvé</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+    <form (ngSubmit)="submitForm()" [formGroup]="histoireForm" class="col s12">
+        <div class="modal-content">
+            <h4 class="overflow-ellipsis">{{ headerModal }}</h4>
+            <div class="row" *ngIf="error">
+                <div class="col s12 m12">
+                    <div class="card red darken-1" *ngIf="error">
+                        <div class="card-content white-text" style="text-align: justify;">
+                            {{ error }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col m12">
+                    <div class='row'>
+                        <div class='col s12'>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='input-field col s12 m12'>
+                            <input class='validate' type='text' name='email' id='email' [ngClass]="{'is-valid': !f.email.errors}" [disabled]="submitted" formControlName="email" />
+                            <label for='email'>Email</label>
+                            <p class="left m-0">
+                                <app-control-messages [control]="f['email']"></app-control-messages>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea class="materialize-textarea" name='texte' id='texte' [ngClass]="{'is-valid': !f.texte.errors}" [disabled]="submitted" formControlName="texte"></textarea>
+                            <label for="texte">Histoire</label>
+                            <p class="left m-0">
+                                <app-control-messages [control]="f['texte']"></app-control-messages>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea class="materialize-textarea" name='response' id='response' [ngClass]="{'is-valid': !f.response.errors}" [disabled]="submitted" formControlName="response"></textarea>
+                            <label for="response">Réponse</label>
+                            <p class="left m-0">
+                                <app-control-messages [control]="f['response']"></app-control-messages>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s6">
+                            <p>
+                                <label>
+                                    <input type="checkbox" class="filled-in" [checked]="true" name='validate' id='validate' [disabled]="submitted" formControlName="validate"/>
+                                    <span>Validé</span>
+                                </label>
+                            </p>
+                        </div>
+                        <div class="col s6">
+                            <p>
+                                <label>
+                                    <input type="checkbox" class="filled-in" [checked]="true" name='published' id='published' [disabled]="submitted" formControlName="published"/>
+                                    <span>Mettre en ligne</span>
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="modal.close()" class="modal-action modal-close waves-effect waves-red btn orange darken-3">Annuler</button>&nbsp;
+            <button type="submit" class="waves-effect waves-red btn green darken-3" [disabled]="histoireForm.invalid">
+                <span [hidden]="isLoading">Enregistrer</span>
+                <span [hidden]="!isLoading">
+                    <div class="preloader-wrapper small active" style="margin-top: 10px;">
+                        <div class="spinner-layer spinner-green-only">
+                            <div class="circle-clipper left">
+                            <div class="circle"></div>
+                            </div><div class="gap-patch">
+                            <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </span>
+            </button>
+        </div>
+    </form>
+</div>

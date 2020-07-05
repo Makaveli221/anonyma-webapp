@@ -10,6 +10,8 @@ import { NewReligionComponent } from './religions/new-religion/new-religion.comp
 import { ListAstuceComponent } from './astuces/list-astuce/list-astuce.component';
 import { NewAstuceComponent } from './astuces/new-astuce/new-astuce.component';
 import { ListUserComponent } from './users/list-user/list-user.component';
+import { ListHistoryComponent } from './messages/list-history/list-history.component';
+import { ListChatbotComponent } from './messages/list-chatbot/list-chatbot.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'histoires',
+    component: ListHistoryComponent
+  },
+  {
+    path: 'chatbots',
+    component: ListChatbotComponent
   },
   {
     path: 'forums',

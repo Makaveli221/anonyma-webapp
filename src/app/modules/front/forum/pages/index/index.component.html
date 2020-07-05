@@ -1,0 +1,102 @@
+<div class="content-page" @routeAnimations *ngIf="currentHistoire">
+    <section class="section-header">
+        <div class="container">
+            <h4 class="header center blue-text">Forums</h4>
+            <div class="nav-wrapper center">
+                <div class="col s12">
+                    <a [routerLink]="['/accueil']" class="breadcrumb">Accueil</a>
+                    <a [routerLink]="['/forums/list']" class="breadcrumb">Forums</a>
+                    <a [routerLink]="['/forums', currentHistoire.id, 'details']" class="breadcrumb active">Details</a>
+                </div>
+            </div>
+        </div>
+        <!-- end container -->
+    </section>
+
+    <section class="section lb">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m9">
+                    <div class="single-topic-page topic-page topic-list blog-list">
+                        <article class="well no-effect clearfix">
+                            <div class="topic-desc row clearfix">
+                                <div class="col s2 m2">
+                                    <img src="assets/images/default/user-male-circle.png" alt="Anonyma" class="responsive-img circle">
+                                </div>
+                                <div class="col s10 m10">
+                                    <div class="single-topic-meta">
+                                        <div class="blog-meta clearfix">
+                                            <small>{{currentHistoire.createDate  |date:'fullDate':'+0200':'fr'}}</small>
+                                        </div>
+                                    </div>
+                                    <div>{{currentHistoire.texte}}</div>
+                                </div>
+                            </div>
+                            <!-- end tpic-desc -->
+                            <footer class="topic-footer clearfix">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="topic-actions">
+                                            <div class="comment">Faire un commentaire <i class="material-icons">insert_comment</i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer>
+                            <!-- end topic -->
+                        </article>
+                        <!-- end article well -->
+                    </div>
+                    <!-- end blog-list -->
+
+                    <div class="row" #listComments>
+                        <div class="col s12 m12">
+                            <div class="widget">
+                                <div class="custom-module">
+                                    <h4 class="module-title">Commentaires</h4>
+                                    <app-comments [source]="'histoire'" [id]="currentHistoire.id"></app-comments>
+                                    <!--<div #makeComment id="makecomment"></div>-->
+                                </div>
+                                <!-- end custom-module -->
+                            </div>
+                            <!-- end widget -->
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+
+                <div class="col s12 m3">
+                    <div class="widget clearfix thematiques-sujet" id="thematiques-sujet">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Derniers posts</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group list-group-no-icon">
+                                    <ng-container *ngFor="let histoire of lastHistoires; let i = index">
+                                        <div class="list-group-item" [ngClass]="{active: histoire.id == currentHistoire.id}">
+                                            <div class="row-topic">
+                                                <header class="topic-title clearfix">
+                                                    <small (click)="updateCurrentHistoire(histoire)" class="overflow-ellipsis">{{histoire.texte}}</small>
+                                                </header>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-separator" *ngIf="i < lastHistoires.length - 1"></div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget clearfix">
+                        <div class="banner-widget">
+                            <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner.jpg" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+</div>
