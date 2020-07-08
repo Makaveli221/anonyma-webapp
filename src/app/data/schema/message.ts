@@ -9,5 +9,6 @@ export class Message {
     validate?: boolean;
     published?: boolean;
     appreciations?: Appreciation[];
+    commentTotal?: number;
     createDate?: Date;
 }

@@ -32,17 +32,19 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   histoires: Message[];
   isLoading: boolean;
   submitted: boolean;
+  countComments: number;
 
   constructor(private formBuilder: FormBuilder, private messageService: MessageService, private route: ActivatedRoute, private router: Router, private subjectService: SubjectService,  private topicService: TopicService) { }
 
   ngOnInit(): void {
     this.histoires = [];
     this.initialPage = 1;
+    this.countComments = 0;
     this.submitted = false;
     this.isLoading = false;
     this.listSubject();
     this.buildForm();
-    this.getLsteHistory();
+    this.getListeHistory();
   }
 
   get f () {
@@ -50,7 +52,6 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-
     M.Carousel.init(document.querySelectorAll('.carousel'), {
       dist: 0,
       padding: 0,
@@ -150,7 +151,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  getLsteHistory() {
+  getListeHistory() {
     this.messageService.allHistoryPublished().subscribe((res: any) => {
       this.histoires = res as Message[];
     });

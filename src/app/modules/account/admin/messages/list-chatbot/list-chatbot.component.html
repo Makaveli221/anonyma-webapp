@@ -1,1 +1,48 @@
-<p>list-chatbot works!</p>
+<div class="content-page" @routeAnimations>
+    <div class="row">
+        <div class="col s12 m12">
+            <a [routerLink]="['/accueil']" class="breadcrumb grey-text">Anonyma</a>
+            <a [routerLink]="['/account/admin/forums']" class="breadcrumb grey-text active">Chatbots</a>
+        </div>
+    </div>
+
+    <section class="section-header">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light grey-text text-lighten-1">Liste des chatbots</h5>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col m12">
+                            <table id="tableHistoires" class="responsive-table centered striped">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Question</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let chatbot of chatbots">
+                                        <td><a href="mailto:{{chatbot.email }}">{{ chatbot.email }}</a></td>
+                                        <td class="line-champ-3" style="text-align: justify;">{{chatbot.texte}}</td>
+                                        <td>
+                                            <div class="actions">
+                                                <span class="modal-trigger link red-text" [attr.data-chatbot]="chatbot.id"><i class="material-icons">delete_forever</i></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="chatbots && chatbots.length <= 0">
+                                        <td colspan="5" style="text-align: center;">Aucun tchat trouvé</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

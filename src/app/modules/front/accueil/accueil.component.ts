@@ -10,6 +10,7 @@ import { Subject } from '@schema/subject';
 import { TypeSubject } from '@schema/type-subject';
 import { Topic } from '@schema/topic';
 import { Comment } from '@schema/comment';
+import { Message } from '@schema/message';
 
 @Component({
   selector: 'app-accueil',
@@ -120,16 +121,28 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     )
   }
 
-  getRoute(top: Topic) {
-    const typeSub = (top.subject as Subject).typeSubject as TypeSubject;
-    if(typeSub.name === 'forums') {
-      return `/forums/thematique/${top.key}`;
+  getRoute(type: string, source: any) {
+    let urlPage = '';
+    switch (type) {
+      case 'topic':
+        const typeSub = (source.subject as Subject).typeSubject as TypeSubject;
+        if(typeSub.name === 'forums') {
+          urlPage = `/forums/thematique/${source.key}`;
+        }
+        if(typeSub.name === 'religions') {
+          urlPage = `/religions/thematique/${source.key}`;
+        }
+        if(typeSub.name === 'astuces') {
+          urlPage = `/astuces/thematique/${source.key}`;
+        }
+        break;
+    
+      case 'histoire':
+        urlPage = `/forums/${source.id}/details`;
+        break;
+      default:
+        break;
     }
-    if(typeSub.name === 'religions') {
-      return `/religions/thematique/${top.key}`;
-    }
-    if(typeSub.name === 'astuces') {
-      return `/astuces/thematique/${top.key}`;
-    }
+    return urlPage;
   }
 }

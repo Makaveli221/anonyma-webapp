@@ -24,12 +24,12 @@
                                     <img src="assets/images/default/user-male-circle.png" alt="Anonyma" class="responsive-img circle">
                                 </div>
                                 <div class="col s10 m10">
+                                    <div>{{currentHistoire.texte}}</div>
                                     <div class="single-topic-meta">
                                         <div class="blog-meta clearfix">
-                                            <small>{{currentHistoire.createDate  |date:'fullDate':'+0200':'fr'}}</small>
+                                            <small>Date de création : <strong>{{currentHistoire.createDate  |date:'fullDate':'+0200':'fr' |titlecase}}</strong></small>
                                         </div>
                                     </div>
-                                    <div>{{currentHistoire.texte}}</div>
                                 </div>
                             </div>
                             <!-- end tpic-desc -->

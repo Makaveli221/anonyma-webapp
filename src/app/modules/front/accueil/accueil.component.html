@@ -87,7 +87,7 @@
                                         <div class="col s12 m4">
                                             <video controls class="responsive-img img-thumbnail">
 
-                                                <source src="assets/images/amina.mp4" type="video/mp4">
+                                                <source src="assets/videos/amina.mp4" type="video/mp4">
 
                                                 Sorry, your browser doesn't support embedded videos.
                                             </video>
@@ -161,7 +161,7 @@
                                 <div class="col s12 m4">
                                     <video controls class="responsive-img img-thumbnail responsive-video">
 
-                                        <source src="assets/images/amina.mp4" type="video/mp4">
+                                        <source src="assets/videos/amina.mp4" type="video/mp4">
 
                                         Sorry, your browser doesn't support embedded videos.
                                     </video>
@@ -187,7 +187,7 @@
                                 <div class="col s12 m4">
                                     <video controls class="responsive-img img-thumbnail responsive-video">
 
-                                        <source src="assets/images/amina.mp4" type="video/mp4">
+                                        <source src="assets/videos/amina.mp4" type="video/mp4">
 
                                         Sorry, your browser doesn't support embedded videos.
                                     </video>
@@ -214,7 +214,7 @@
                                 <div class="col s12 m4">
                                     <video controls class="responsive-img img-thumbnail responsive-video">
 
-                                        <source src="assets/images/amina.mp4" type="video/mp4">
+                                        <source src="assets/videos/amina.mp4" type="video/mp4">
 
                                         Sorry, your browser doesn't support embedded videos.
                                     </video>
@@ -257,7 +257,8 @@
                                         <div class="list-group-item">
                                             <div class="row-topic">
                                                 <header class="topic-title clearfix">
-                                                    <h3 class="overflow-ellipsis"><a [routerLink]="[getRoute(comment.topic)]">{{$any(comment).topic.title}}</a></h3>
+                                                    <h3 class="overflow-ellipsis" *ngIf="$any(comment).topic"><a [routerLink]="[getRoute('topic', comment.topic)]">{{$any(comment).topic.title}}</a></h3>
+                                                    <h3 class="overflow-ellipsis" *ngIf="$any(comment).histoire"><a [routerLink]="[getRoute('histoire', comment.histoire)]">{{$any(comment).histoire.texte}}</a></h3>
                                                     <small class="overflow-ellipsis">{{comment.message}}</small>
                                                 </header>
                                             </div>
@@ -284,5 +285,5 @@
     </section>
 </div>
 <!-- <div class="aspect-ratio aspect-ratio-16-9" [@pulse]="pulse">
-    <iframe width="500" height="300" src="assets/images/amina.mp4" frameborder="0" allowfullscreen=""></iframe>
+    <iframe width="500" height="300" src="assets/videos/amina.mp4" frameborder="0" allowfullscreen=""></iframe>
 </div> -->

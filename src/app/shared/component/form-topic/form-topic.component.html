@@ -74,9 +74,9 @@
             </div>
 
             <div class="row">
-                <div class="col m12">
+                <div class="col m12" id="document-editor">
                     <label>Contenu du thématique:</label>
-                    <ckeditor [disabled]="submitted" formControlName="data" [editor]="Editor"></ckeditor>
+                    <ckeditor [disabled]="submitted" formControlName="data" [editor]="Editor" (ready)="onReady($event)" [config]="editorConfig"></ckeditor>
                 </div>
             </div>
 

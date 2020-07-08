@@ -104,29 +104,11 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
     const data = {source: sourceCom, idSource: idSourceCom, message: messageCom};
     switch (this.source) {
       case 'topic':
-        this.topicService.addComment(data).subscribe((res: any) => {
-          if(res && res.id) {
-            setTimeout(() => {
-              (form.querySelector('.message') as HTMLInputElement).value = '';
-              var toastHTML = '<span>Votre commentaire a été ajouté avec succès</span><button class="btn-flat toast-action" onclick="M.toast.dismiss();">Fermer</button>';
-              M.toast({html: toastHTML});
-              this.isLoading = false;
-            }, 2000);
-          }
-        })
+        this.addTopicComment(form, data);
         break;
 
       case 'histoire':
-        this.messageService.addComment(data).subscribe((res: any) => {
-          if(res && res.id) {
-            setTimeout(() => {
-              (form.querySelector('.message') as HTMLInputElement).value = '';
-              var toastHTML = '<span>Votre commentaire a été ajouté avec succès</span><button class="btn-flat toast-action" onclick="M.toast.dismiss();">Fermer</button>';
-              M.toast({html: toastHTML});
-              this.isLoading = false;
-            }, 2000);
-          }
-        })
+        this.addHsitoireComment(form, data);
         break;
     
       default:
@@ -134,4 +116,29 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  addTopicComment(form: HTMLElement, data: any) {
+    this.topicService.addComment(data).subscribe((res: any) => {
+      if(res && res.id) {
+        setTimeout(() => {
+          (form.querySelector('.message') as HTMLInputElement).value = '';
+          var toastHTML = '<span>Votre commentaire a été ajouté avec succès</span><button class="btn-flat toast-action" onclick="M.toast.dismiss();">Fermer</button>';
+          M.toast({html: toastHTML});
+          this.isLoading = false;
+        }, 2000);
+      }
+    })
+  }
+
+  addHsitoireComment(form: HTMLElement, data: any) {
+    this.messageService.addComment(data).subscribe((res: any) => {
+      if(res && res.id) {
+        setTimeout(() => {
+          (form.querySelector('.message') as HTMLInputElement).value = '';
+          var toastHTML = '<span>Votre commentaire a été ajouté avec succès</span><button class="btn-flat toast-action" onclick="M.toast.dismiss();">Fermer</button>';
+          M.toast({html: toastHTML});
+          this.isLoading = false;
+        }, 2000);
+      }
+    })
+  }
 }

@@ -29,7 +29,6 @@ export class ListHistoryComponent implements OnInit {
   ngOnInit(): void {
     this.histoires = [];
     this.messageService.allHistory().subscribe((res: any) => {
-      console.log(res);
       this.histoires = res as Message[];
       this.initModal();
     });

@@ -42,6 +42,10 @@ export class MessageService {
 		return this.http.get(`${environment.apiUrl}/message/${id}/comments`);
   }
 
+  getCountComments(id: string) {
+		return this.http.get(`${environment.apiUrl}/message/${id}/comments/count`);
+  }
+
   addComment(formData: any) {
 		return this.http.post(`${environment.apiUrl}/message/comment/add`, formData);
   }

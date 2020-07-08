@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, EventEmitter, Output, Input } from '@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as M from 'materialize-css';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+import MyCustomUploadAdapterPlugin from './base64upload';
 
 import { Subject } from '@schema/subject';
 import { SubjectService } from '@service/forum/subject.service';
@@ -21,7 +23,8 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
   subjects: Subject[];
   elChips: any[];
   uploadFile: File;
-  Editor = ClassicEditor;
+  Editor = DecoupledEditor;
+  editorConfig = {extraPlugins: [MyCustomUploadAdapterPlugin] };
   @Input() idSubject: string;
   @Input() topic: Topic;
   @Output() readonly formSubmit: EventEmitter<any> = new EventEmitter<any>();
@@ -51,6 +54,13 @@ export class FormTopicComponent implements OnInit, AfterViewInit {
         }
       )
     }
+  }
+
+  public onReady(editor) {
+    editor.ui.getEditableElement().parentElement.insertBefore(
+      editor.ui.view.toolbar.element,
+      editor.ui.getEditableElement()
+    );
   }
 
   get f () {
