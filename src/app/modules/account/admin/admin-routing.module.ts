@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListForumComponent } from './forum/list-forum/list-forum.component';
-import { NewForumComponent } from './forum/new-forum/new-forum.component';
 import { ListTopicComponent } from './topic/list-topic/list-topic.component';
 import { NewTopicComponent } from './topic/new-topic/new-topic.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListReligionComponent } from './religions/list-religion/list-religion.component';
-import { NewReligionComponent } from './religions/new-religion/new-religion.component';
 import { ListAstuceComponent } from './astuces/list-astuce/list-astuce.component';
-import { NewAstuceComponent } from './astuces/new-astuce/new-astuce.component';
 import { ListUserComponent } from './users/list-user/list-user.component';
 import { ListHistoryComponent } from './messages/list-history/list-history.component';
 import { ListChatbotComponent } from './messages/list-chatbot/list-chatbot.component';
+import { ListTeasingComponent } from './teasing/list-teasing/list-teasing.component';
 
 
 const routes: Routes = [
@@ -79,6 +77,10 @@ const routes: Routes = [
   {
     path: 'astuces/:key/topics/update/:id',
     component: NewTopicComponent
+  },
+  {
+    path: 'teasers',
+    component: ListTeasingComponent
   },
   {
     path: 'users',

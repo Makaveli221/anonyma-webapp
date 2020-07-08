@@ -25,12 +25,12 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr *ngFor="let chatbot of chatbots">
+                                    <tr *ngFor="let chatbot of chatbots" id="tchat-{{chatbot.id}}">
                                         <td><a href="mailto:{{chatbot.email }}">{{ chatbot.email }}</a></td>
                                         <td class="line-champ-3" style="text-align: justify;">{{chatbot.texte}}</td>
                                         <td>
                                             <div class="actions">
-                                                <span class="modal-trigger link red-text" [attr.data-chatbot]="chatbot.id"><i class="material-icons">delete_forever</i></span>
+                                                <span class="modal-trigger link red-text" (click)="deleteTchat(chatbot.id)"><i class="material-icons">delete_forever</i></span>
                                             </div>
                                         </td>
                                     </tr>

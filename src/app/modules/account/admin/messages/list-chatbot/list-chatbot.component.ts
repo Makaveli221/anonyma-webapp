@@ -23,4 +23,13 @@ export class ListChatbotComponent implements OnInit {
     });
   }
 
+  deleteTchat(id) {
+    if(confirm("Etes-vous de vouloir supprimer ce chatbot ?")) {
+      this.messageService.delete(id).subscribe((res: any) => {
+        console.log(res);
+        document.querySelector(`#tchat-${id}`).remove();
+      });
+    }
+  }
+
 }

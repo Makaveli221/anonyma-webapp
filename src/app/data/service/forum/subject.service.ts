@@ -39,6 +39,10 @@ export class SubjectService {
 		return this.http.get(`${environment.apiUrl}/subject/all?page=${page - 1}&limit=${limit}`);
   }
 
+  getAllType() {
+		return this.http.get(`${environment.apiUrl}/subject/type/all`);
+  }
+
   getTypeByName(name: string) {
 		return this.http.get(`${environment.apiUrl}/subject/type/name/${name}`);
   }

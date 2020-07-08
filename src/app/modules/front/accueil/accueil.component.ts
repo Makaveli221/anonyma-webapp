@@ -32,6 +32,13 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   titleA: string = '';
   titleB: string = '';
   titleC: string = '';
+  configCarousel = {
+    dist: 0,
+    padding: 0,
+    fullWidth: true,
+    indicators: true,
+    duration: 200
+  }
   state = {
     pub: 'hide'
   }
@@ -70,14 +77,10 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
 
     M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
 
-    M.Carousel.init(document.querySelectorAll('.carousel'), {
-      dist: 0,
-      padding: 0,
-      fullWidth: true,
-      indicators: true,
-      duration: 200,
-    });
 
+    M.Carousel.init(document.querySelector('#carousel-intro'), this.configCarousel);
+
+    M.Carousel.init(document.querySelector('#carousel-pub'), this.configCarousel);
 
     // (document.querySelector('.tabs .indicator') as HTMLElement).style.backgroundColor = '#ffffff';
     // (document.querySelector('.tabs .indicator') as HTMLElement).style.height = '5px';

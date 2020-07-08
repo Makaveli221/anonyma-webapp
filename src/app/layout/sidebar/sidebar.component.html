@@ -32,9 +32,12 @@
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
             <a [routerLink]="['/account/admin/astuces']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">lightbulb</i> Astuces</a>
         </li>
-        <!-- <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
             <a [routerLink]="['/account/admin/coaching']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">filter_6</i> Coaching</a>
-        </li> -->
+        </li>
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+            <a [routerLink]="['/account/admin/teasers']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">ondemand_video</i> Teasers</a>
+        </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
             <a [routerLink]="['/account/admin/users']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">group</i> Utilisateurs</a>
         </li>

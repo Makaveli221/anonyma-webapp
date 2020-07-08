@@ -16,10 +16,11 @@ import { NewAstuceComponent } from './astuces/new-astuce/new-astuce.component';
 import { ListUserComponent } from './users/list-user/list-user.component';
 import { ListChatbotComponent } from './messages/list-chatbot/list-chatbot.component';
 import { ListHistoryComponent } from './messages/list-history/list-history.component';
+import { ListTeasingComponent } from './teasing/list-teasing/list-teasing.component';
 
 
 @NgModule({
-  declarations: [ListForumComponent, NewForumComponent, NewTopicComponent, ListTopicComponent, DashboardComponent, ListReligionComponent, NewReligionComponent, ListAstuceComponent, NewAstuceComponent, ListUserComponent, ListChatbotComponent, ListHistoryComponent],
+  declarations: [ListForumComponent, NewForumComponent, NewTopicComponent, ListTopicComponent, DashboardComponent, ListReligionComponent, NewReligionComponent, ListAstuceComponent, NewAstuceComponent, ListUserComponent, ListChatbotComponent, ListHistoryComponent, ListTeasingComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

@@ -1,0 +1,173 @@
+import { Component, OnInit } from '@angular/core';
+import { slideToTop } from 'app/layout/animations';
+import * as M from 'materialize-css';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SubjectService } from '@service/forum/subject.service';
+import { TeaserService } from '@service/forum/teaser.service';
+
+@Component({
+  selector: 'app-list-teasing',
+  templateUrl: './list-teasing.component.html',
+  styleUrls: ['./list-teasing.component.scss'],
+  animations: [
+    slideToTop
+ ]
+})
+export class ListTeasingComponent implements OnInit {
+  teasers: any[];
+  types: any[];
+  teaser: any;
+  modal: any;
+  headerModal: string;
+  error: string;
+  isLoading: boolean;
+  submitted = false;
+  teaserForm: FormGroup;
+  uploadFile: File;
+  elChips: any[];
+  presentation: string;
+
+  constructor(private formBuilder: FormBuilder, private teaserService: TeaserService, private subjectService: SubjectService) { }
+
+  ngOnInit(): void {
+    this.teasers = [];
+    this.types = [];
+    this.presentation = '';
+    this.subjectService.getAllType().subscribe((res: any) => {
+      console.log(res);
+      this.types = res;
+    });
+    this.teaserService.all().subscribe((res: any) => {
+      console.log(res);
+      this.teasers = res;
+      this.initModal();
+    });
+    this.buildForm(this.teaser);
+  }
+
+  initModal() {
+    M.Modal.init(document.querySelectorAll('.modal'), {
+      onOpenStart: (mod: HTMLElement, btn: HTMLElement) => {
+        if (mod.id === 'modal2') {
+          setTimeout(() => {
+            this.presentation = btn.getAttribute('data-teaser-pres'); 
+          });
+          return;
+        }
+        this.headerModal = 'Ajout d\'une nouvelle teaser';
+        if(btn.getAttribute('data-teaser')) {
+          const foundIndex = this.teasers.findIndex(x => x.id === btn.getAttribute('data-teaser'));
+          this.teaser = this.teasers[foundIndex];
+          this.headerModal = 'Modification d\'une teaser';
+        }
+        this.buildForm(this.teaser);
+      },
+      onCloseStart: () => {
+        this.teaser = null;
+        this.presentation = '';
+      }
+    });
+    this.modal = M.Modal.getInstance(document.querySelector('.modal'));
+  }
+
+  get f () {
+    return this.teaserForm.controls;
+  }
+
+  private buildForm(tea?: any): void {
+    this.setDataShips();
+    let objectForm = {
+      typeSubject: [tea ? tea.typeSubject.id : '', Validators.required],
+      title: [tea ? tea.title : '', Validators.required],
+      description: [tea ? tea.description : '', Validators.required],
+      keywords: ['', tea ? [] : [Validators.required]],
+      presentation: ['']
+    }
+    this.teaserForm = this.formBuilder.group(objectForm);
+    setTimeout(() => {
+      M.textareaAutoResize(document.querySelector('#description'));
+    });
+  }
+
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    let file: File = fileList[0];
+    this.uploadFile = file;
+  }
+
+  setDataShips() {
+    let dataChips = [];
+    if (this.teaser && this.teaser.keywords) {
+      this.teaser.keywords.forEach((d: string) => dataChips.push({tag: d}))
+    }
+    setTimeout(() => {
+      M.FormSelect.init(document.querySelectorAll('select'),{});
+      this.elChips = M.Chips.init(document.querySelectorAll('.chips'), {
+        data: dataChips,
+        placeholder: 'Ajouter mots clés',
+        secondaryPlaceholder: '+ Ajouter',
+        limit: 7
+      });
+    }, 0);
+  }
+
+  submitForm() {
+    if(this.submitted) {
+      return;
+    }
+    this.submitted = true;
+    this.isLoading = true;
+    const isUpdating = this.teaser;
+
+    this.teaser = this.teaserForm.value;
+    this.teaser.keywords = this.elChips[0].chipsData.reduce((accumulator, currentValue) => {
+      accumulator.push(currentValue.tag);
+      return accumulator;
+    },[]);
+
+    const formData = new FormData();
+    if (this.uploadFile) {
+      formData.append('uploadFile', this.uploadFile, this.uploadFile.name);
+    }
+    formData.append('info', JSON.stringify(this.teaser));
+
+    if(isUpdating) {
+      this.teaserService.update(this.teaser.id, formData).subscribe((response: any) => {
+        this.validResponse(response, 'update');
+      }, (error: any) => {
+        this.validResponse(error, 'update');
+      });
+    } else {
+      this.teaserService.create(formData).subscribe((response: any) => {
+        this.validResponse(response, 'create');
+      }, (error: any) => {
+        this.teaser = null;
+        this.validResponse(error, 'create');
+      });
+    }
+  }
+
+  validResponse(response: any, action: string) {
+    if(response && response.id) {
+      let message = 'Nouvele teaser ajoutée avec succès!';
+      if (action === 'update') {
+        const foundIndex = this.teasers.findIndex(x => x.id === response.id);
+        this.teasers[foundIndex] = response;
+        message = 'teaser modifié avec succès!';
+      } else {
+        this.teasers.unshift(response);
+      }
+      this.modal.close();
+      var toastHTML = '<span>'+ message +'</span><button class="btn-flat toast-action" onclick="M.toast.dismiss();">Fermer</button>';
+      M.toast({html: toastHTML});
+    } else {
+      this.error = 'La taille de la photo ou de la video que vous venez de charger est trop gros';
+    }
+    this.submitted = false;
+    this.isLoading = false;
+  }
+
+  getKeywords(keywords: string) {
+    return JSON.parse(keywords);
+  }
+}

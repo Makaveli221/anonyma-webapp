@@ -1,0 +1,179 @@
+<div class="content-page" @routeAnimations>
+    <div class="row">
+        <div class="col s12 m12">
+            <a [routerLink]="['/accueil']" class="breadcrumb grey-text">Anonyma</a>
+            <a [routerLink]="['/account/admin/teasers']" class="breadcrumb grey-text active">Teasers</a>
+        </div>
+    </div>
+
+    <section class="section-header">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light grey-text text-lighten-1">Liste des teasers</h5>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">search</i>
+                            <input type="text" id="autocomplete-input" class="autocomplete">
+                            <label for="autocomplete-input">Rechercher dans la liste</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m12">
+                            <button class="btn btn-raised btn-info gr right add-cucs modal-trigger" data-target="modal1"><i class="material-icons left">add</i> Ajouter un teaser</button>
+                        </div>
+                        <div class="col m12">
+                            <table id="tableTopics" class="responsive-table centered highlight">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Titre</th>
+                                        <th>description</th>
+                                        <th>Mot clés</th>
+                                        <th>Vidéo</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let teaser of teasers" [attr.data-teaser]="teaser.id" class="modal-trigger" data-target="modal1">
+                                        <td>{{teaser.typeSubject.name }}</td>
+                                        <td>{{teaser.title }}</td>
+                                        <td class="line-champ-3" style="text-align: justify;">{{teaser.description}}</td>
+                                        <td style="width: 20%;">
+                                            <div class="blog-forums-chips">
+                                                <div class="chip" *ngFor="let keyword of teaser.keywords">{{keyword}}</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="modal-trigger link blue-text modal-trigger" [attr.data-teaser-pres]="teaser.presentation" data-target="modal2"><i class="material-icons">visibility</i></span>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="teasers && teasers.length <= 0">
+                                        <td colspan="4" style="text-align: center;">Aucun teaser trouvé</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+    <form (ngSubmit)="submitForm()" [formGroup]="teaserForm" enctype="multipart/form-data" class="col s12">
+        <div class="modal-content">
+            <h4 class="overflow-ellipsis">{{ headerModal }}</h4>
+            <div class="row" *ngIf="error">
+                <div class="col s12 m12">
+                    <div class="card red darken-1" *ngIf="error">
+                        <div class="card-content white-text" style="text-align: justify;">
+                            {{ error }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col m12">
+                    <div class='row'>
+                        <div class='col s12'>
+                        </div>
+                    </div>
+
+                    <div class='row' *ngIf="types && types.length > 0">
+                        <div class="input-field col s12 m6">
+                            <select name='typeSubject' id='typeSubject' [ngClass]="{'is-valid': !f.typeSubject.errors}" [disabled]="submitted" formControlName="typeSubject">
+                                <option value="" disabled selected>Choisir un type</option>
+                                <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
+                            </select>
+                            <label for='typeSubject'>Type</label>
+                            <p class="left m-0">
+                                <app-control-messages [control]="f['typeSubject']"></app-control-messages>
+                            </p>
+                        </div>
+
+                        <div class='input-field col s12 m6'>
+                            <input class='validate' type='text' name='title' id='title' [ngClass]="{'is-valid': !f.title.errors}" [disabled]="submitted" formControlName="title" />
+                            <label for='title'>Titre</label>
+                            <p class="left m-0">
+                                <app-control-messages [control]="f['title']"></app-control-messages>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="input-field col s12 m12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea class="materialize-textarea" name='description' id='description' [ngClass]="{'is-valid': !f.description.errors}" [disabled]="submitted" formControlName="description"></textarea>
+                            <label for="description">Description</label>
+                            <p class="left m-0">
+                                <app-control-messages [control]="f['description']"></app-control-messages>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='col s12 m12'>
+                            <label for="keywords">Ajouter des mots clés en rapport avec le teaser</label>
+                            <div class="chips chips-placeholder">
+                                <input class="custom-class" name='keywords' id='keywords' [ngClass]="{'is-valid': !f.keywords.errors}" [disabled]="submitted" formControlName="keywords">
+                            </div>
+                            <p class="left m-0">
+                                <app-control-messages [control]="f['keywords']"></app-control-messages>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="file-field input-field col s12">
+                            <div class="btn">
+                                <span>Presentation</span>
+                                <input type="file" (change)="fileChange($event)" name='presentation' id='presentation' [ngClass]="{'is-valid': !f.presentation.errors}" [disabled]="submitted" formControlName="presentation">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Choisir une image ou une video de présentation">
+                            </div>
+                            <p class="left m-0">
+                                <app-control-messages [control]="f['presentation']"></app-control-messages>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="modal.close()" class="modal-action modal-close waves-effect waves-red btn orange darken-3">Annuler</button>&nbsp;
+            <button type="submit" class="waves-effect waves-red btn green darken-3" [disabled]="teaserForm.invalid">
+                <span [hidden]="isLoading">Enregistrer</span>
+                <span [hidden]="!isLoading">
+                    <div class="preloader-wrapper small active" style="margin-top: 10px;">
+                        <div class="spinner-layer spinner-green-only">
+                            <div class="circle-clipper left">
+                            <div class="circle"></div>
+                            </div><div class="gap-patch">
+                            <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal2" class="modal">
+    <video controls style="width: 100%; height: 100%;" *ngIf="presentation != ''">
+
+        <source [src]="presentation" type="video/mp4">
+
+        Sorry, your browser doesn't support embedded videos.
+    </video>
+</div>
