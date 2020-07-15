@@ -23,7 +23,7 @@
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR' || getRolesName(user.roles) == 'MODERATEUR'">
             <a [routerLink]="['/account/admin/histoires']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">forum</i> Histoires</a>
         </li>
-        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR' getRolesName(user.roles) == 'MODERATEUR'">
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR' || getRolesName(user.roles) == 'MODERATEUR'">
             <a [routerLink]="['/account/admin/chatbots']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">question_answer</i> Chatbots</a>
         </li>
         <!--<li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
