@@ -10,6 +10,7 @@ import { ListUserComponent } from './users/list-user/list-user.component';
 import { ListHistoryComponent } from './messages/list-history/list-history.component';
 import { ListChatbotComponent } from './messages/list-chatbot/list-chatbot.component';
 import { ListTeasingComponent } from './teasing/list-teasing/list-teasing.component';
+import { ListCoachingComponent } from './coaching/list-coaching/list-coaching.component';
 
 
 const routes: Routes = [
@@ -69,6 +70,10 @@ const routes: Routes = [
   {
     path: 'astuces/:key/topics',
     component: ListTopicComponent
+  },
+  {
+    path: 'coaching',
+    component: ListCoachingComponent
   },
   {
     path: 'astuces/:key/topics/new',

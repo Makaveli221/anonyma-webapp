@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../schema/user';
 import { Roles } from '@schema/roles';
-import { UserService } from './forum/user.service';
 
 
 @Injectable({
@@ -11,8 +10,8 @@ export class CurrentUserService {
 
   private _currentUser: User;
 
-  constructor(private userService: UserService) {
-    this.userService.get('sdsds').subscribe(user => this._currentUser = user as User);
+  constructor() {
+    this._currentUser = JSON.parse(localStorage.getItem('currentUser')) as User;
   }
 
   public get info() : any {
@@ -24,14 +23,14 @@ export class CurrentUserService {
   }
 
   public get isAdmin() {
-    return this._currentUser && (this._currentUser.roles.find(role => role.name === Roles.ROLE_ADMIN)).length > 0;
+    return this._currentUser && this._currentUser.roles.indexOf(Roles.ROLE_ADMIN) > -1;
   }
 
   public get isModerator() {
-    return this._currentUser && (this._currentUser.roles.find(role => role.name === Roles.ROLE_MODERATOR)).length > 0;
+    return this._currentUser && this._currentUser.roles.indexOf(Roles.ROLE_MODERATOR) > -1;
   }
 
   public get isUser() {
-    return this._currentUser && (this._currentUser.roles.find(role => role.name === Roles.ROLE_USER)).length > 0;
+    return this._currentUser && this._currentUser.roles.indexOf(Roles.ROLE_USER) > -1;
   }
 }

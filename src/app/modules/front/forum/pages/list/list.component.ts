@@ -33,12 +33,27 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.initialPage = 1;
     this.submitted = false;
     this.isLoading = false;
-    this.buildForm();
-    this.getListeHistory();
+    this.route.queryParams.subscribe(x => this.loadPage(x.page || this.initialPage));
     this.messageService.getLastHistory().subscribe((res: any) => {
       console.log(res);
       this.derniershistoires = res as Message[];
-    })
+    });
+    this.buildForm();
+  }
+
+  loadPage(page: number) {
+    this.messageService.allHistoryPublished(page).subscribe((res: any) => {
+      if (res && !res.empty) {
+        const pages = [...Array(res.totalPages + 1).keys()];
+        pages.shift();
+
+        this.histoires = res.content as Message[];
+        this.pager.current = res.number + 1;
+        this.pager.first = res.first;
+        this.pager.last = res.last;
+        this.pager.pages = pages;
+      }
+    });
   }
 
   get f () {
@@ -98,12 +113,6 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
       type: ['history'],
       email: ['', [Validators.required, Validators.email]],
       texte: ['', Validators.required]
-    });
-  }
-
-  getListeHistory() {
-    this.messageService.allHistoryPublished().subscribe((res: any) => {
-      this.histoires = res as Message[];
     });
   }
 }

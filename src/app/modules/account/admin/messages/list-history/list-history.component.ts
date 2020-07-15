@@ -4,6 +4,8 @@ import { MessageService } from '@service/forum/message.service';
 import { Message } from '@schema/message';
 import * as M from 'materialize-css';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CurrentUserService } from '@service/current-user.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -23,16 +25,32 @@ export class ListHistoryComponent implements OnInit {
   isLoading: boolean;
   submitted = false;
   histoireForm: FormGroup;
+  pager: any = {};
+  initialPage: number;
 
-  constructor(private formBuilder: FormBuilder, private messageService: MessageService) { }
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private messageService: MessageService, public currentUser: CurrentUserService) { }
 
   ngOnInit(): void {
     this.histoires = [];
-    this.messageService.allHistory().subscribe((res: any) => {
-      this.histoires = res as Message[];
-      this.initModal();
-    });
+    this.initialPage = 1;
+    this.route.queryParams.subscribe(x => this.loadPage(x.page || this.initialPage));
+    this.initModal();
     this.buildForm(this.histoire);
+  }
+
+  loadPage(page: number) {
+    this.messageService.allHistory(page).subscribe((res: any) => {
+      if (res && !res.empty) {
+        const pages = [...Array(res.totalPages + 1).keys()];
+        pages.shift();
+
+        this.histoires = res.content as Message[];
+        this.pager.current = res.number + 1;
+        this.pager.first = res.first;
+        this.pager.last = res.last;
+        this.pager.pages = pages;
+      }
+    });
   }
 
   initModal() {
@@ -94,6 +112,18 @@ export class ListHistoryComponent implements OnInit {
         this.validResponse(response, 'create');
       }, (error: any) => {
         this.validResponse(error, 'create');
+      });
+    }
+  }
+
+  deleteHistory(id) {
+    if(confirm("Etes-vous de vouloir supprimer ce chatbot ?")) {
+      this.messageService.delete(id).subscribe((res: any) => {
+        console.log(res);
+        document.querySelector(`#histoire-${id}`).remove();
+        let message = 'Histoire supprimé avec succès!';
+        var toastHTML = '<span>'+ message +'</span><button class="btn-flat toast-action" onclick="M.toast.dismiss();">Fermer</button>';
+      M.toast({html: toastHTML});
       });
     }
   }

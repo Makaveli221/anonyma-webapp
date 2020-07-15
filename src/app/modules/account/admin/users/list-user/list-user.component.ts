@@ -113,6 +113,9 @@ export class ListUserComponent implements OnInit {
     if(confirm("Etes-vous de vouloir supprimer cette utilisateur ?")) {
       this.userService.delete(id).subscribe((res: any) => {
         document.querySelector(`#user-${id}`).remove();
+        let message = 'Utilisateur supprimé avec succès!';
+        var toastHTML = '<span>'+ message +'</span><button class="btn-flat toast-action" onclick="M.toast.dismiss();">Fermer</button>';
+        M.toast({html: toastHTML});
       });
     }
   }

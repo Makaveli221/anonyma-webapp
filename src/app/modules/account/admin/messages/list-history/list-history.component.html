@@ -30,16 +30,16 @@
                                     <tr>
                                         <th>Email</th>
                                         <th>Histoire</th>
-                                        <th>Etat</th>
+                                        <th *ngIf="currentUser.isAdmin">Etat</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr *ngFor="let histoire of histoires">
+                                    <tr *ngFor="let histoire of histoires" id="histoire-{{histoire.id}}">
                                         <td>{{histoire.email }}</td>
                                         <td class="line-champ-3" style="text-align: justify;">{{histoire.texte}}</td>
-                                        <td>
+                                        <td *ngIf="currentUser.isAdmin">
                                             <div class="badges">
                                                 <span class="new badge" [ngClass]="{'green': histoire.validate, 'red': !histoire.validate}">Valider</span>
                                                 <span class="new badge" [ngClass]="{'green': histoire.published, 'red': !histoire.published}">Publié</span>
@@ -49,14 +49,27 @@
                                             <div class="actions">
                                                 <a class="blue-text" [routerLink]="['/account/admin/histoires', histoire.id,'details']"><i class="material-icons">visibility</i></a>
                                                 <span class="modal-trigger link" [attr.data-histoire]="histoire.id" data-target="modal1"><i class="material-icons">edit</i></span>
+                                                <span class="red-text cursor-pointer" *ngIf="currentUser.isAdmin" (click)="deleteHistory(histoire.id)"><i class="material-icons">delete_forever</i></span>
                                             </div>
                                         </td>
                                     </tr>
+
                                     <tr *ngIf="histoires && histoires.length <= 0">
                                         <td colspan="5" style="text-align: center;">Aucun rubtique trouvé</td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
+                                <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">
+                                    <a (click)="loadPage(pager.current - 1)"><i class="material-icons">chevron_left</i></a>
+                                </li>
+                                <li *ngFor="let page of pager.pages" [ngClass]="(pager.current === page) ? 'active' : 'waves-effect'">
+                                    <a (click)="loadPage(page)">{{page}}</a>
+                                </li>
+                                <li [ngClass]="pager.last ? 'disabled': 'waves-effect'">
+                                    <a (click)="loadPage(pager.current + 1)"><i class="material-icons">chevron_right</i></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -119,7 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" *ngIf="currentUser.isAdmin">
                         <div class="col s6">
                             <p>
                                 <label>

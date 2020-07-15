@@ -19,8 +19,8 @@ export class ListAstuceComponent implements OnInit {
   typeSubject: TypeSubject;
   newSubject: Subject;
   modal: any;
-  pager: any = {};
   headerModal: string;
+  pager: any = {};
   initialPage: number;
   activeSubmit: boolean;
   formSubjectActive = false;

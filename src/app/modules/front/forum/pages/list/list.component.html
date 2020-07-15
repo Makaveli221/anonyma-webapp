@@ -91,6 +91,17 @@
                             </div>
                         </article>
                         <h5 class="title center orange-text" *ngIf="histoires.length <= 0"> <i class="material-icons medium">warning</i><br> !</h5>
+                        <ul class="pagination" *ngIf="pager.pages && pager.pages.length">
+                            <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">
+                                <a (click)="loadPage(pager.current - 1)"><i class="material-icons">chevron_left</i></a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="(pager.current === page) ? 'active' : 'waves-effect'">
+                                <a (click)="loadPage(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="pager.last ? 'disabled': 'waves-effect'">
+                                <a (click)="loadPage(pager.current + 1)"><i class="material-icons">chevron_right</i></a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 

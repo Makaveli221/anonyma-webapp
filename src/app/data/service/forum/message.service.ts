@@ -30,16 +30,16 @@ export class MessageService {
 		return this.http.get(`${environment.apiUrl}/message/last`);
   }
 
-  allHistory() {
-		return this.http.get(`${environment.apiUrl}/message/all/history`);
+  allHistory(page: number = 1, limit: number = 20) {
+		return this.http.get(`${environment.apiUrl}/message/all/history?page=${page - 1}&limit=${limit}`);
   }
 
-  allHistoryPublished() {
-		return this.http.get(`${environment.apiUrl}/message/history/published`);
+  allHistoryPublished(page: number = 1, limit: number = 20) {
+		return this.http.get(`${environment.apiUrl}/message/history/published?page=${page - 1}&limit=${limit}`);
   }
 
-  allChatbot() {
-		return this.http.get(`${environment.apiUrl}/message/all/chatbox`);
+  allChatbot(page: number = 1, limit: number = 20) {
+		return this.http.get(`${environment.apiUrl}/message/all/chatbox?page=${page - 1}&limit=${limit}`);
   }
 
   getAllComments(id: string) {

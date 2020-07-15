@@ -41,8 +41,7 @@ export class AuthenticationService {
   }
 
   signOut() {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('accessToken');
+    localStorage.clear();
     this.currentUserSubject.next(null);
     return true;
   }
