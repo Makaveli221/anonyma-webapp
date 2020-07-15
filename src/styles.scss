@@ -150,6 +150,10 @@ strong {
     font-weight: bold;
 }
 
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
 @keyframes heart-burst {
     from {
         background-position: left;

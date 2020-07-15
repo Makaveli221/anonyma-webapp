@@ -1,6 +1,8 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as M from 'materialize-css';
 import { slideToTop } from 'app/layout/animations';
+import { timer, combineLatest } from 'rxjs';
 
 import { Message } from '@schema/message';
 import { MessageService } from '@service/forum/message.service';
@@ -13,9 +15,10 @@ import { MessageService } from '@service/forum/message.service';
     slideToTop
   ]
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements OnInit, AfterViewInit, OnDestroy {
   currentHistoire: Message;
   lastHistoires: Message[];
+  timerSlider: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private elementRef: ElementRef, private messageService: MessageService) { }
 
@@ -28,7 +31,40 @@ export class IndexComponent implements OnInit {
       }
       this.currentHistoire = response as Message;
     });
+    this.messageService.getLastHistory().subscribe((res: any) => {
+      this.lastHistoires = res as Message[];
+    })
   }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      M.Carousel.init(document.querySelector('#carousel-pub'), {
+        dist: 0,
+        padding: 0,
+        fullWidth: true,
+        indicators: true,
+        duration: 200,
+      });
+  
+      this.autoplay();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.timerSlider) {
+      this.timerSlider.unsubscribe();
+    } 
+  }
+
+  updateSlider() {
+    M.Carousel.getInstance(document.querySelector('#carousel-pub')).next();
+    this.autoplay();
+  }
+
+  autoplay() {    
+    this.timerSlider = combineLatest(timer(4500)).subscribe(() => this.updateSlider());
+  }
+
 
   scrollToElement($element: HTMLElement): void {
     $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});

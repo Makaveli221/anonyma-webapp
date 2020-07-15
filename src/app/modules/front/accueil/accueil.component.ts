@@ -11,6 +11,8 @@ import { TypeSubject } from '@schema/type-subject';
 import { Topic } from '@schema/topic';
 import { Comment } from '@schema/comment';
 import { Message } from '@schema/message';
+import { TeaserService } from '@service/forum/teaser.service';
+import { Teaser } from '@schema/teaser';
 
 @Component({
   selector: 'app-accueil',
@@ -26,12 +28,8 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   bounce: any;
   fadeInRight: any;
   pulse: any;
-  forums: Subject[] = [];
-  subjectTopics: {subjectA: Topic[], subjectB: Topic[], subjectC: Topic[]};
   lastComments: Comment[] = [];
-  titleA: string = '';
-  titleB: string = '';
-  titleC: string = '';
+  teasers: Teaser[];
   configCarousel = {
     dist: 0,
     padding: 0,
@@ -44,27 +42,14 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   timerSlider: any;
 
-  constructor(public el: ElementRef, private subjectService: SubjectService, private topicService: TopicService) { }
+  constructor(public el: ElementRef, private teaserService: TeaserService, private topicService: TopicService) { }
 
   ngOnInit(): void {
-    this.subjectTopics = {subjectA: [], subjectB: [], subjectC: []};
-    this.subjectService.getAllByType('forums', 1, 3).subscribe(
-      (response: any) => {
-        if(response && response.content && response.content.length > 0) {
-          this.forums = response.content as Subject[];
-          this.setListTopics(this.forums[0].key, 'subjectA');
-          this.titleA = this.forums[0].title;
-          if(this.forums[1]) {
-            this.setListTopics(this.forums[1].key, 'subjectB');
-            this.titleB = this.forums[1].title;
-          }
-          if(this.forums[2]) {
-            this.setListTopics(this.forums[2].key, 'subjectC');
-            this.titleC = this.forums[2].title;
-          }
-        }
-      }
-    );
+    this.teasers = [];
+    this.teaserService.all().subscribe((res: any) => {
+      console.log(res);
+      this.teasers = res as Teaser[];
+    });
     this.topicService.getLastComments().subscribe((response: any) => {
       if(response && response.length > 0) {
         this.lastComments = response as Comment[];
@@ -73,17 +58,11 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    M.Tabs.init(document.querySelectorAll('.tabs'), {});
-
-    M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
-
 
     M.Carousel.init(document.querySelector('#carousel-intro'), this.configCarousel);
 
     M.Carousel.init(document.querySelector('#carousel-pub'), this.configCarousel);
 
-    // (document.querySelector('.tabs .indicator') as HTMLElement).style.backgroundColor = '#ffffff';
-    // (document.querySelector('.tabs .indicator') as HTMLElement).style.height = '5px';
     this.autoplay();
   }
 
@@ -104,24 +83,13 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   updateSlider() {
-    M.Carousel.getInstance(document.querySelector('.carousel')).next();
+    M.Carousel.getInstance(document.querySelector('#carousel-intro')).next();
+    M.Carousel.getInstance(document.querySelector('#carousel-pub')).next();
     this.autoplay();
   }
 
   autoplay() {    
     this.timerSlider = combineLatest(timer(4500)).subscribe(() => this.updateSlider());
-  }
-
-  setListTopics(key: string, sub: string) {
-    this.topicService.getAllBySubject(key, 1, 3).subscribe(
-      (response: any) => {
-        if(response && response.content && response.content.length > 0) {
-          this.subjectTopics[sub] = response.content as Topic[];
-        } else {
-          this.subjectTopics[sub] = [];
-        }
-      }
-    )
   }
 
   getRoute(type: string, source: any) {

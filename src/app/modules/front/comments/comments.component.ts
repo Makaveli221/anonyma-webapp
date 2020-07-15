@@ -56,7 +56,6 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
       default:
         break;
     }
-    console.log(this.comments);
   }
 
   getCommentsOfTopic() {

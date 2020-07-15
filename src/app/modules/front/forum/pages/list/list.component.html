@@ -55,16 +55,15 @@
                             </div>
                             <div class="panel-body">
                                 <div class="list-group list-group-no-icon">
-                                    <ng-container *ngFor="let subject of subjects; let i = index">
-                                        <div class="list-group-item" [ngClass]="{active: subject.key == subjectKey}">
+                                    <ng-container *ngFor="let derniershistoire of derniershistoires; let i = index">
+                                        <div class="list-group-item">
                                             <div class="row-topic">
-                                                <header class="topic-title clearfix" (click)="updateCurrentSubject(subject.key)">
-                                                    <h3 class="overflow-ellipsis">{{subject.title}}</h3>
-                                                    <p class="overflow-ellipsis">{{subject.keywords.join(", ") }}</p>
+                                                <header class="topic-title clearfix" [routerLink]="['/forums', derniershistoire.id, 'details']">
+                                                    <p class="line-champ-2" style="color: #8c8c8c;">{{derniershistoire.texte }}</p>
                                                 </header>
                                             </div>
                                         </div>
-                                        <div class="list-group-separator" *ngIf="i < subjects.length - 1"></div>
+                                        <div class="list-group-separator" *ngIf="i < derniershistoires.length - 1"></div>
                                     </ng-container>
                                 </div>
                             </div>
@@ -84,7 +83,7 @@
                                 <div class="col s10 m10">
                                     <div class="blog-meta clearfix">
                                         <small>{{histoire.createDate  |date:'fullDate':'+0200':'fr'}}</small>
-                                        <small class="blue-text bold-text"> ({{ histoire.commentTotal != null ? histoire.commentTotal : 0 }}) commentaires</small>
+                                        <small class="blue-text bold-text cursor-pointer" [routerLink]="['/forums', histoire.id, 'details']"> ({{ histoire.commentTotal != null ? histoire.commentTotal : 0 }}) commentaires</small>
                                     </div>
                                     <p class="line-champ-3"> {{histoire.texte}}</p>
                                     <a [routerLink]="['/forums', histoire.id, 'details']" class="readmore" title="">Continuez la lecture →</a>
@@ -92,18 +91,6 @@
                             </div>
                         </article>
                         <h5 class="title center orange-text" *ngIf="histoires.length <= 0"> <i class="material-icons medium">warning</i><br> !</h5>
-
-                        <!--<ul class="pagination" *ngIf="pager.pages && pager.pages.length">
-                            <li [ngClass]="pager.first ? 'disabled' : 'waves-effect'">
-                                <a (click)="loadTopics(pager.current - 1)"><i class="material-icons">chevron_left</i></a>
-                            </li>
-                            <li *ngFor="let page of pager.pages" [ngClass]="(pager.current === page) ? 'active' : 'waves-effect'">
-                                <a (click)="loadTopics(page)">{{page}}</a>
-                            </li>
-                            <li [ngClass]="pager.last ? 'disabled': 'waves-effect'">
-                                <a (click)="loadTopics(pager.current + 1)"><i class="material-icons">chevron_right</i></a>
-                            </li>
-                        </ul>-->
                     </div>
                 </div>
 

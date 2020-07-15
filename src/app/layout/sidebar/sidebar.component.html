@@ -11,7 +11,7 @@
         <li *ngIf="getRolesName(user.roles) == 'UTILISATEUR'">
             <a [routerLink]="['/account/user/dashboard']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">home</i> Tableau de bord</a>
         </li>
-        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR' || getRolesName(user.roles) == 'MODERATEUR'">
             <a [routerLink]="['/account/admin/dashboard']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">home</i> Tableau de bord</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'UTILISATEUR'">
@@ -20,22 +20,22 @@
         <!--<li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
             <a [routerLink]="['/account/admin/forums']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">forum</i> Forums</a>
         </li>-->
-        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR' || getRolesName(user.roles) == 'MODERATEUR'">
             <a [routerLink]="['/account/admin/histoires']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">forum</i> Histoires</a>
         </li>
-        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR' getRolesName(user.roles) == 'MODERATEUR'">
             <a [routerLink]="['/account/admin/chatbots']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">question_answer</i> Chatbots</a>
         </li>
-        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+        <!--<li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
             <a [routerLink]="['/account/admin/religions']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">brightness_3</i> Religions</a>
-        </li>
-        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+        </li>-->
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR' || getRolesName(user.roles) == 'MODERATEUR'">
             <a [routerLink]="['/account/admin/astuces']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">lightbulb</i> Astuces</a>
         </li>
-        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR' || getRolesName(user.roles) == 'MODERATEUR'">
             <a [routerLink]="['/account/admin/coaching']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">filter_6</i> Coaching</a>
         </li>
-        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">
+        <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR' || getRolesName(user.roles) == 'MODERATEUR'">
             <a [routerLink]="['/account/admin/teasers']" routerLinkActive="active" class="btn btn-raised btn-primary"><i class="material-icons left">ondemand_video</i> Teasers</a>
         </li>
         <li *ngIf="getRolesName(user.roles) == 'ADMINISTRATEUR'">

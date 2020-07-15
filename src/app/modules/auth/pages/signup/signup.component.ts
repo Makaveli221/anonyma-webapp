@@ -34,6 +34,8 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.router.navigate(['/login']);
+
     // get return url from route parameters or default to '/accueil'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/accueil';
 

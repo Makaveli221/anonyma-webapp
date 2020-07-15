@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '@schema/user';
 import { environment } from '@environment';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Roles } from '@schema/roles';
+import { UserService } from '@service/forum/user.service';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class AuthenticationService {
   public currentUser: Observable<User>;
   private jwtHelper: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
     this.jwtHelper = new JwtHelperService();
@@ -47,7 +48,7 @@ export class AuthenticationService {
   }
 
   signUp(user: User) {
-    return this.http.post(`${environment.apiUrl}/auth/signup`, user);
+    return this.userService.create(user);
   }
 
   isExpired() {

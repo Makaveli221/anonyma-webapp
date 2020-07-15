@@ -26,6 +26,10 @@ export class MessageService {
 		return this.http.delete(`${environment.apiUrl}/message/delete/${id}`);
   }
 
+  getLastHistory() {
+		return this.http.get(`${environment.apiUrl}/message/last`);
+  }
+
   allHistory() {
 		return this.http.get(`${environment.apiUrl}/message/all/history`);
   }

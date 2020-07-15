@@ -138,7 +138,7 @@
     }
     .collection.sujet-forum,
     &.thematiques-sujet .panel-body .list-group {
-        height: 432px;
+        height: 164px;
         overflow-y: hidden;
         overflow-x: hidden;
         &:hover {
@@ -163,6 +163,14 @@
             }
         }
     }
+}
+
+.widget.banner {
+    padding: 0;
+}
+
+.section-header {
+    padding: 1rem 0;
 }
 
 #makecomment {

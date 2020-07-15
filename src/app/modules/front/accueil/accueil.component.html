@@ -73,81 +73,26 @@
             <div class="row">
                 <div class="col s12 m12 l9">
                     <div class="topic-list">
-                        <article class="well">
+                        <article class="well" *ngFor="let teaser of teasers">
                             <div class="topic-desc row clearfix m-b-0">
                                 <div class="col s12 m4">
                                     <video controls class="responsive-img img-thumbnail responsive-video">
 
-                                        <source src="assets/videos/amina.mp4" type="video/mp4">
+                                        <source [src]="teaser.presentation" type="video/mp4">
 
                                         Sorry, your browser doesn't support embedded videos.
                                     </video>
                                 </div>
                                 <div class="col s12 m8">
-                                    <h4><a [routerLink]="['/forums/thematique',' topic.key']">Forums</a></h4>
-                                    <div class="blog-meta clearfix">
-                                        <small>dimanche 17 mai 2020</small>
-                                    </div>
+                                    <h4><a [routerLink]="['/', teaser.typeSubject.name]">{{teaser.title}}</a></h4>
                                     <div class="blog-forums-chips">
-                                        <div class="chip">violence conjugal</div>
+                                        <div class="chip" *ngFor="let keyword of teaser.keywords">{{keyword}}</div>
                                     </div>
                                     <p class="line-champ-3">
-                                        Parmi ces agressions, le viol conjugal occupe une place importante et méconnue : près de la moitié des femmes victimes de viol l’ont été de la part d’un conjoint. L’Enveff a ainsi mis en évidence l’ampleur du silence et l’occultation des violences par
+                                        {{teaser.description}}
                                     </p>
-                                    <a [routerLink]="['/forums/thematique', 'topic.key']" class="readmore" title="">Continuez la lecture →</a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="well">
-                            <div class="topic-desc row clearfix m-b-0">
-                                <div class="col s12 m4">
-                                    <video controls class="responsive-img img-thumbnail responsive-video">
-
-                                        <source src="assets/videos/amina.mp4" type="video/mp4">
-
-                                        Sorry, your browser doesn't support embedded videos.
-                                    </video>
-                                </div>
-                                <div class="col s12 m8">
-                                    <h4><a [routerLink]="['/forums/thematique',' topic.key']">Astuces</a></h4>
-                                    <div class="blog-meta clearfix">
-                                        <small>dimanche 17 mai 2020</small>
-                                    </div>
-                                    <div class="blog-forums-chips">
-                                        <div class="chip">Beauté</div>
-                                        <div class="chip">Cuisine</div>
-                                    </div>
-                                    <p class="line-champ-3">
-                                        Parmi ces agressions, le viol conjugal occupe une place importante et méconnue : près de la moitié des femmes victimes de viol l’ont été de la part d’un conjoint. L’Enveff a ainsi mis en évidence l’ampleur du silence et l’occultation des violences par
-                                    </p>
-                                    <a [routerLink]="['/forums/thematique', 'topic.key']" class="readmore" title="">Continuez la lecture →</a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="well">
-                            <div class="topic-desc row clearfix m-b-0">
-                                <div class="col s12 m4">
-                                    <video controls class="responsive-img img-thumbnail responsive-video">
-
-                                        <source src="assets/videos/amina.mp4" type="video/mp4">
-
-                                        Sorry, your browser doesn't support embedded videos.
-                                    </video>
-                                </div>
-                                <div class="col s12 m8">
-                                    <h4><a [routerLink]="['/forums/thematique',' topic.key']">Coaching</a></h4>
-                                    <div class="blog-meta clearfix">
-                                        <small>dimanche 17 mai 2020</small>
-                                    </div>
-                                    <div class="blog-forums-chips">
-                                        <div class="chip">Confiance en soi</div>
-                                    </div>
-                                    <p class="line-champ-3">
-                                        Parmi ces agressions, le viol conjugal occupe une place importante et méconnue : près de la moitié des femmes victimes de viol l’ont été de la part d’un conjoint. L’Enveff a ainsi mis en évidence l’ampleur du silence et l’occultation des violences par
-                                    </p>
-                                    <a [routerLink]="['/forums/thematique', 'topic.key']" class="readmore" title="">Continuez la lecture →</a>
+                                    <br>
+                                    <a [routerLink]="['/', teaser.typeSubject.name]" class="readmore" title="">Continuez la lecture →</a>
                                 </div>
                             </div>
                         </article>

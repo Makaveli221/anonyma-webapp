@@ -8,7 +8,7 @@ export const ACCOUNT_ROUTES = [
 	},
 	{
 		path: 'admin',
-		data: { roles: [Roles.ROLE_ADMIN], animation: 'admin'},
+		data: { roles: [Roles.ROLE_ADMIN, Roles.ROLE_MODERATOR], animation: 'admin'},
 		loadChildren: () => import('../modules/account/admin/admin.module').then((m) => m.AdminModule)
 	}
 ];

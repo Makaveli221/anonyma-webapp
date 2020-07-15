@@ -4,6 +4,7 @@ import * as M from 'materialize-css';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SubjectService } from '@service/forum/subject.service';
 import { TeaserService } from '@service/forum/teaser.service';
+import { Teaser } from '@schema/teaser';
 
 @Component({
   selector: 'app-list-teasing',
@@ -14,9 +15,9 @@ import { TeaserService } from '@service/forum/teaser.service';
  ]
 })
 export class ListTeasingComponent implements OnInit {
-  teasers: any[];
+  teasers: Teaser[];
   types: any[];
-  teaser: any;
+  teaser: Teaser;
   modal: any;
   headerModal: string;
   error: string;
@@ -34,12 +35,10 @@ export class ListTeasingComponent implements OnInit {
     this.types = [];
     this.presentation = '';
     this.subjectService.getAllType().subscribe((res: any) => {
-      console.log(res);
       this.types = res;
     });
     this.teaserService.all().subscribe((res: any) => {
-      console.log(res);
-      this.teasers = res;
+      this.teasers = res as Teaser[];
       this.initModal();
     });
     this.buildForm(this.teaser);
@@ -74,7 +73,7 @@ export class ListTeasingComponent implements OnInit {
     return this.teaserForm.controls;
   }
 
-  private buildForm(tea?: any): void {
+  private buildForm(tea?: Teaser): void {
     this.setDataShips();
     let objectForm = {
       typeSubject: [tea ? tea.typeSubject.id : '', Validators.required],
@@ -117,9 +116,9 @@ export class ListTeasingComponent implements OnInit {
     }
     this.submitted = true;
     this.isLoading = true;
-    const isUpdating = this.teaser;
+    const idTeaser = this.teaser ? this.teaser.id : null;
 
-    this.teaser = this.teaserForm.value;
+    this.teaser = this.teaserForm.value as Teaser;
     this.teaser.keywords = this.elChips[0].chipsData.reduce((accumulator, currentValue) => {
       accumulator.push(currentValue.tag);
       return accumulator;
@@ -131,8 +130,8 @@ export class ListTeasingComponent implements OnInit {
     }
     formData.append('info', JSON.stringify(this.teaser));
 
-    if(isUpdating) {
-      this.teaserService.update(this.teaser.id, formData).subscribe((response: any) => {
+    if(idTeaser) {
+      this.teaserService.update(idTeaser, formData).subscribe((response: any) => {
         this.validResponse(response, 'update');
       }, (error: any) => {
         this.validResponse(error, 'update');
