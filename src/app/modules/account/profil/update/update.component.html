@@ -1,0 +1,147 @@
+<div class="content-page" @routeAnimations>
+    <div class="row">
+        <div class="col s12 m12">
+            <a [routerLink]="['/accueil']" class="breadcrumb grey-text">Anonyma</a>
+            <a [routerLink]="['/account/profil']" class="breadcrumb grey-text active">Mon profil</a>
+        </div>
+    </div>
+
+    <section class="section-header">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light grey-text text-lighten-1">Informations personnelles</h5>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col s12">
+                            <blockquote>
+                                Modifier vos informations personnelles
+                            </blockquote>
+                            <form (ngSubmit)="submitForm()" [formGroup]="userForm" class="col s12">
+                                <div class="row" *ngIf="error">
+                                    <div class="col s12 m12">
+                                        <div class="card red darken-1">
+                                            <div class="card-content white-text" style="text-align: justify;">
+                                                {{ error }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='row'>
+                                    <div class='input-field col s12 m6'>
+                                        <i class="material-icons prefix">info_outline</i>
+                                        <input autocomplete="false" class='validate' type='text' name='firstName' id='firstName' [ngClass]="{'is-valid': !f.firstName.errors}" [disabled]="submitted" formControlName="firstName" />
+                                        <label for='firstName'>Prénom</label>
+                                        <p class="left m-0">
+                                            <app-control-messages [control]="f['firstName']"></app-control-messages>
+                                        </p>
+                                    </div>
+
+                                    <div class='input-field col s12 m6'>
+                                        <i class="material-icons prefix">info_outline</i>
+                                        <input autocomplete="false" class='validate' type='text' name='lastName' id='lastName' [ngClass]="{'is-valid': !f.lastName.errors}" [disabled]="submitted" formControlName="lastName" />
+                                        <label for='lastName'>Nom</label>
+                                        <p class="left m-0">
+                                            <app-control-messages [control]="f['lastName']"></app-control-messages>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class='row'>
+                                    <div class='input-field col s12 m6'>
+                                        <i class="material-icons prefix">mail_outline</i>
+                                        <input autocomplete="false" class='validate' type='text' name='email' id='email' [ngClass]="{'is-valid': !f.email.errors}" [disabled]="submitted" formControlName="email" />
+                                        <label for='email'>Email</label>
+                                        <p class="left m-0">
+                                            <app-control-messages [control]="f['email']"></app-control-messages>
+                                        </p>
+                                    </div>
+
+                                    <div class='input-field col s12 m6'>
+                                        <i class="material-icons prefix">person_outline</i>
+                                        <input autocomplete="false" class='validate' type='text' name='username' id='username' [ngClass]="{'is-valid': !f.username.errors}" [disabled]="submitted" formControlName="username" />
+                                        <label for='username' class="required">Nom d'utilisateur</label>
+                                        <span class="helper-text">6 caractères minimum</span>
+                                        <p class="left m-0">
+                                            <app-control-messages [control]="f['username']"></app-control-messages>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class='row'>
+                                    <div class='input-field col s12 m6'>
+                                        <i class="material-icons prefix">lock_outline</i>
+                                        <input autocomplete="false" class='validate' type='password' name='password' id='password' [disabled]="submitted" [ngClass]="{'is-valid': !f.password.errors}" formControlName="password" />
+                                        <label for='password'>Mot de passe</label>
+                                        <span class="helper-text">6 caractères minimum</span>
+                                        <p class="left m-0">
+                                            <app-control-messages [control]="f['password']"></app-control-messages>
+                                        </p>
+                                    </div>
+
+                                    <div class='input-field col s12 m6'>
+                                        <i class="material-icons prefix">lock_outline</i>
+                                        <input autocomplete="false" class='validate' type='password' name='confirmPassword' id='confirmPassword' [disabled]="submitted" [ngClass]="{'is-valid': !f.confirmPassword.errors}" formControlName="confirmPassword" />
+                                        <label for='confirmPassword'>Confirmez votre mot de passe</label>
+                                        <p class="left m-0">
+                                            <app-control-messages [control]="f['confirmPassword']"></app-control-messages>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class='row'>
+                                    <div class='input-field col s12 m6'>
+                                        <i class="material-icons prefix">today</i>
+                                        <input autocomplete="false" class='validate' type='text' name='age' id='age' [ngClass]="{'is-valid': !f.age.errors}" [disabled]="submitted" formControlName="age" />
+                                        <label for='age'>Age</label>
+                                        <span class="helper-text">Votre age en année</span>
+                                        <p class="left m-0">
+                                            <app-control-messages [control]="f['age']"></app-control-messages>
+                                        </p>
+                                    </div>
+                                    <div class='input-field col s12 m6'>
+                                        <i class="material-icons prefix">person</i>
+                                        <label>
+                                            <input class="with-gap" name="sex" type="radio" value="true" [ngClass]="{'is-valid': !f.sex.errors}" [disabled]="submitted" formControlName="sex"/>
+                                            <span>Homme</span>
+                                        </label>
+                                        <label style="position: relative; left: 100px; top: 13px;">
+                                            <input class="with-gap" name="sex" type="radio" value="false" [ngClass]="{'is-valid': !f.sex.errors}" [disabled]="submitted" formControlName="sex"/>
+                                            <span>Femme</span>
+                                        </label>
+                                        <p class="left m-0">
+                                            <app-control-messages [control]="f['age']"></app-control-messages>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <button type='submit' name='btn_login' class='btn waves-effect waves-light col s12' [disabled]="userForm.invalid">
+                                            <span [hidden]="isLoading">Modifier</span>
+                                            <span [hidden]="!isLoading">
+                                                <div class="preloader-wrapper small active" style="margin-top: 10px;">
+                                                    <div class="spinner-layer spinner-green-only">
+                                                        <div class="circle-clipper left">
+                                                        <div class="circle"></div>
+                                                        </div><div class="gap-patch">
+                                                        <div class="circle"></div>
+                                                        </div><div class="circle-clipper right">
+                                                        <div class="circle"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
