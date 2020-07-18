@@ -21,18 +21,23 @@ export class UpdateComponent implements OnInit, AfterViewInit {
   submitted: boolean = false;
   error: string = null;
   user: User;
+  displayForm: boolean;
   
   constructor(private userService: UserService, private formBuilder: FormBuilder, private currentUserService: CurrentUserService) { }
 
   ngOnInit(): void {
-    this.user = this.currentUserService.info;
-    this.buildForm(this.user);
+    this.displayForm = false;
+    this.userService.get(this.currentUserService.info.id).subscribe((res: any) => {
+        this.user = res as User;
+        this.buildForm(this.user);
+        this.displayForm = true;
+        setTimeout(() => {
+          M.updateTextFields();
+        });
+    });
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      M.updateTextFields(); 
-    });
     // M.Datepicker.init(document.querySelectorAll('.datepicker'), {
     //   firstDay: true, 
     //   format: 'yyyy-mm-dd',
@@ -62,7 +67,7 @@ export class UpdateComponent implements OnInit, AfterViewInit {
 
     let userData = this.userForm.value as User;
 
-    this.userService.update(this.user.id, userData).subscribe((response: any) => {
+    this.userService.updateProfil(userData).subscribe((response: any) => {
       this.validResponse(response);
     }, (error: any) => {
       this.validResponse(error);
@@ -82,19 +87,19 @@ export class UpdateComponent implements OnInit, AfterViewInit {
   }
 
   private buildForm(user: User): void {
+    console.log(user);
     this.userForm = this.formBuilder.group({
       firstName: [user.firstName, Validators.required],
       lastName: [user.lastName, Validators.required],
       email: [user.email, [Validators.required, Validators.email]],
       username: [user.username, [Validators.required]],
-      sex: [user.sex],
-      age: ['', [Validators.pattern('[0-9]*'), Validators.min(10), Validators. max(100)]],
+      sex: [(user.sex && user.sex === 'H') ? true : false],
+      age: [user.age, [Validators.pattern('[0-9]*'), Validators.min(10), Validators. max(100)]],
       phone: [user.phone],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      password: ['', [Validators.minLength(6)]],
+      confirmPassword: ['']
     }, {
       validator: MustMatch('password', 'confirmPassword')
     });
   }
-
 }

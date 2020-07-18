@@ -14,8 +14,8 @@ export class UserService {
 		return this.http.get(`${environment.apiUrl}/user/all?page=${page - 1}&limit=${limit}`);
   }
 
-  get(email: string) {
-		return this.http.get(`${environment.apiUrl}/user/${email}`);
+  get(id: string) {
+		return this.http.get(`${environment.apiUrl}/user/${id}`);
   }
 
   create(user: User) {
@@ -24,6 +24,10 @@ export class UserService {
 
   update(id: string, user: User) {
 		return this.http.put(`${environment.apiUrl}/user/update/${id}`, user);
+  }
+
+  updateProfil(user: User) {
+		return this.http.post(`${environment.apiUrl}/user/profil/update`, user);
   }
 
 	delete(id: string) {

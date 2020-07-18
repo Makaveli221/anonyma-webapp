@@ -18,7 +18,7 @@
                             <blockquote>
                                 Modifier vos informations personnelles
                             </blockquote>
-                            <form (ngSubmit)="submitForm()" [formGroup]="userForm" class="col s12">
+                            <form *ngIf="displayForm" (ngSubmit)="submitForm()" [formGroup]="userForm" class="col s12">
                                 <div class="row" *ngIf="error">
                                     <div class="col s12 m12">
                                         <div class="card red darken-1">
@@ -94,13 +94,24 @@
                                 <div class='row'>
                                     <div class='input-field col s12 m6'>
                                         <i class="material-icons prefix">today</i>
-                                        <input autocomplete="false" class='validate' type='text' name='age' id='age' [ngClass]="{'is-valid': !f.age.errors}" [disabled]="submitted" formControlName="age" />
+                                        <input autocomplete="false" class='validate' type='number' name='age' id='age' [ngClass]="{'is-valid': !f.age.errors}" [disabled]="submitted" formControlName="age" />
                                         <label for='age'>Age</label>
                                         <span class="helper-text">Votre age en année</span>
                                         <p class="left m-0">
                                             <app-control-messages [control]="f['age']"></app-control-messages>
                                         </p>
                                     </div>
+                                    <div class='input-field col s12 m6'>
+                                        <i class="material-icons prefix">phone</i>
+                                        <input autocomplete="false" class='validate' type='text' name='phone' id='phone' [ngClass]="{'is-valid': !f.phone.errors}" [disabled]="submitted" formControlName="phone" />
+                                        <label for='phone' class="required">Numéro de téléphone</label>
+                                        <p class="left m-0">
+                                            <app-control-messages [control]="f['phone']"></app-control-messages>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class='row'>
                                     <div class='input-field col s12 m6'>
                                         <i class="material-icons prefix">person</i>
                                         <label>
