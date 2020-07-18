@@ -115,11 +115,11 @@
                                     <div class='input-field col s12 m6'>
                                         <i class="material-icons prefix">person</i>
                                         <label>
-                                            <input class="with-gap" name="sex" type="radio" value="true" [ngClass]="{'is-valid': !f.sex.errors}" [disabled]="submitted" formControlName="sex"/>
+                                            <input class="with-gap" name="sex" type="radio" value="h" [ngClass]="{'is-valid': !f.sex.errors}" [disabled]="submitted" formControlName="sex"/>
                                             <span>Homme</span>
                                         </label>
                                         <label style="position: relative; left: 100px; top: 13px;">
-                                            <input class="with-gap" name="sex" type="radio" value="false" [ngClass]="{'is-valid': !f.sex.errors}" [disabled]="submitted" formControlName="sex"/>
+                                            <input class="with-gap" name="sex" type="radio" value="f" [ngClass]="{'is-valid': !f.sex.errors}" [disabled]="submitted" formControlName="sex"/>
                                             <span>Femme</span>
                                         </label>
                                         <p class="left m-0">

@@ -93,7 +93,7 @@ export class UpdateComponent implements OnInit, AfterViewInit {
       lastName: [user.lastName, Validators.required],
       email: [user.email, [Validators.required, Validators.email]],
       username: [user.username, [Validators.required]],
-      sex: [(user.sex && user.sex === 'H') ? true : false],
+      sex: [user.sex],
       age: [user.age, [Validators.pattern('[0-9]*'), Validators.min(10), Validators. max(100)]],
       phone: [user.phone],
       password: ['', [Validators.minLength(6)]],
