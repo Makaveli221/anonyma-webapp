@@ -1,12 +1,35 @@
 <div class="content-page">
     <div class="carousel carousel-slider" id="carousel-intro">
         <div class="carousel-fixed-item center">
-            <div class="center-align card-form-search">
+            <!--<div class="center-align card-form-search">
                 <div class="widget nopadding clearfix" [@pulse]="pulse">
                     <div class="panel panel-primary nopadding">
                         <div class="panel-body">
                             <app-form-search></app-form-search>
-                            <!-- end well -->
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="container" *ngIf="displaySlide">
+                <div class="row">
+                    <div class="col s12 m12" id="swiper-actu">
+                        <div class="swiper-container" [swiper]="config">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" *ngFor="let histoire of histoires">
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <img src="assets/images/slides/01.jpg" alt="">
+                                            <span class="card-title">Histoire</span>
+                                        </div>
+                                        <div class="card-content">
+                                            <p class="line-champ-3"> {{histoire.texte}}</p>
+                                            <a [routerLink]="['/forums', histoire.id, 'details']" class="readmore" title="">Continuez la lecture →</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>-->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -19,7 +42,7 @@
                         <div class="content col s8">
                             <div class="welcome-text">
                                 <h1>Bienvenue sur <strong>Anonym@</strong></h1>
-                                <p><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Bienvenue sur le portail de soutien à Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
+                                <p class="line-champ-2"><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Bienvenue sur le portail de soutien à Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
                                 </p>
                                 <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">forum</i> Visitez nos forums</a>
                             </div>
@@ -37,7 +60,7 @@
                         <div class="content col s8">
                             <div class="welcome-text">
                                 <h1>Welcome to <strong>Anonym@</strong></h1>
-                                <p><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Welcome to the support portal at Anonym@! Look for your answers with the search area above, or you can create a theme in our forums.
+                                <p class="line-champ-2"><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Welcome to the support portal at Anonym@! Look for your answers with the search area above, or you can create a theme in our forums.
                                 </p>
                                 <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">forum</i> Visit our forums</a>
                             </div>
@@ -55,7 +78,7 @@
                         <div class="content col s8">
                             <div class="welcome-text">
                                 <h1>Dalal ak jàmm ci <strong>Anonym@</strong></h1>
-                                <p><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Dalal ak jàmm ci portail de soutien à Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
+                                <p class="line-champ-2"><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Dalal ak jàmm ci portail de soutien à Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
                                 </p>
                                 <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">forum</i> Visitez nos forums</a>
                             </div>

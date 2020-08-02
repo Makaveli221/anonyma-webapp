@@ -4,6 +4,67 @@
     margin-bottom: 0;
 }
 
+.container {
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+@media only screen and (max-width: 601px) {
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
+
+#swiper-actu {
+    background-color: #f4f5fa;
+    border-radius: 5px;
+    padding: 15px;
+    // margin-top: 60px;
+    // margin-bottom: 30px;
+    .card {
+        max-width: 200px;
+        max-height: 300px;
+        border-radius: 5px;
+        -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        .card-title {
+            font-size: 16px;
+            padding: 10px;
+            font-weight: 300;
+        }
+        .card-image img {
+            max-height: 50px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 24px 12px;
+            p {
+                text-align: justify;
+            }
+        }
+    }
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+        font-size: 14px;
+    }
+    .swiper-button-prev:hover,
+    .swiper-button-next:hover {
+        background-color: #289cd7;
+        color: #ffffff;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+        background-color: rgba(0, 0, 0, 0.5);
+        outline: none;
+        color: #fff;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+    }
+}
+
 .carousel.carousel-slider .carousel-fixed-item.with-indicators {
     bottom: 100px;
 }

@@ -87,7 +87,6 @@ export class UpdateComponent implements OnInit, AfterViewInit {
   }
 
   private buildForm(user: User): void {
-    console.log(user);
     this.userForm = this.formBuilder.group({
       firstName: [user.firstName, Validators.required],
       lastName: [user.lastName, Validators.required],

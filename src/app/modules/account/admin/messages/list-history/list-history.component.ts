@@ -119,7 +119,6 @@ export class ListHistoryComponent implements OnInit {
   deleteHistory(id) {
     if(confirm("Etes-vous de vouloir supprimer ce chatbot ?")) {
       this.messageService.delete(id).subscribe((res: any) => {
-        console.log(res);
         document.querySelector(`#histoire-${id}`).remove();
         let message = 'Histoire supprimé avec succès!';
         var toastHTML = '<span>'+ message +'</span><button class="btn-flat toast-action" onclick="M.toast.dismiss();">Fermer</button>';

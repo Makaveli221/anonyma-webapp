@@ -144,7 +144,7 @@ export class ChatbotComponent implements OnInit, AfterViewInit {
         if(this.chatStep === 3) {
           this.chatStep++;
           this.messageService.create(this.message).subscribe((res: any) => {
-            console.log(res);
+            console.log('Success');
           })
         }
       }, 2000);

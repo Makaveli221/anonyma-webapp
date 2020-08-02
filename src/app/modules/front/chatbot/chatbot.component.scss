@@ -68,7 +68,7 @@
 }
 
 .chat-header {
-    background: #313FA0;
+    background: #0EA3CF;
     color: #FFF;
     padding: 0 10px;
     border-radius: 10px 10px 0 0;
@@ -109,7 +109,7 @@
 .chat-input {
     flex: 0 0 auto;
     height: 60px;
-    background: #313FA0;
+    background: #0EA3CF;
     border-top: 1px solid #2671ff;
     box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
     input {
@@ -122,7 +122,7 @@
         text-indent: 10px;
         font-size: 12pt;
         padding: 0;
-        background: #313FA0;
+        background: #0EA3CF;
     }
     button {
         float: right;
@@ -247,6 +247,29 @@
     animation: line 1s linear infinite alternate;
     &.hidden {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 768px),
+screen and (max-height: 700px) {
+    /* For mobile phones: */
+    .chatbox {
+        width: 300px;
+        height: 460px;
+        max-height: 460px;
+    }
+    .msg {
+        font-size: 10pt;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    /* For mobile phones: */
+    .chatbox {
+        width: 280px;
+    }
+    .msg {
+        font-size: 9pt;
     }
 }
 

@@ -35,7 +35,6 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isLoading = false;
     this.route.queryParams.subscribe(x => this.loadPage(x.page || this.initialPage));
     this.messageService.getLastHistory().subscribe((res: any) => {
-      console.log(res);
       this.derniershistoires = res as Message[];
     });
     this.buildForm();

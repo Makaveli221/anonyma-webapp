@@ -13,6 +13,7 @@ import { Comment } from '@schema/comment';
 import { Message } from '@schema/message';
 import { TeaserService } from '@service/forum/teaser.service';
 import { Teaser } from '@schema/teaser';
+import { MessageService } from '@service/forum/message.service';
 
 @Component({
   selector: 'app-accueil',
@@ -40,19 +41,52 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   state = {
     pub: 'hide'
   }
+  histoires: Message[];
+  displaySlide = false;
   timerSlider: any;
+  config = {
+    // nextButton: '.swiper-button-next',
+    // prevButton: '.swiper-button-prev',
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 10,
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+      },
+    }
+  }
 
-  constructor(public el: ElementRef, private teaserService: TeaserService, private topicService: TopicService) { }
+  constructor(public el: ElementRef, private teaserService: TeaserService, private topicService: TopicService,  private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.teasers = [];
+    this.histoires = [];
     this.teaserService.all().subscribe((res: any) => {
-      console.log(res);
       this.teasers = res as Teaser[];
     });
     this.topicService.getLastComments().subscribe((response: any) => {
       if(response && response.length > 0) {
         this.lastComments = response as Comment[];
+      }
+    });
+    this.messageService.allHistoryPublished(1).subscribe((res: any) => {
+      if (res && !res.empty) {
+        this.histoires = res.content as Message[];
+        this.displaySlide = true;
       }
     });
   }
@@ -62,6 +96,8 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     M.Carousel.init(document.querySelector('#carousel-intro'), this.configCarousel);
 
     M.Carousel.init(document.querySelector('#carousel-pub'), this.configCarousel);
+
+    M.Carousel.init( document.querySelector('#carousel-forum'), {});
 
     this.autoplay();
   }

@@ -95,7 +95,6 @@ class UploadAdapter {
                 reject();
             };
 
-            //console.log(this.loader.file);
             this.loader.file
                 .then(file => new Promise((resolve, reject) => {
                     reader.readAsDataURL(file);
