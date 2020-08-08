@@ -58,7 +58,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         outline: none;
         color: #fff;
-        width: 40px;
+        width: 20px;
         height: 40px;
         line-height: 40px;
         text-align: center;
@@ -291,4 +291,28 @@
     max-height: 200px;
     height: 200px !important;
     object-fit: cover;
+}
+
+@media screen and (max-width: 425px) {
+    .section.welcome {
+        padding: 3rem 0 22rem 0;
+    }
+    .welcome-text {
+        h1 {
+            font-size: calc(24px + 6 * ((100vw - 320px) / 680)) !important;
+        }
+        p {
+            font-size: calc(12px + 6 * ((100vw - 320px) / 680)) !important;
+        }
+        a {
+            font-size: calc(8px + 6 * ((100vw - 320px) / 680)) !important;
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .welcome-text h1 {
+        font-size: 65px;
+        line-height: 100px;
+    }
 }
