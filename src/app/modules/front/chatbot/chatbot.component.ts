@@ -50,13 +50,13 @@ export class ChatbotComponent implements OnInit, AfterViewInit {
     this.chatStep = 1;
     this.typingLoader(true);
     setTimeout(() => {
-      this.botMessage = 'Bonjour, bienvenue sur Anonym@. Je suis votre coach et je suis là pour vous écouter.';
+      this.botMessage = `Bonjour , bienvenue sur Anonym@, dalal ak jamm , je suis votre coach et vos problèmes sont ma priorité.`;
       this.typingLoader(false);
       this.messages.push({type: 'anonyma', text: this.botMessage});
     }, 500);
     this.typingLoader(true);
     setTimeout(() => {
-      this.botMessage = 'D\'abord laissez nous une adresse email pour vous contacter si nécessaire.';
+      this.botMessage = `Tout d'abord laissez moi votre adresse email, afin que je puisse vous donner l'aide nécessaire à travers mon travail et mon expertise`;
       this.typingLoader(false);
       this.messages.push({type: 'anonyma', text: this.botMessage});
     }, 900);
@@ -100,16 +100,16 @@ export class ChatbotComponent implements OnInit, AfterViewInit {
         if (this.validateEmail(this.lastUserMessage)) {
           this.message.email = this.lastUserMessage;
           this.chatStep++;
-          this.botMessage = "Merci, c'est noté. <br> Maintenant vous pouvez nous raconter votre histoire.";
+          this.botMessage = `Merci.<br> Mon attention est tout à vous , parlez moi, raconter moi votre histoire.<br> Je suis là pour vous écouter`;
         } else {
-          this.botMessage = "Cette adresse email est incorrecte. Veuillez taper une adresse email correcte";
+          this.botMessage = "Cette adresse email est incorrecte. Veuillez taper une adresse email correcte svp";
         }
         break;
       
       case 2:
         this.message.texte = this.lastUserMessage;
         this.chatStep++;
-        this.botMessage = "Nous avons bien reçu votre message. Nous vous répondrons au plus vite. Merci de votre patience.";
+        this.botMessage = `Merci de m'avoir fait confiance vous recevrez tout l'aide nécessaire venant de notre part, la réponse à votre requête vous sera envoyé par mail dans quelque instant.`;
         break;
     
       default:
