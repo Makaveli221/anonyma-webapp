@@ -37,7 +37,7 @@ export class ListComponent implements OnInit {
 
   listSubject() {
     // get page of items from api
-    this.subjectService.getTypeByName('astuces').subscribe((res: any) => {
+    this.subjectService.getTypeByName('coachings').subscribe((res: any) => {
       if(res && res.id) {
         this.typeSubject = res as TypeSubject;
         this.subjectService.getAllDefaultByType(this.typeSubject.name).subscribe(

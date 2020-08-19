@@ -1,13 +1,13 @@
 <div class="content-page" @routeAnimations>
     <section class="section-header">
         <div class="container">
-            <h4 class="header center blue-text"><i class="material-icons">lightbulb</i> ASTUCES</h4>
+            <h4 class="header center blue-text"><i class="material-icons">lightbulb</i> COACHING</h4>
             <p class="center" *ngIf="subject">{{subject.title}}</p>
             <div class="nav-wrapper center">
                 <div class="col s12">
                     <a [routerLink]="['/accueil']" class="breadcrumb">Accueil</a>
-                    <a [routerLink]="['/astuces/list']" class="breadcrumb">Astuces</a>
-                    <a [routerLink]="['/astuces', subject.key, 'thematiques']" *ngIf="subject" class="breadcrumb active">Thématiques</a>
+                    <a [routerLink]="['/coaching/list']" class="breadcrumb">Coaching</a>
+                    <a [routerLink]="['/coaching', subject.key, 'thematiques']" *ngIf="subject" class="breadcrumb active">Thématiques</a>
                 </div>
             </div>
         </div>
