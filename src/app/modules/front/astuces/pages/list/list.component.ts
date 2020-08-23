@@ -22,11 +22,13 @@ export class ListComponent implements OnInit {
   topics: Topic[] = [];
   pager: any = {};
   initialPage: number;
+  fileToShows: any[];
 
   constructor(private route: ActivatedRoute, private router: Router, private subjectService: SubjectService,  private topicService: TopicService) { }
 
   ngOnInit(): void {
     this.initialPage = 1;
+    this.fileToShows = [];
     this.listSubject();
   }
 
@@ -62,6 +64,11 @@ export class ListComponent implements OnInit {
           pages.shift();
 
           this.topics = response.content as Topic[];
+          this.topics.forEach((top: Topic) => {
+            if(top.imgDefault) {
+              this.getFile(top.imgDefault);
+            }
+          });
           this.pager.current = response.number + 1;
           this.pager.first = response.first;
           this.pager.last = response.last;
@@ -72,6 +79,25 @@ export class ListComponent implements OnInit {
         }
       }
     )
+  }
+
+  getFile(filename: string) {
+    this.topicService.getFile(filename).subscribe((dataBlob: Blob) => {
+      this.createImageFromBlob(filename, dataBlob);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  createImageFromBlob(filename: string, image: Blob) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+       this.fileToShows[filename] = reader.result;
+    }, false);
+ 
+    if (image) {
+       reader.readAsDataURL(image);
+    }
   }
 
 }

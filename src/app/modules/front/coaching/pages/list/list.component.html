@@ -23,7 +23,7 @@
                         <article class="well" @routeAnimations *ngFor="let topic of topics">
                             <div class="topic-desc row clearfix m-b-0">
                                 <div class="col s12 m4">
-                                    <img [src]="topic.imgDefault ? topic.imgDefault : 'assets/images/paper-pen-1.png'" alt="" class="responsive-img img-thumbnail">
+                                    <img [src]="fileToShows[topic.imgDefault] ? fileToShows[topic.imgDefault] : 'assets/images/paper-pen-1.png'" alt="" class="responsive-img img-thumbnail">
                                 </div>
                                 <div class="col s12 m8">
                                     <h4><a [routerLink]="['/coaching/thematique', topic.key]">{{topic.title}}</a></h4>

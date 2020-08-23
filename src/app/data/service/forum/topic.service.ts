@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -12,6 +13,10 @@ export class TopicService {
 
   get(key: string) {
 		return this.http.get(`${environment.apiUrl}/topic/${key}`);
+  }
+
+  getFile(fileName: string): Observable<Blob> {
+		return this.http.get(`${environment.apiUrl}/topic/files/${fileName}`, { responseType: 'blob' });
   }
   
   create(formData: any) {

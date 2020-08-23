@@ -21,7 +21,7 @@
                         <article class="well no-effect clearfix">
                             <div class="topic-desc row clearfix">
                                 <div class="col s12 m12">
-                                    <img *ngIf="currentTopic.imgDefault" src="{{currentTopic.imgDefault}}" alt="" class="cover">
+                                    <img *ngIf="fileToShow" [src]="fileToShow" alt="" class="cover">
 
                                     <div class="single-topic-meta">
                                         <h4><a [routerLink]="['/thematique', currentTopic.key]" title="">{{currentTopic.title | titlecase}}</a></h4>

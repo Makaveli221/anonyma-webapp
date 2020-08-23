@@ -31,7 +31,6 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   pulse: any;
   lastComments: Comment[] = [];
   teasers: Teaser[];
-  isFileLoading = true;
   fileToShows: any[];
   configCarousel = {
     dist: 0,

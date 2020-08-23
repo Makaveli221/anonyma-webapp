@@ -23,17 +23,22 @@ export class IndexComponent implements OnInit {
   nameType: string;
   countLiked = 0;
   liked = false;
+  fileToShow: string | ArrayBuffer;
 
   constructor(private route: ActivatedRoute, private router: Router, private elementRef: ElementRef, private authenticationService: AuthenticationService, private topicService: TopicService) { }
 
   ngOnInit(): void {
     this.nameType = this.route.snapshot.data.name;
+    this.fileToShow = "";
     this.topicService.get(this.route.snapshot.paramMap.get('id')).subscribe((response: any) => {
       if(!response || !response.id) {
         this.router.navigate([`/${this.nameType}`]);
         return false;
       }
       this.currentTopic = response as Topic;
+      if(this.currentTopic.imgDefault) {
+        this.getFile(this.currentTopic.imgDefault);
+      }
       this.subject = this.currentTopic.subject as Subject;
       setTimeout(() => {
         this.animateButton(this.elementRef.nativeElement.querySelectorAll('div.heart'));
@@ -107,5 +112,24 @@ export class IndexComponent implements OnInit {
         this.countLiked = this.countLike(true, this.currentTopic.appreciations);
       }
     })
+  }
+
+  getFile(filename: string) {
+    this.topicService.getFile(filename).subscribe((dataBlob: Blob) => {
+      this.createImageFromBlob(filename, dataBlob);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  createImageFromBlob(filename: string, image: Blob) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+       this.fileToShow = reader.result;
+    }, false);
+ 
+    if (image) {
+       reader.readAsDataURL(image);
+    }
   }
 }
