@@ -27,6 +27,8 @@ export class ListTeasingComponent implements OnInit {
   uploadFile: File;
   elChips: any[];
   presentation: string;
+  fileToShow: any;
+  isFileLoading = true;
 
   constructor(private formBuilder: FormBuilder, private teaserService: TeaserService, private subjectService: SubjectService) { }
 
@@ -50,6 +52,7 @@ export class ListTeasingComponent implements OnInit {
         if (mod.id === 'modal2') {
           setTimeout(() => {
             this.presentation = btn.getAttribute('data-teaser-pres'); 
+            this.getFile(this.presentation);
           });
           return;
         }
@@ -168,5 +171,42 @@ export class ListTeasingComponent implements OnInit {
 
   getKeywords(keywords: string) {
     return JSON.parse(keywords);
+  }
+
+  getTeaserType(filename: string) {
+    const videos = ['mp4', 'mp3'];
+    const images = ['jpg', 'jpeg', 'png', 'gif'];
+    let type = '';
+    const ext = (filename.substring(filename.lastIndexOf('.')+1, filename.length) || filename).toLowerCase();
+    if (videos.indexOf(ext) != -1) {
+      type = 'video';
+    }
+    if (images.indexOf(ext) != -1) {
+      type = 'image';
+    }
+    return type;
+  }
+
+  getFile(filename: string) {
+    this.isFileLoading = true;
+    this.fileToShow = "";
+    this.teaserService.getFile(filename).subscribe((dataBlob: Blob) => {
+      this.createImageFromBlob(dataBlob);
+        this.isFileLoading = false;
+      }, error => {
+        this.isFileLoading = false;
+        console.log(error);
+      });
+  }
+
+  createImageFromBlob(image: Blob) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+       this.fileToShow = reader.result;
+    }, false);
+ 
+    if (image) {
+       reader.readAsDataURL(image);
+    }
   }
 }

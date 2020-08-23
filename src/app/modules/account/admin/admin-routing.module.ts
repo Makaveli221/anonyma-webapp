@@ -72,15 +72,27 @@ const routes: Routes = [
     component: ListTopicComponent
   },
   {
-    path: 'coaching',
-    component: ListCoachingComponent
-  },
-  {
     path: 'astuces/:key/topics/new',
     component: NewTopicComponent
   },
   {
     path: 'astuces/:key/topics/update/:id',
+    component: NewTopicComponent
+  },
+  {
+    path: 'coaching',
+    component: ListCoachingComponent
+  },
+  {
+    path: 'coaching/:key/topics',
+    component: ListTopicComponent
+  },
+  {
+    path: 'coaching/:key/topics/new',
+    component: NewTopicComponent
+  },
+  {
+    path: 'coaching/:key/topics/update/:id',
     component: NewTopicComponent
   },
   {

@@ -170,10 +170,11 @@
 
 <!-- Modal Structure -->
 <div id="modal2" class="modal">
-    <video controls style="width: 100%; height: 100%;" *ngIf="presentation != ''">
+    <video *ngIf="!isFileLoading && (presentation != '' && getTeaserType(presentation) == 'video')" controls class="responsive-img img-thumbnail responsive-video">
 
-        <source [src]="presentation" type="video/mp4">
+        <source [src]="fileToShow" type="video/mp4">
 
-        Sorry, your browser doesn't support embedded videos.
+        Sorry, your browser doesn't support embedded videos. 
     </video>
+    <img *ngIf="!isFileLoading && (presentation != '' && getTeaserType(presentation) == 'image')" [src]="fileToShow" class="responsive-img img-thumbnail" />
 </div>

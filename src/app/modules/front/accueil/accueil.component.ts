@@ -31,6 +31,8 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   pulse: any;
   lastComments: Comment[] = [];
   teasers: Teaser[];
+  isFileLoading = true;
+  fileToShows: any[];
   configCarousel = {
     dist: 0,
     padding: 0,
@@ -75,8 +77,12 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.teasers = [];
     this.histoires = [];
+    this.fileToShows = [];
     this.teaserService.all().subscribe((res: any) => {
       this.teasers = res as Teaser[];
+      this.teasers.forEach((tea: Teaser) => {
+        this.getFile(tea.presentation);
+      });
     });
     this.topicService.getLastComments().subscribe((response: any) => {
       if(response && response.length > 0) {
@@ -151,5 +157,38 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
         break;
     }
     return urlPage;
+  }
+
+  getTeaserType(filename: string) {
+    const videos = ['mp4', 'mp3'];
+    const images = ['jpg', 'jpeg', 'png', 'gif'];
+    let type = '';
+    const ext = (filename.substring(filename.lastIndexOf('.')+1, filename.length) || filename).toLowerCase();
+    if (videos.indexOf(ext) != -1) {
+      type = 'video';
+    }
+    if (images.indexOf(ext) != -1) {
+      type = 'image';
+    }
+    return type;
+  }
+
+  getFile(filename: string) {
+    this.teaserService.getFile(filename).subscribe((dataBlob: Blob) => {
+      this.createImageFromBlob(filename, dataBlob);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  createImageFromBlob(filename: string, image: Blob) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+       this.fileToShows[filename] = reader.result;
+    }, false);
+ 
+    if (image) {
+       reader.readAsDataURL(image);
+    }
   }
 }

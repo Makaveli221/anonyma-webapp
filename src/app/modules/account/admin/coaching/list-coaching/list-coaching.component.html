@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col s12 m12">
             <a [routerLink]="['/accueil']" class="breadcrumb grey-text">Anonyma</a>
-            <a [routerLink]="['/account/admin/astuces']" class="breadcrumb grey-text active">Coaching</a>
+            <a [routerLink]="['/account/admin/coaching']" class="breadcrumb grey-text active">Coaching</a>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
                                     <tr *ngFor="let subject of subjects" [attr.data-subject]="subject.key" class="modal-trigger" data-target="modal1">
                                         <td>{{subject.title }}</td>
                                         <td class="line-champ-3">{{subject.description}}</td>
-                                        <td><a class="blue-text" [routerLink]="['/account/admin/astuces', subject.key,'topics']"><i class="material-icons">visibility</i></a></td>
+                                        <td><a class="blue-text" [routerLink]="['/account/admin/coaching', subject.key,'topics']"><i class="material-icons">visibility</i></a></td>
                                     </tr>
                                     <tr *ngIf="subjects && subjects.length <= 0">
                                         <td colspan="4" style="text-align: center;">Aucun rubtique trouvé</td>
@@ -62,4 +62,16 @@
             </div>
         </div>
     </section>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4 class="overflow-ellipsis">{{ headerModal }}</h4>
+        <app-form-subject *ngIf="formSubjectActive" [activeSubmit]="activeSubmit" [typeSubject]="typeSubject" [subject]="newSubject" (formSubmit)="onFormSubmit($event)"></app-form-subject>
+    </div>
+    <div class="modal-footer">
+        <button type="cancel" class="modal-action modal-close waves-effect waves-red btn orange darken-3">Annuler</button>&nbsp;
+        <button type="submit" class="waves-effect waves-red btn green darken-3" (click)="activeSubmit = true">Enregistrer</button>
+    </div>
 </div>

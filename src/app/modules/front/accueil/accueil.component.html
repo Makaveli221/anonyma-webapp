@@ -17,8 +17,7 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide" *ngFor="let histoire of histoires">
                                     <div class="card">
-                                        <div class="card-image">
-                                            <img src="assets/images/slides/01.jpg" alt="">
+                                        <div class="card-image bg1">
                                             <span class="card-title">Histoire</span>
                                         </div>
                                         <div class="card-content">
@@ -99,12 +98,13 @@
                         <article class="well" *ngFor="let teaser of teasers">
                             <div class="topic-desc row clearfix m-b-0">
                                 <div class="col s12 m4">
-                                    <video controls class="responsive-img img-thumbnail responsive-video">
+                                    <video *ngIf="getTeaserType(teaser.presentation) == 'video'" controls class="responsive-img img-thumbnail responsive-video">
 
-                                        <source [src]="teaser.presentation" type="video/mp4">
+                                        <source [src]="fileToShows[teaser.presentation]" type="video/mp4">
 
-                                        Sorry, your browser doesn't support embedded videos.
+                                        Sorry, your browser doesn't support embedded videos. 
                                     </video>
+                                    <img *ngIf="getTeaserType(teaser.presentation) == 'image'" [src]="fileToShows[teaser.presentation]" [alt]="teaser.title" class="responsive-img img-thumbnail" />
                                 </div>
                                 <div class="col s12 m8">
                                     <h4><a [routerLink]="['/', teaser.typeSubject.name]">{{teaser.title}}</a></h4>

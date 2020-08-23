@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ export class TeaserService {
 
   get(id: string) {
 		return this.http.get(`${environment.apiUrl}/teaser/${id}`);
+  }
+
+  getFile(fileName: string): Observable<Blob> {
+		return this.http.get(`${environment.apiUrl}/teaser/files/${fileName}`, { responseType: 'blob' });
   }
   
   create(formData: any) {

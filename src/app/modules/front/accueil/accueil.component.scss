@@ -17,7 +17,7 @@
 }
 
 #swiper-actu {
-    background-color: #f4f5fa;
+    background-color: #228fca;
     border-radius: 5px;
     padding: 15px;
     // margin-top: 60px;
@@ -28,6 +28,12 @@
         border-radius: 5px;
         -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        .card-image {
+            background-color: #228fca !important;
+            height: 50px !important;
+            border: 2px solid #ffffff;
+            border-radius: 5px;
+        }
         .card-title {
             font-size: 16px;
             padding: 10px;
