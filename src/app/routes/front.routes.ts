@@ -5,6 +5,11 @@ export const FRONT_ROUTES = [
 		loadChildren: () => import('../modules/front/accueil/accueil.module').then((m) => m.AccueilModule)
 	},
 	{
+		path: 'coachings',
+		redirectTo: '/coaching/list',
+		pathMatch: 'full'
+	},
+	{
 		path: 'forums',
 		data: {animation: 'forums'},
 		loadChildren: () => import('../modules/front/forum/forum.module').then((m) => m.ForumModule)

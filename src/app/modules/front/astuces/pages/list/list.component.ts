@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TypeSubject } from '@schema/type-subject';
 import { Topic } from '@schema/topic';
 import { TopicService } from '@service/forum/topic.service';
+import { Message } from '@schema/message';
+import { MessageService } from '@service/forum/message.service';
 
 @Component({
   selector: 'app-list',
@@ -23,13 +25,18 @@ export class ListComponent implements OnInit {
   pager: any = {};
   initialPage: number;
   fileToShows: any[];
+  lastHistoires: Message[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private subjectService: SubjectService,  private topicService: TopicService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private subjectService: SubjectService,  private topicService: TopicService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.initialPage = 1;
     this.fileToShows = [];
+    this.lastHistoires = [];
     this.listSubject();
+    this.messageService.getLastHistory().subscribe((res: any) => {
+      this.lastHistoires = res as Message[];
+    });
   }
 
   updateCurrentSubject(key: string) {

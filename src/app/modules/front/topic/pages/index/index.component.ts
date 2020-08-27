@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { slideToTop } from 'app/layout/animations';
 
@@ -39,6 +39,11 @@ export class IndexComponent implements OnInit {
       if(this.currentTopic.imgDefault) {
         this.getFile(this.currentTopic.imgDefault);
       }
+      setTimeout(() => {
+        document.querySelectorAll('figure img').forEach((ele: HTMLElement) => {
+          ele.classList.add('cover');
+        });
+      });
       this.subject = this.currentTopic.subject as Subject;
       setTimeout(() => {
         this.animateButton(this.elementRef.nativeElement.querySelectorAll('div.heart'));

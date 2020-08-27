@@ -165,6 +165,17 @@
     }
 }
 
+::ng-deep figure {
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+::ng-deep .cover {
+    width: 100% !important;
+    max-height: 350px !important;
+}
+
 #makecomment {
     height: 10px;
     z-index: 0;

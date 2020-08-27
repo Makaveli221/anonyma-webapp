@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="row center">
-                <h5 class="header col s12 light grey-text text-lighten-1">Retrouvez les meilleurs Coach disponibles sur Anonym@</h5>
+                <h5 class="header col s12 light grey-text text-lighten-1">Retrouvez les meilleurs Coachs disponibles sur Anonym@</h5>
             </div>
         </div>
         <!-- end container -->
@@ -54,33 +54,56 @@
                     </div>
                 </div>
 
-                <div class="col s12 m4">
-                    <div class="widget clearfix">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Thématiques</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="list-group list-group-no-icon">
-                                    <ng-container *ngFor="let subject of subjects; let i = index">
-                                        <div class="list-group-item" [ngClass]="{active: subject.key == subjectKey}">
-                                            <div class="row-topic">
-                                                <header class="topic-title clearfix" (click)="updateCurrentSubject(subject.key)">
-                                                    <h3 class="overflow-ellipsis">{{subject.title}}</h3>
-                                                    <p class="overflow-ellipsis">{{subject.keywords.join(", ") }}</p>
-                                                </header>
-                                            </div>
+                <div class="col s12 m3">
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <div class="widget banner clearfix thematiques-sujet" id="thematiques-sujet">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Derniers posts</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="list-group list-group-no-icon">
+                                            <ng-container *ngFor="let histoire of lastHistoires; let i = index">
+                                                <div class="list-group-item" style="cursor: pointer;">
+                                                    <div class="row-topic">
+                                                        <header class="topic-title clearfix">
+                                                            <small [routerLink]="['/forums', histoire.id, 'details']" class="line-champ-2">{{histoire.texte}}</small>
+                                                        </header>
+                                                    </div>
+                                                </div>
+                                                <div class="list-group-separator" *ngIf="i < lastHistoires.length - 1"></div>
+                                            </ng-container>
                                         </div>
-                                        <div class="list-group-separator" *ngIf="i < subjects.length - 1"></div>
-                                    </ng-container>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="widget clearfix">
-                        <div class="banner-widget">
-                            <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner-secur.jpg" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
+                        <div class="col s12 m12 l12">
+                            <div class="carousel carousel-slider" id="carousel-pub">
+                                <div class="carousel-item">
+                                    <div class="widget banner clearfix">
+                                        <div class="banner-widget">
+                                            <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner.jpg" alt="" class="responsive-img img-thumbnail"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="widget banner clearfix">
+                                        <div class="banner-widget">
+                                            <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/doc_01.png" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="widget banner clearfix">
+                                        <div class="banner-widget">
+                                            <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/doc_02.png" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
