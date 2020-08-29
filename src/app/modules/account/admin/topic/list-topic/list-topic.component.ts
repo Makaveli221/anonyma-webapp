@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { slideToTop } from 'app/layout/animations';
+import * as M from 'materialize-css';
 import { Topic } from '@schema/topic';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TopicService } from '@service/forum/topic.service';
 import { SubjectService } from '@service/forum/subject.service';
 import { Subject } from '@schema/subject';
+import { CurrentUserService } from '@service/current-user.service';
 
 
 @Component({
@@ -22,7 +24,7 @@ export class ListTopicComponent implements OnInit {
   pager: any = {};
   initialPage: number;
 
-  constructor(private route: ActivatedRoute, private router: Router, private topicService: TopicService, private subjectService: SubjectService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private topicService: TopicService, private subjectService: SubjectService, public currentUser: CurrentUserService) { }
 
   ngOnInit(): void {
     this.initialPage = 1;
@@ -41,6 +43,7 @@ export class ListTopicComponent implements OnInit {
               pages.shift();
     
               this.topics = response.content as Topic[];
+              console.log(this.topics);
               this.pager.current = response.number + 1;
               this.pager.first = response.first;
               this.pager.last = response.last;
@@ -56,6 +59,17 @@ export class ListTopicComponent implements OnInit {
 
   getSubjetTitle(subject: any) {
     return subject.title;
+  }
+
+  deleteTopic(key: string) {
+    if(confirm("Etes-vous de vouloir supprimer cette ligne ?")) {
+      this.topicService.delete(key).subscribe((res: any) => {
+        document.querySelector(`#topic-${key}`).remove();
+        let message =  ` ${this.subject.title} supprimé avec succès!`;
+        var toastHTML = '<span>'+ message +'</span><button class="btn-flat toast-action" onclick="M.toast.dismiss();">Fermer</button>';
+        M.toast({html: toastHTML});
+      });
+    }
   }
 
 }

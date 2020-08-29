@@ -13,6 +13,7 @@ export class Topic {
     data: string;
     key?: string;
     appreciations?: Appreciation[];
+    commentTotal?: number;
     createUser?: User;
     createDate?: Date;
 }

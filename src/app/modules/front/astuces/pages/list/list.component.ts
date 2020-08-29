@@ -64,7 +64,7 @@ export class ListComponent implements OnInit {
 
   loadTopics(page: number) {
     // get page of items from api
-    this.topicService.getAllBySubject(this.subjectKey, page).subscribe(
+    this.topicService.getAllBySubjectAndPublisheds(this.subjectKey, page).subscribe(
       (response: any) => {
         if(response && response.content && response.content.length > 0) {
           const pages = [...Array(response.totalPages + 1).keys()];

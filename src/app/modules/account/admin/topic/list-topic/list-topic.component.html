@@ -33,18 +33,24 @@
                                         <th>Titre</th>
                                         <th>description</th>
                                         <th>Commentaires</th>
+                                        <th *ngIf="currentUser.isAdmin">Actions</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr *ngFor="let topic of topics" [routerLink]="['/account/admin', nameType, subject.key,'topics', 'update', topic.key]">
+                                    <tr *ngFor="let topic of topics" [routerLink]="['/account/admin', nameType, subject.key,'topics', 'update', topic.key]" id="topic-{{topic.key}}">
                                         <td>{{getSubjetTitle(topic.subject)}}</td>
                                         <td>{{topic.title }}</td>
                                         <td class="line-champ-3">{{topic.description}}</td>
-                                        <td>87</td>
+                                        <td style="text-align: center;"> {{ topic.commentTotal ? topic.commentTotal : 0 }} </td>
+                                        <td *ngIf="currentUser.isAdmin">
+                                            <div class="actions">
+                                                <span class="modal-trigger link red-text" (click)="$event.stopPropagation(); deleteTopic(topic.key)"><i class="material-icons">delete_forever</i></span>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr *ngIf="topics && topics.length <= 0">
-                                        <td colspan="4" style="text-align: center;">Aucun thématique trouvé</td>
+                                        <td colspan="5" style="text-align: center;">Aucun thématique trouvé</td>
                                     </tr>
                                 </tbody>
                             </table>
