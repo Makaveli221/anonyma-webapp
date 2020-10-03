@@ -10,9 +10,9 @@
                     </div>
                 </div>
             </div>-->
-            <div class="container" *ngIf="displaySlide">
+            <!-- <div class="container" *ngIf="displayForums">
                 <div class="row">
-                    <div class="col s12 m12" id="swiper-actu">
+                    <div class="col s12 m12 swiper-topic">
                         <div class="swiper-container" [swiper]="config">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide" *ngFor="let histoire of histoires">
@@ -26,22 +26,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--<div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>-->
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="carousel-item">
-            <section class="section welcome bg1" [@bounce]="bounce">
+            <section class="section welcome bg1" style="background: url(assets/images/slides/slide-01.jpg) no-repeat;" [@bounce]="bounce">
                 <div class="container">
                     <div class="row">
                         <div class="content col s12">
                             <div class="welcome-text">
                                 <h1>Bienvenue sur <strong>Anonym@</strong></h1>
-                                <p class="line-champ-2"><b>{{ 'Vos problèmes, notre priorité.' |uppercase }}</b> <br> Bienvenue sur le portail de soutien d'Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
+                                <p><b>{{ 'Vos problèmes, notre priorité.' |uppercase }}</b> <br> Bienvenue sur le portail de soutien d'Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
                                 </p>
                                 <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">forum</i> Visitez nos forums</a>
                             </div>
@@ -53,13 +51,13 @@
             </section>
         </div>
         <div class="carousel-item">
-            <section class="section welcome bg1" [@bounce]="bounce">
+            <section class="section welcome bg1" style="background: url(assets/images/slides/slide-02.jpg) no-repeat;" [@bounce]="bounce">
                 <div class="container">
                     <div class="row">
                         <div class="content col s12">
                             <div class="welcome-text">
                                 <h1>Welcome to <strong>Anonym@</strong></h1>
-                                <p class="line-champ-2"><b>{{ 'Your problems, our priority.' |uppercase }}</b> <br> Welcome to the Anonym@ support portal! Look for your answers with the search area above, or you can create a theme in our forums.
+                                <p><b>{{ 'Your problems, our priority.' |uppercase }}</b> <br> Welcome to the Anonym@ support portal! Look for your answers with the search area above, or you can create a theme in our forums.
                                 </p>
                                 <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">forum</i> Visit our forums</a>
                             </div>
@@ -71,13 +69,13 @@
             </section>
         </div>
         <div class="carousel-item">
-            <section class="section welcome bg1" [@bounce]="bounce">
+            <section class="section welcome bg1" style="background: url(assets/images/slides/slide-03.jpg) no-repeat;" [@bounce]="bounce">
                 <div class="container">
                     <div class="row">
                         <div class="content col s12">
                             <div class="welcome-text">
                                 <h1>Dalal ak jàmm ci <strong>Anonym@</strong></h1>
-                                <p class="line-champ-2"><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Dalal ak jàmm ci Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
+                                <p><b>{{ 'séen naqar, suñu yitté.' |uppercase }}</b> <br> Dalal ak jàmm ci Anonym@! Recherchez vos réponses avec la zone de recherche ci-dessus, ou vous pouvez créer un thématique dans nos forums.
                                 </p>
                                 <a class="btn btn-raised btn-info gr" [routerLink]="['/forums']"><i class="material-icons left">forum</i> Visitez nos forums</a>
                             </div>
@@ -94,7 +92,71 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m12 l9">
-                    <div class="topic-list">
+                    <div class="row" *ngIf="displayForums">
+                        <div class="col s12 m12 swiper-topic">
+                            <h4>Forums</h4>
+                            <div class="swiper-container" [swiper]="config">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" *ngFor="let histoire of histoires">
+                                        <div class="card">
+                                            <div class="card-image bg1">
+                                                <span class="card-title">Histoire</span>
+                                            </div>
+                                            <div class="card-content">
+                                                <p class="line-champ-3"> {{histoire.texte}}</p>
+                                                <a [routerLink]="['/forums', histoire.id, 'details']" class="readmore" title="">Continuez la lecture →</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="displayAstuces">
+                        <div class="col s12 m12 swiper-topic">
+                            <h4>Astuces</h4>
+                            <div class="swiper-container" [swiper]="config">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" *ngFor="let astuce of astuces">
+                                        <div class="card">
+                                            <div class="card-image bg1">
+                                                <span class="card-title">Astuce</span>
+                                            </div>
+                                            <div class="card-content">
+                                                <p class="line-champ-3"> {{astuce.description}}</p>
+                                                <a [routerLink]="['/astuces', astuce.id, 'details']" class="readmore" title="">Continuez la lecture →</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="displayCoachings">
+                        <div class="col s12 m12 swiper-topic">
+                            <h4>Coachings</h4>
+                            <div class="swiper-container" [swiper]="config">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" *ngFor="let coaching of coachings">
+                                        <div class="card">
+                                            <div class="card-image bg1">
+                                                <span class="card-title">Coaching</span>
+                                            </div>
+                                            <div class="card-content">
+                                                <p class="line-champ-3"> {{coaching.description}}</p>
+                                                <a [routerLink]="['/coaching', coaching.id, 'details']" class="readmore" title="">Continuez la lecture →</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="topic-list">
                         <article class="well" *ngFor="let teaser of teasers">
                             <div class="topic-desc row clearfix m-b-0">
                                 <div class="col s12 m4">
@@ -119,14 +181,13 @@
                                 </div>
                             </div>
                         </article>
-                    </div>
+                    </div> -->
                 </div>
-                <!-- end col -->
 
                 <div id="rightContent" style="height: 0;"></div>
 
                 <div class="col s12 m12 l3 carousel-pub">
-                    <div class="carousel carousel-slider" id="carousel-pub">
+                    <div class="carousel carousel-slider" id="carousel-pub-1">
                         <div class="carousel-item">
                             <div class="widget clearfix">
                                 <div class="banner-widget">
@@ -183,11 +244,35 @@
                         </div>
                     </div>
                 </div>
-                <!-- end col -->
+
+                <div class="col s12 m12 l3 carousel-pub">
+                    <div class="carousel carousel-slider" id="carousel-pub-2">
+                        <div class="carousel-item">
+                            <div class="widget clearfix">
+                                <div class="banner-widget">
+                                    <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/banner.jpg" alt="" class="responsive-img img-thumbnail"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="widget clearfix">
+                                <div class="banner-widget">
+                                    <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/doc_01.png" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="widget clearfix">
+                                <div class="banner-widget">
+                                    <a href="javascript:void(0)" target="new"><img src="assets/images/uploads/doc_02.png" alt="" style="width: 100%;" class="responsive-img img-thumbnail"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- end row -->
         </div>
-        <!-- end container -->
     </section>
 </div>
 <!-- <div class="aspect-ratio aspect-ratio-16-9" [@pulse]="pulse">

@@ -16,12 +16,21 @@
     }
 }
 
-#swiper-actu {
+.swiper-topic {
     background-color: #228fca;
     border-radius: 5px;
     padding: 15px;
     // margin-top: 60px;
     // margin-bottom: 30px;
+    h4 {
+        font-size: 1.4rem;
+        text-decoration: none;
+        font-weight: 500;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+    }
     .card {
         max-width: 200px;
         max-height: 300px;
@@ -86,7 +95,8 @@
     width: 100%;
     display: block;
     position: relative;
-    background: url(assets/images/welcome.png) no-repeat scroll right bottom;
+    // background: url(assets/images/welcome.png) no-repeat scroll right bottom;
+    background-size: cover !important; // 1358 X 683
     .welcome-text {
         display: block;
         padding-bottom: 30px;

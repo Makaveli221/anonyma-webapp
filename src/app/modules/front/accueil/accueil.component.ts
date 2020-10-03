@@ -43,7 +43,11 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     pub: 'hide'
   }
   histoires: Message[];
-  displaySlide = false;
+  astuces: Topic[];
+  coachings: Topic[];
+  displayForums = false;
+  displayAstuces = false;
+  displayCoachings = false;
   timerSlider: any;
   config = {
     // nextButton: '.swiper-button-next',
@@ -57,32 +61,32 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     spaceBetween: 10,
     breakpoints: {
       640: {
-        slidesPerView: 2,
+        slidesPerView: 1,
         spaceBetween: 20,
       },
       768: {
-        slidesPerView: 3,
+        slidesPerView: 2,
         spaceBetween: 30,
       },
       1024: {
-        slidesPerView: 4,
+        slidesPerView: 3,
         spaceBetween: 40,
       },
     }
   }
 
-  constructor(public el: ElementRef, private teaserService: TeaserService, private topicService: TopicService,  private messageService: MessageService) { }
+  constructor(public el: ElementRef, private teaserService: TeaserService, private subjectService: SubjectService,  private topicService: TopicService,  private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.teasers = [];
     this.histoires = [];
     this.fileToShows = [];
-    this.teaserService.all().subscribe((res: any) => {
-      this.teasers = res as Teaser[];
-      this.teasers.forEach((tea: Teaser) => {
-        this.getFile(tea.presentation);
-      });
-    });
+    // this.teaserService.all().subscribe((res: any) => {
+    //   this.teasers = res as Teaser[];
+    //   this.teasers.forEach((tea: Teaser) => {
+    //     this.getFile(tea.presentation);
+    //   });
+    // });
     this.topicService.getLastComments().subscribe((response: any) => {
       if(response && response.length > 0) {
         this.lastComments = response as Comment[];
@@ -91,16 +95,20 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     this.messageService.allHistoryPublished(1).subscribe((res: any) => {
       if (res && !res.empty) {
         this.histoires = res.content as Message[];
-        this.displaySlide = true;
+        this.displayForums = true;
       }
     });
+    this.getAstuces();
+    this.getCoachings();
   }
 
   ngAfterViewInit(): void {
 
     M.Carousel.init(document.querySelector('#carousel-intro'), this.configCarousel);
 
-    M.Carousel.init(document.querySelector('#carousel-pub'), this.configCarousel);
+    M.Carousel.init(document.querySelector('#carousel-pub-1'), this.configCarousel);
+
+    M.Carousel.init(document.querySelector('#carousel-pub-2'), this.configCarousel);
 
     M.Carousel.init( document.querySelector('#carousel-forum'), {});
 
@@ -125,7 +133,8 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
 
   updateSlider() {
     M.Carousel.getInstance(document.querySelector('#carousel-intro')).next();
-    M.Carousel.getInstance(document.querySelector('#carousel-pub')).next();
+    M.Carousel.getInstance(document.querySelector('#carousel-pub-1')).next();
+    M.Carousel.getInstance(document.querySelector('#carousel-pub-2')).next();
     this.autoplay();
   }
 
@@ -189,5 +198,53 @@ export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
     if (image) {
        reader.readAsDataURL(image);
     }
+  }
+
+  getAstuces() {
+    // get page of items from api
+    this.subjectService.getTypeByName('astuces').subscribe((typ: any) => {
+      if(typ && typ.id) {
+        this.subjectService.getAllDefaultByType(typ.name).subscribe(
+          (response: any) => {
+            if(response && response.length > 0) {
+              this.loadTopics(response[0].key, 'astuces');
+            }
+          }
+        )
+      }
+    });
+  }
+
+  getCoachings() {
+    // get page of items from api
+    this.subjectService.getTypeByName('coachings').subscribe((typ: any) => {
+      if(typ && typ.id) {
+        this.subjectService.getAllDefaultByType(typ.name).subscribe(
+          (response: any) => {
+            if(response && response.length > 0) {
+              this.loadTopics(response[0].key, 'coachings');
+            }
+          }
+        )
+      }
+    });
+  }
+
+  loadTopics(key: string, type: string) {
+    this.topicService.getAllBySubjectAndPublisheds(key, 1).subscribe(
+      (response: any) => {
+        if(response && response.content && response.content.length > 0) {
+          if (type === 'astuces') {
+            this.astuces = response.content as Topic[];
+            this.displayAstuces = true;
+          }
+          if (type === 'coachings') {
+            this.coachings = response.content as Topic[];
+            this.displayCoachings = true;
+          }
+        }
+      }
+    )
+
   }
 }
